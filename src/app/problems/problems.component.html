@@ -1,0 +1,10 @@
+<div>
+  <h2>Problems</h2>
+</div>
+<div>
+  <ul class="problem-list">
+    <li *ngFor="let problem of listOfProblems" (click)="onSelectProblem(problem)">
+      <div class="problem-list-card">{{ problem.summary }}</div>
+    </li>
+  </ul>
+</div>

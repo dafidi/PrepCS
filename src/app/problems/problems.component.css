@@ -1,0 +1,22 @@
+
+.problem-list {
+  list-style-type: none;
+}
+
+.problem-list-card {
+  align-items: center;
+  background-color: #444;
+  border: 10px;
+  border-bottom: 5px;
+  border-bottom-color: aqua;
+  border-bottom-style: solid;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 150%;
+  height: 100px;
+  justify-content: center;
+  margin: 10px;
+  /* padding-bottom: 5px; */
+}
