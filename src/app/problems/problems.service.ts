@@ -5,24 +5,23 @@ import { Injectable } from '@angular/core';
 })
 export class ProblemsService {
   listOfProblems = [
-    {id: 0, summary: "FizzBuzz", url: "http://tpcg.io/HQO6D3"},
+    {id: 0, summary: "FizzBuzz", url: "http://tpcg.io/9x27A8"},
     {id: 1, summary: "Circular Linked List", url: "http://tpcg.io/HQO6D3"},
-    {id: 2, summary: "Sum Two Numbers", url: "http://tpcg.io/HQO6D3"},
+    {id: 2, summary: "Sum Two Numbers", url: "http://tpcg.io/9x27A8"},
     {id: 3, summary: "Is A BST?", url: "http://tpcg.io/HQO6D3"},
-    {id: 4, summary: "Travelling Salesman", url: "http://tpcg.io/HQO6D3"}
+    {id: 4, summary: "Travelling Salesman", url: "http://tpcg.io/9x27A8"}
   ];
   constructor() { }
 
   /**
-   * 
+   * The eventual goal is to get this list (in some well-defined format) 
+   * over HTTP.
    */
   getProblems = () => {
     return this.listOfProblems;
   }
 
   /**
-   * The eventual goal is to get this list (in some well-defined format) 
-   * over HTTP.
    * @param id 
    */
   getProblem(id: number) {
