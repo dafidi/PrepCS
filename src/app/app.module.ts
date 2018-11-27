@@ -7,18 +7,20 @@ import { AngularFireModule } from "@angular/fire";
 
 import { AppComponent } from './app.component';
 import { AuthService } from './core/auth.service';
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 import { UserLoginComponent } from './users/user-login/user-login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProblemsComponent } from './problems/problems.component';
 import { ProblemDetailComponent } from './problems/problem-detail/problem-detail.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserLoginComponent,
     ProblemsComponent,
-    ProblemDetailComponent
+    ProblemDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

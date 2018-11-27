@@ -1,10 +1,38 @@
-<div>
-  <h2>Problems</h2>
-</div>
-<div>
-  <ul class="problem-list">
-    <li *ngFor="let problem of listOfProblems" (click)="onSelectProblem(problem)">
-      <div class="problem-list-card">{{ problem.summary }}</div>
-    </li>
-  </ul>
+<div class="jumbotron" style="font-family:Segoe UI">
+  <div>
+    <h2>Problems</h2>
+  </div>
+  <div>
+    <!-- <ul class="problem-list">
+      <li *ngFor="let problem of listOfProblems" (click)="onSelectProblem(problem)">
+        <div class="problem-list-card">{{ problem.summary }}</div>
+      </li>
+    </ul> -->
+    <table align="center">
+      <thead>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">FizzBuzz</div>
+            <div class="card-body">
+              <h4 class="card-title">The Fizz Buzz Problem</h4>
+              <p class="card-text">Given n, print numbers from ...</p>
+            </div>
+          </div></td>
+          <td><div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+              <div class="card-header">Circular Linked List</div>
+              <div class="card-body">
+                <h4 class="card-title">Circular Linked List</h4>
+                <p class="card-text">Given the head of a linked list ... </p>
+              </div>
+            </div></td></tr>
+        <tr><td></td><td></td></tr>
+        <tr><td></td><td></td></tr>
+        <tr><td></td><td></td></tr>
+        <tr></tr>
+      </tbody>
+    </table>
+  </div>
 </div>

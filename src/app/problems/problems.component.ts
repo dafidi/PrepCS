@@ -6,7 +6,7 @@ import { ProblemsService } from './problems.service';
 @Component({
   selector: 'app-problems',
   templateUrl: './problems.component.html',
-  styleUrls: ['./problems.component.css']
+  styleUrls: ['../prepcs.css']
 })
 export class ProblemsComponent implements OnInit {
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
-import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   user: Observable<firebase.User>;
-  constructor(private firebaseAuth: AngularFireAuth) {
+  constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = firebaseAuth.authState;
   }
 
@@ -27,15 +27,18 @@ export class AuthService {
   }
 
   login = (email: string, password: string) => {
-    this.firebaseAuth
+    return this.firebaseAuth
     .auth
     .signInWithEmailAndPassword(email, password)
-    .then(response => { console.log("login successful:", response)})
+    .then(response => { 
+      console.log("login successful:", response);
+    })
     .catch(error => { console.log("login failed:", error)});
   }
 
   logout = () => {
     this.firebaseAuth.auth.signOut();
+    this.router.navigate(['login']);
   }
 
   isLoggedIn = () => {

@@ -1,22 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  styleUrls: ['../../prepcs.css']
 })
 export class UserLoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login = () => {
-    this.authService.login(this.email, this.password);
+    this.authService.login(this.email, this.password).then(response => {
+      if (response) {
+        this.router.navigate(['home']);
+      } else {
+        console.log("auivsbf aionvoisd ", response);
+      }
+    }).catch(error => {
+      console.log(error);
+    });
     this.email = this.password = "";
   }
 
