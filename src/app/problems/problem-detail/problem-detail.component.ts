@@ -8,7 +8,7 @@ import { AuthService } from '../../core/auth.service';
 @Component({
   selector: 'app-problem-detail',
   templateUrl: './problem-detail.component.html',
-  styleUrls: ['./problem-detail.component.css']
+  styleUrls: ['../../prepcs.css']
 })
 export class ProblemDetailComponent implements OnInit {
 
@@ -26,7 +26,7 @@ export class ProblemDetailComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.id = this.activatedRoute.snapshot.params['id'];
-      this.getProblem();
+      // this.getProblem(); we'll avoid during presentation.
     } else {
       this.router.navigate(["login"]);
       console.log("not logged in");

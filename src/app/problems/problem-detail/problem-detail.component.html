@@ -1,7 +1,22 @@
-
 <div>
-  <div class="problem-container" align="center">
+  <!-- <div class="problem-container" align="center">
     <iframe class="problem-iframe" [src]="problemUrlSanitized">
+    </iframe>
+  </div> -->
+  <div class="jumbotron" align="center" style="height:100vh; font-family:Segoe UI;">
+    <div class="card text-white bg-secondary mb-3"  >
+      <div class="card-header">Miscellaneous</div>
+      <div class="card-body">
+        <h4 class="card-title">FizzBuzz</h4>
+        <p class="card-text">Given an integer n, write a program that outputs the string representation of numbers from 1 to n.
+            However, for multiples of 3, the program outputs "Fizz" instead of the number and for multiples of 5, the program outbuts "Buzz".
+            For numbers which are multiples of both 3 and 5 output "FizzBuzz".
+            Example:
+            n = 4
+            Return "1", "2", "Fizz", "4".</p>
+      </div>
+    </div>
+    <iframe style="width:100%; height:100%" [src]="domSanitizer.bypassSecurityTrustResourceUrl('http://tpcg.io/eskO1d')">
     </iframe>
   </div>
 </div>

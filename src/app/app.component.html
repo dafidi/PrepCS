@@ -26,7 +26,7 @@
       </li>
     </ul>
   </div>
-  <form class="form-inline my-2 my-lg-0" *ngIf="!authService.user | async">
+  <form class="form-inline my-2 my-lg-0" *ngIf="authService.user | async">
       <button class="btn btn-secondary my-2 my-sm-0" (click)="logout()" type="submit">Logout</button>
     </form>
 </nav>

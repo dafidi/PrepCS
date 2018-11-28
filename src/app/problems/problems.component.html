@@ -1,37 +1,99 @@
 <div class="jumbotron" style="font-family:Segoe UI">
   <div>
-    <h2>Problems</h2>
+    <h1>Problems</h1>
+    <br><br>
+    <h4>Progress:</h4>
   </div>
-  <div>
-    <!-- <ul class="problem-list">
-      <li *ngFor="let problem of listOfProblems" (click)="onSelectProblem(problem)">
-        <div class="problem-list-card">{{ problem.summary }}</div>
-      </li>
-    </ul> -->
+  <div align="center">
+    <!-- <div *ngFor="let problem of listOfProblems" (click)="onSelectProblem(problem)">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">{{ problem.category }}</div>
+            <div class="card-body">
+              <h4 class="card-title">{{ problem.shortName }}</h4>
+              <p class="card-text">{{ problem.summary }}</p>
+            </div>
+          </div>
+        </div> -->
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+        aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+    </div><br><br>
     <table align="center">
       <thead>
-
       </thead>
       <tbody>
         <tr>
-          <td><div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">FizzBuzz</div>
-            <div class="card-body">
-              <h4 class="card-title">The Fizz Buzz Problem</h4>
-              <p class="card-text">Given n, print numbers from ...</p>
-            </div>
-          </div></td>
-          <td><div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-              <div class="card-header">Circular Linked List</div>
-              <div class="card-body">
-                <h4 class="card-title">Circular Linked List</h4>
-                <p class="card-text">Given the head of a linked list ... </p>
+          <td>
+            <a routerLink="/problem-detail" routerLinkActive="active">
+              <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Miscellaneous</div>
+                <div class="card-body">
+                  <h4 class="card-title">The Fizz Buzz Problem</h4>
+                  <p class="card-text">Given n, print numbers from ...</p>
+                </div>
               </div>
-            </div></td></tr>
-        <tr><td></td><td></td></tr>
-        <tr><td></td><td></td></tr>
-        <tr><td></td><td></td></tr>
-        <tr></tr>
+            </a>
+          </td>
+          <td>
+            <a href="http://tpcg.io/qZNWCh">
+              <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Data Structures</div>
+                <div class="card-body">
+                  <h4 class="card-title">Circular Linked List</h4>
+                  <p class="card-text">Given the head of a linked list ... </p>
+                </div>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://tpcg.io/qZNWCh">
+              <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Mathematics</div>
+                <div class="card-body">
+                  <h4 class="card-title">Sum Two Numbers</h4>
+                  <p class="card-text">Given two numbers ... </p>
+                </div>
+              </div>
+            </a>
+          </td>
+          <td>
+            <a href="http://tpcg.io/qZNWCh">
+              <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Data Structures</div>
+                <div class="card-body">
+                  <h4 class="card-title">Is this a BST</h4>
+                  <p class="card-text">Given the head of a Bi ...</p>
+                </div>
+              </div>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://tpcg.io/qZNWCh">
+              <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Algorithms</div>
+                <div class="card-body">
+                  <h4 class="card-title">Travelling Salesman</h4>
+                  <p class="card-text">Given a graph, determine ...</p>
+                </div>
+              </div>
+            </a>
+          </td>
+          <td>
+            <a href="http://tpcg.io/qZNWCh">
+              <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Data Structures</div>
+                <div class="card-body">
+                  <h4 class="card-title">Balance Parenthesis</h4>
+                  <p class="card-text">Given a string containing ... </p>
+                </div>
+              </div>
+            </a>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

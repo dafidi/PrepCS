@@ -32,12 +32,14 @@ export class AuthService {
     .signInWithEmailAndPassword(email, password)
     .then(response => { 
       console.log("login successful:", response);
+      console.log(this.user);
     })
     .catch(error => { console.log("login failed:", error)});
   }
 
   logout = () => {
     this.firebaseAuth.auth.signOut();
+    console.log(this.user);
     this.router.navigate(['login']);
   }
 
