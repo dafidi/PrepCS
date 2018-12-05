@@ -1,15 +1,3 @@
-<!-- <nav>
-  <ul>
-    <li><a routerLink="/login" routerLinkActive="active">Log In</a></li>
-    <li><a routerLink="/problems" routerLinkActive="active">Problems</a></li>
-  </ul>
-</nav>
-<div>
-  <h1>Welcome to PrepCS</h1>
-</div>
-<div>
-  <router-outlet></router-outlet>
-</div> -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <span class="navbar-brand">Howard: PrepCS</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
@@ -26,9 +14,10 @@
       </li>
     </ul>
   </div>
-  <form class="form-inline my-2 my-lg-0" *ngIf="authService.user | async">
-      <button class="btn btn-secondary my-2 my-sm-0" (click)="logout()" type="submit">Logout</button>
-    </form>
+  <form class="form-inline my-2 my-lg-0">
+    <button *ngIf="authService.user | async" class="btn btn-secondary my-2 my-sm-0"
+    (click)="logout()" type="submit">Logout</button>
+  </form>
 </nav>
 <div>
   <router-outlet></router-outlet>

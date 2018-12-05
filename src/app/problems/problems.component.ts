@@ -11,18 +11,24 @@ import { ProblemsService } from './problems.service';
 export class ProblemsComponent implements OnInit {
 
   listOfProblems: any[];
-
+  /**
+   * This is how we know whether or not the user is logged in.
+   * @private
+   */
+  user: any;
   constructor(private authService: AuthService,
     private router: Router,
     private problemsService: ProblemsService) { }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn()) {
-      this.getListOfProblems();
-    } else {
-      this.router.navigate(["login"]);
-      console.log("not logged in");
-    }
+    this.authService.user.subscribe((user) => {
+      this.user = user;
+      if(user) {
+        this.getListOfProblems();
+      } else {
+        this.router.navigate(["login"]);
+      }
+    });
   }
 
   /**

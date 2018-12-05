@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class AuthService {
 
   user: Observable<firebase.User>;
   constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
-    this.user = firebaseAuth.authState;
+    this.user = firebaseAuth.user;
   }
 
   signup = (email: string, password: string) => {
@@ -19,10 +18,14 @@ export class AuthService {
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(response => {
-        console.log("Signup successful: ", response);
+        /**
+         * We should display a "successful sign-up" message.
+         */
       })
       .catch(error => {
-        console.log("Signup failed: ", error)
+        /**
+         * We should display a failed sign-up message.
+         */
       }); 
   }
 
@@ -30,20 +33,25 @@ export class AuthService {
     return this.firebaseAuth
     .auth
     .signInWithEmailAndPassword(email, password)
-    .then(response => { 
-      console.log("login successful:", response);
-      console.log(this.user);
+    .then(
+      /**
+       * We only need to return false here. Caller should interpret return callback
+       * as login successful if true unsuccessful if false.
+       */
+      response => {
+      return true;
     })
-    .catch(error => { console.log("login failed:", error)});
+    .catch(error => {
+      return false;
+    });
   }
 
   logout = () => {
     this.firebaseAuth.auth.signOut();
-    console.log(this.user);
     this.router.navigate(['login']);
   }
 
   isLoggedIn = () => {
-    return this.firebaseAuth.auth.currentUser != null;
+    return this.user != null;
   }
 }

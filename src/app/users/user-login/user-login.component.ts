@@ -17,11 +17,16 @@ export class UserLoginComponent implements OnInit {
   }
 
   login = () => {
-    this.authService.login(this.email, this.password).then(response => {
+    this.authService.login(this.email, this.password)
+    .then(response => {
+      console.log(response);
       if (response) {
         this.router.navigate(['home']);
       } else {
-        console.log("auivsbf aionvoisd ", response);
+        /**
+         * We should do something here to le tthe user know that their login
+         * has failed.
+         */
       }
     }).catch(error => {
       console.log(error);
@@ -38,5 +43,5 @@ export class UserLoginComponent implements OnInit {
     this.authService.logout();
   }
 
-
+  // 
 }

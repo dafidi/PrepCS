@@ -16,6 +16,11 @@ export class ProblemDetailComponent implements OnInit {
   problem: any;
   problemUrl: string;
   problemUrlSanitized: SafeUrl;
+  /**
+   * This is how we know whether or not theuser is logged in.
+   * @private
+   */
+  user: any;
   constructor(private activatedRoute: ActivatedRoute,
     private problemsService: ProblemsService,
     private domSanitizer: DomSanitizer,
@@ -24,13 +29,14 @@ export class ProblemDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) {
-      this.id = this.activatedRoute.snapshot.params['id'];
-      // this.getProblem(); we'll avoid during presentation.
-    } else {
-      this.router.navigate(["login"]);
-      console.log("not logged in");
-    }
+    this.authService.user.subscribe((user) => {
+      this.user = user;
+      if(user) {
+        this.id = this.activatedRoute.snapshot.params['id'];
+      } else {
+        this.router.navigate(["login"]);
+      }
+    });
   }
 
   /**
@@ -41,8 +47,6 @@ export class ProblemDetailComponent implements OnInit {
     this.problemUrl = this.problem.url;
     this.problemUrlSanitized = this.domSanitizer
       .bypassSecurityTrustResourceUrl(this.problemUrl);
-
-    console.log("problem summary: ", this.problem.summary);
   }
 
 }
