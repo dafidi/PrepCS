@@ -4,6 +4,7 @@ import { ProblemsService } from '../problems.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-problem-detail',
@@ -25,7 +26,8 @@ export class ProblemDetailComponent implements OnInit {
     private problemsService: ProblemsService,
     private domSanitizer: DomSanitizer,
     private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -47,6 +49,11 @@ export class ProblemDetailComponent implements OnInit {
     this.problemUrl = this.problem.url;
     this.problemUrlSanitized = this.domSanitizer
       .bypassSecurityTrustResourceUrl(this.problemUrl);
+  }
+
+  submit_code = () => {
+    const url = "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/dev";
+    this.http.post(url, {}).subscribe((res) => { console.log(res)});
   }
 
 }

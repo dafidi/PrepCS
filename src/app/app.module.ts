@@ -6,6 +6,8 @@ import { MatGridListModule } from '@angular/material';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireModule } from "@angular/fire";
 
+import { HttpClientModule } from "@angular/common/http";
+
 import { AppComponent } from './app.component';
 import { AuthService } from './core/auth.service';
 import { environment } from '../environments/environment';
@@ -14,6 +16,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ProblemsComponent } from './problems/problems.component';
 import { ProblemDetailComponent } from './problems/problem-detail/problem-detail.component';
 import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { HomeComponent } from './home/home.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AppRoutingModule,
+    HttpClientModule,
     MatGridListModule
   ],
   providers: [
