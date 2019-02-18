@@ -24,7 +24,7 @@ export class UserLoginComponent implements OnInit {
         this.router.navigate(['home']);
       } else {
         /**
-         * We should do something here to le tthe user know that their login
+         * We should do something here to let the user know that their login
          * has failed.
          */
       }

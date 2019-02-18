@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 let green = "#4aa48a";
 let pink =  "#ff9999";
+
 @Injectable({
   providedIn: 'root'
 })

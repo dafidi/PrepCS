@@ -14,12 +14,12 @@
         <mat-grid-tile *ngFor="let problem of listOfProblems" [colspan]="1" [rowspan]="1" [style.background]=problem.color
           [style.color]="'white'">
           <a routerLink="/problem-detail/{{ problem.id }}" routerLinkActive="active">
-            <div class="card-header" style="color:black">
+            <div class="card-header" style="color:white">
               <p>{{ problem.category }}</p>
             </div>
             <div class="card-body">
-              <h4 class="card-title">{{ problem.shortName }}</h4>
-              <p class="card-text" style="color: black">{{ problem.summary }}.</p>
+              <h4 class="card-title" style="color: white">{{ problem.shortName }}</h4>
+              <p class="card-text" style="color: white">{{ problem.summary }}.</p>
             </div>
           </a>
         </mat-grid-tile>
