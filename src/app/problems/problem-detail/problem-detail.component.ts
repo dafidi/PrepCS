@@ -52,8 +52,33 @@ export class ProblemDetailComponent implements OnInit {
   }
 
   submit_code = () => {
-    const url = "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/dev";
-    this.http.post(url, {}).subscribe((res) => { console.log(res)});
+    const url = "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code";
+    // this.http.post(url, {
+    //   "Content-Type": "application/json",
+    //   "x-api-key":"WpLUPfRasd5PiLMAoXRhV4qigW08I1pl3wnHGNuq",
+    //   "X-Amz-Date": "20190225T180426Z"
+    // }).subscribe((res) => { "lala"+console.log(res)});
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+
+    xhr.onerror = (err) => {
+      console.log("ERR:"+err);
+    }
+   
+    xhr.onload = (res) => {
+      console.log("LOAD:"+res);
+      console.log(xhr.response);
+    }
+
+    xhr.setRequestHeader("Content-Type", "application/json")
+    xhr.setRequestHeader("X-Api-Key", "WpLUPfRasd5PiLMAoXRhV4qigW08I1pl3wnHGNuq");
+    xhr.setRequestHeader("X-Amz-Date", "20190225T180426Z");
+    xhr.setRequestHeader("Authorization", "20190225T180426Z");
+    xhr.setRequestHeader("X-Amz-Security-Token", "20190225T180426Z");
+
+    const code = { "code": "print('Hello world.')"}
+    xhr.send(JSON.stringify(code));
   }
 
 }
