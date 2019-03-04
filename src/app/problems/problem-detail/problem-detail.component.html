@@ -20,11 +20,11 @@
     </iframe>
   </div> -->
 
-  <textarea rows="4" columns="200">
+  <textarea rows="4" columns="200" #codeInput>
   You will type code here.
 </textarea>
 
-<button (click)="submit_code()">Click to submit your code.</button>
+<button (click)="submit_code(codeInput.value)">Click to submit your code.</button>
   <textarea rows="4" columns="200">
     You will see the result of your submission here.
   </textarea>
