@@ -51,7 +51,7 @@ export class ProblemDetailComponent implements OnInit {
       .bypassSecurityTrustResourceUrl(this.problemUrl);
   }
 
-  submit_code = () => {
+  submit_code = (code_str: string) => {
     const url = "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code";
     // this.http.post(url, {
     //   "Content-Type": "application/json",
@@ -68,16 +68,12 @@ export class ProblemDetailComponent implements OnInit {
    
     xhr.onload = (res) => {
       console.log("LOAD:"+res);
-      console.log(xhr.response);
+      res = JSON.parse(xhr.response);
+      console.log(JSON.parse(res["body"]));
     }
 
-    xhr.setRequestHeader("Content-Type", "application/json")
-    xhr.setRequestHeader("X-Api-Key", "WpLUPfRasd5PiLMAoXRhV4qigW08I1pl3wnHGNuq");
-    xhr.setRequestHeader("X-Amz-Date", "20190225T180426Z");
-    xhr.setRequestHeader("Authorization", "20190225T180426Z");
-    xhr.setRequestHeader("X-Amz-Security-Token", "20190225T180426Z");
-
-    const code = { "code": "print('Hello world.')"}
+    //const code = { "code": "for i in range(5):\n\tprint('Hello Shrijanand.')\n"}
+    const code = { "code": code_str };
     xhr.send(JSON.stringify(code));
   }
 
