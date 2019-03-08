@@ -7,10 +7,25 @@ class Home_Page extends React.Component {
 	render() {
 		return (
 			<div className="homePage">
-				<Home_Bar/>
+			 {/*
+				
 				<Home_Body/>
+				*/}
+				<Home_Bar/>
+				<Demo_Problem/>
 			</div>
 			);
+	}
+}
+
+class Demo_Problem extends React.Component {
+
+	render() {
+		return (
+			<div className="demoProblem">
+
+			</div>
+		);
 	}
 }
 
@@ -26,6 +41,9 @@ class Home_Bar extends React.Component {
 					<div className="navbar-nav mr-auto">
 						<a href="#" className="nav-item">
 							<span className="nav-link">Problems</span>
+						</a>
+						<a href="#" className="nav-item">
+							<span className="nav-link">Demo Problem</span>
 						</a>
 					</div>
 					<form className="form-inline my-2 my-lg-0">

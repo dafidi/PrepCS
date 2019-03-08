@@ -53,11 +53,6 @@ export class ProblemDetailComponent implements OnInit {
 
   submit_code = (code_str: string) => {
     const url = "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code";
-    // this.http.post(url, {
-    //   "Content-Type": "application/json",
-    //   "x-api-key":"WpLUPfRasd5PiLMAoXRhV4qigW08I1pl3wnHGNuq",
-    //   "X-Amz-Date": "20190225T180426Z"
-    // }).subscribe((res) => { "lala"+console.log(res)});
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
