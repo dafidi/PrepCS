@@ -1,8 +1,12 @@
 .demoProblem{
-  margin-left: 400px;
-  margin-top: 200px;
-  height: 500px;
-  width: 200px;
+  margin-left: 10px;
+  margin-top: 20px;
+  /* height: 500px;
+  width: 200px; */
+
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
 
 .homePage{
@@ -15,6 +19,22 @@
 
 .homeBody{
   
+}
+
+.problem-desc-container{
+  /* width: 500px;
+  height:500px; */
+  height: 100%;
+  width: 50%;
+  /* float: left; */
+}
+
+.ide-container{
+  /* width: 500px;
+  height:500px; */
+  height: 100%;
+  width: 50%;
+  /* float: right; */
 }
 
 /*!
