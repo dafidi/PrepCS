@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import AceEditor from 'react-ace';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 //import brace from 'brace';
 
 import 'brace/mode/python';
@@ -28,9 +30,11 @@ class Demo_Problem extends React.Component {
 		super(props);
 		this.state = {
 			code: null,
-			codeSubmissionEndpoint: "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code"
+			codeSubmissionEndpoint: "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code",
+			outputText: "Your code's output."
 		}
-		//this.state.codeSubmissionEndpoint = "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code"
+
+		this.infoBoxRef = React.createRef();
 	}
 
 	submitCode = () => {
@@ -47,10 +51,10 @@ class Demo_Problem extends React.Component {
 			xhr.onload = (res) => {
 				const response = JSON.parse(xhr.response);
 				const response_json = response["body"];
-				console.log(response_json);
-			}
+				this.infoBoxRef.current.updateText(JSON.parse(response_json));
+ 			}
 
-			const json_code = {code: this.state.code}
+			const json_code = { code: this.state.code }
 			xhr.send(JSON.stringify(json_code));
 		}
 	}
@@ -59,28 +63,71 @@ class Demo_Problem extends React.Component {
 		this.state.code = newValue;
 	}
 
-
 	render() {
 		return (
-			<div className="demoProblem">
-				<div className="problem-desc-container">
+			<span className="demoProblem">
+				<span className="problem-desc-container">
 					<h1>Two Sum</h1>
 					<h3>Given a list of numbers and a value, find all the pairs of numbers
 						in the list which sum up to the given value.
-				</h3>
-				</div>
+					</h3>
+					<InfoBox
+						ref={this.infoBoxRef}
+						text={this.state.outputText} />
+				</span>
 				<div className="ide-container">
 					<AceEditor
 						mode="python"
 						theme="solarized_dark"
+						// height="100%"
+						// width="100%"
+						width="100%"
 						height="600px"
-						width="700px"
 						onChange={this.onChange}
 					//name="UNIQUE_ID_OF_DIV"
 					//editorProps={{$blockScrolling: true}}
 					/>
-					<div><button onClick={() => this.submitCode()}>Submit</button></div>
+					<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>
 				</div>
+			</span>
+		);
+	}
+}
+
+class InfoBox extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			text: this.props.text
+		}
+	}
+	/**
+	 * @param {!Object} resultJson (should have "result", "error" and 
+	 * "error-status fields")
+	 */
+	updateText = (resultJson) => {
+		this.setState({
+			text: resultJson["result"]
+		});
+	}
+
+	render() {
+		return (
+			<div className="info-box">
+				<Tabs>
+					<TabList>
+						<Tab>Output</Tab>
+						<Tab>Information</Tab>
+					</TabList>
+
+					<TabPanel>
+						<h2>{ this.state.text }</h2>
+					</TabPanel>
+					<TabPanel>
+						<h2>Other information that we'll put here.</h2>
+					</TabPanel>
+				</Tabs>
 			</div>
 		);
 	}
