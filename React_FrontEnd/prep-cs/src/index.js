@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Demo_Problem from './demo_problem';
+
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	NavLink,
+	Switch,
+	Redirect
+} from 'react-router-dom';
+
 import './index.css';
-import AceEditor from 'react-ace';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import "react-tabs/style/react-tabs.css";
-//import brace from 'brace';
 
 import 'brace/mode/python';
 import 'brace/theme/solarized_dark';
@@ -13,125 +20,30 @@ class Home_Page extends React.Component {
 
 	render() {
 		return (
-			<div className="homePage">
-				{/*
+			<Router>
+				<div className="homePage">
+					{/*
 				<Home_Body/>
 				*/}
-				<Home_Bar />
-				<Demo_Problem />
-			</div>
-		);
-	}
-}
-
-class Demo_Problem extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			code: null,
-			codeSubmissionEndpoint: "https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code",
-			outputText: "Your code's output."
-		}
-
-		this.infoBoxRef = React.createRef();
-	}
-
-	submitCode = () => {
-		if (!this.state.code) {
-			alert("can't submit. no value");
-		} else {
-			let xhr = new XMLHttpRequest();
-			xhr.open("POST", this.state.codeSubmissionEndpoint, true);
-
-			xhr.onerror = (err) => {
-				// TODO(awogbemila): Deal with errors related to network.
-			}
-
-			xhr.onload = (res) => {
-				const response = JSON.parse(xhr.response);
-				const response_json = response["body"];
-				this.infoBoxRef.current.updateText(JSON.parse(response_json));
- 			}
-
-			const json_code = { code: this.state.code }
-			xhr.send(JSON.stringify(json_code));
-		}
-	}
-
-	onChange = (newValue) => {
-		this.state.code = newValue;
-	}
-
-	render() {
-		return (
-			<span className="demoProblem">
-				<span className="problem-desc-container">
-					<h1>Two Sum</h1>
-					<h3>Given a list of numbers and a value, find all the pairs of numbers
-						in the list which sum up to the given value.
-					</h3>
-					<InfoBox
-						ref={this.infoBoxRef}
-						text={this.state.outputText} />
-				</span>
-				<div className="ide-container">
-					<AceEditor
-						mode="python"
-						theme="solarized_dark"
-						// height="100%"
-						// width="100%"
-						width="100%"
-						height="600px"
-						onChange={this.onChange}
-					//name="UNIQUE_ID_OF_DIV"
-					//editorProps={{$blockScrolling: true}}
-					/>
-					<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>
+					<Home_Bar />
+					{/* <Demo_Problem /> */}
+					<Route path="/problems" component={ProblemsComponent}></Route>
+					<Route path="/demo-problem" component={Demo_Problem}></Route>
 				</div>
-			</span>
+			</Router>
 		);
 	}
 }
 
-class InfoBox extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			text: this.props.text
-		}
-	}
-	/**
-	 * @param {!Object} resultJson (should have "result", "error" and 
-	 * "error-status fields")
-	 */
-	updateText = (resultJson) => {
-		this.setState({
-			text: resultJson["result"]
-		});
-	}
-
+class ProblemsComponent extends React.Component {
 	render() {
 		return (
-			<div className="info-box">
-				<Tabs>
-					<TabList>
-						<Tab>Output</Tab>
-						<Tab>Information</Tab>
-					</TabList>
-
-					<TabPanel>
-						<h2>{ this.state.text }</h2>
-					</TabPanel>
-					<TabPanel>
-						<h2>Other information that we'll put here.</h2>
-					</TabPanel>
-				</Tabs>
-			</div>
-		);
+			<div><h3>Problems Page. List of Problems is shown here.</h3></div>
+		)
 	}
 }
+
+
 
 class Home_Bar extends React.Component {
 
@@ -139,20 +51,28 @@ class Home_Bar extends React.Component {
 		return (
 			<div className="homeBar">
 				<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-					<a href="#">
-						<span className="navbar-brand">Howard: PrepCS</span>
-					</a>
+					<span className="Nav_link">
+						<NavLink to="/"
+							style={{color: 'black'}}>
+							PrepCS
+						</NavLink>
+					</span>
 					<div className="navbar-nav mr-auto">
-						<a href="#" className="nav-item">
-							<span className="nav-link">Problems</span>
-						</a>
-						<a href="#" className="nav-item">
-							<span className="nav-link">Demo Problem</span>
-						</a>
+						<span className="Nav_link">
+							<NavLink to="/problems" 
+								style={{color: 'black'}}
+								activeStyle={{color: 'yellow'}}>
+								Problems
+							</NavLink>
+						</span>
+						<span className="Nav_link" >
+							<NavLink to="/demo-problem" 
+								style={{color: 'black'}}
+								activeStyle={{color: 'yellow'}}>
+								Demo Problem
+						</NavLink>
+						</span>
 					</div>
-					<form className="form-inline my-2 my-lg-0">
-						<button className="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
-					</form>
 				</nav>
 			</div>
 		);
