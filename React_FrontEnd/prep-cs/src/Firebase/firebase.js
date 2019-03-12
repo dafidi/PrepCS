@@ -39,6 +39,9 @@ class Firebase {
 
   fs_user = uid => this.fs.collection('users').doc(uid);
 
+  fs_problems = () => this.fs.collection('problems');
+
+
 
 }
 

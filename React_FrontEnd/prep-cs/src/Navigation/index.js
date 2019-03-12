@@ -27,7 +27,7 @@ const Navigation = () => (
   </div>
 );
 
-class Home_Bar extends React.Component {
+class HomeBar extends React.Component {
 
   render() {
     return (
@@ -67,4 +67,4 @@ class Home_Bar extends React.Component {
 }
 
 export default Navigation;
-export { Home_Bar };
+export { HomeBar };

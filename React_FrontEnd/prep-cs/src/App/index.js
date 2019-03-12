@@ -4,15 +4,11 @@ import { SignInPage } from '../SignIn';
 import { SignUpPage } from '../SignUp';
 import ProblemsComponent from '../Problems';
 import { withAuthentication } from '../Session';
-import { Home_Bar } from '../Navigation';
+import { HomeBar } from '../Navigation';
 
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink,
-  Switch,
-  Redirect
+  Route
 } from 'react-router-dom';
 
 import './index.css';
@@ -20,14 +16,14 @@ import './index.css';
 import 'brace/mode/python';
 import 'brace/theme/solarized_dark';
 
-class Home_Page extends React.Component {
+class HomePage extends React.Component {
 
   render() {
     return (
       <Router>
         <div className="homePage">
-          <Home_Bar />
-          <Route path="/" exact component={Home_Body}></Route>
+          <HomeBar />
+          <Route path="/" exact component={HomeBody}></Route>
           <Route path="/signin" exact component={SignInPage}></Route>
           <Route path="/signup" exact component={SignUpPage}></Route>
           <Route path="/problems" exact component={ProblemsComponent}></Route>
@@ -38,7 +34,7 @@ class Home_Page extends React.Component {
   }
 }
 
-class Home_Body extends React.Component {
+class HomeBody extends React.Component {
 
   render() {
     return (
@@ -48,19 +44,19 @@ class Home_Body extends React.Component {
           <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
           <hr className="my-4"></hr>
           <div className="list-group">
-            <a href="#" style={{ color: "white", backgroundColor: "#F3969A" }} className="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="/" style={{ color: "white", backgroundColor: "#F3969A" }} className="list-group-item list-group-item-action flex-column align-items-start">
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">Coding Interview Readiness</h5>
               </div>
               <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
             </a>
-            <a href="#" className="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="/" className="list-group-item list-group-item-action flex-column align-items-start">
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">Resume Building</h5>
               </div>
               <p className="mb-1">Stand out from the crowd and your fellow peers.</p>
             </a>
-            <a href="#" className="list-group-item list-group-item-action flex-column align-items-start active">
+            <a href="/" className="list-group-item list-group-item-action flex-column align-items-start active">
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">CS-Related Event Tracking</h5>
               </div>
@@ -75,7 +71,7 @@ class Home_Body extends React.Component {
 
 class App extends React.Component {
   render() {
-    return (<Home_Page />);
+    return (<HomePage />);
   }
 }
 

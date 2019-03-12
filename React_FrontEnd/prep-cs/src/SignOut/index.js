@@ -4,10 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 
 class SignOutButtonBase extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <button type="button" onClick={this.props.firebase.doSignOut}>

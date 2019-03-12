@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, BrowserRouter as Router } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
 import { withFirebase } from '../Firebase';
