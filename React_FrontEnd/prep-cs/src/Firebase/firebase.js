@@ -1,5 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/firestore';
 
 // Initialize Firebase
 var config = {
@@ -16,16 +18,28 @@ class Firebase {
     app.initializeApp(config);
 
     this.auth = app.auth();
+    this.db = app.database();
+    this.fs = app.firestore();
   }
 
-  doCreateUserWithEmailAndPassword = (email, password) => 
+  doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-  doSignOut = () =>  this.auth.signOut(); 
-  
+  doSignOut = () => this.auth.signOut();
+
+  // *** User API ***
+  // We are using "Cloud Firestore", not "Realtime Database" 
+  // user = uid => this.db.ref(`users/${uid}`);
+  // users = () => this.db.ref('users');
+
+  fs_users = () => this.fs.collection('users');
+
+  fs_user = uid => this.fs.collection('users').doc(uid);
+
+
 }
 
 export default Firebase;
