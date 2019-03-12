@@ -4,6 +4,8 @@ import { compose } from 'recompose';
 import { FirebaseContext } from '../Firebase';
 import { withFirebase } from '../Firebase';
 
+import * as ROUTES from '../constants/routes';
+
 
 const INITIAL_STATE = {
   username: '',
@@ -41,6 +43,7 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => {
         this.setState({ error });

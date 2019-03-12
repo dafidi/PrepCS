@@ -1,10 +1,14 @@
 import React from 'react';
 import AceEditor from 'react-ace';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
+import { withFirebase } from '../Firebase';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { AuthUserContext, withAuthorization } from '../Session';
 
 import "react-tabs/style/react-tabs.css";
 
-class Demo_Problem extends React.Component {
+class Demo_ProblemBase extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -46,31 +50,35 @@ class Demo_Problem extends React.Component {
 
 	render() {
 		return (
-			<span className="demoProblem">
-				<span className="problem-desc-container">
-					<h1>Two Sum</h1>
-					<h3>Given a list of numbers and a value, find all the pairs of numbers
-						in the list which sum up to the given value.
+			<AuthUserContext.Consumer>
+				{authUser =>
+					<span className="demoProblem">
+						<span className="problem-desc-container">
+							<h1>Two Sum</h1>
+							<h3>Given a list of numbers and a value, find all the pairs of numbers
+								in the list which sum up to the given value.
 					</h3>
-					<InfoBox
-						ref={this.infoBoxRef}
-						text={this.state.outputText} />
-				</span>
-				<div className="ide-container">
-					<AceEditor
-						mode="python"
-						theme="solarized_dark"
-						// height="100%"
-						// width="100%"
-						width="100%"
-						height="600px"
-						onChange={this.onChange}
-					//name="UNIQUE_ID_OF_DIV"
-					//editorProps={{$blockScrolling: true}}
-					/>
-					<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>
-				</div>
-			</span>
+							<InfoBox
+								ref={this.infoBoxRef}
+								text={this.state.outputText} />
+						</span>
+						<div className="ide-container">
+							<AceEditor
+								mode="python"
+								theme="solarized_dark"
+								// height="100%"
+								// width="100%"
+								width="100%"
+								height="600px"
+								onChange={this.onChange}
+							//name="UNIQUE_ID_OF_DIV"
+							//editorProps={{$blockScrolling: true}}
+							/>
+							<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>
+						</div>
+					</span>
+				}
+			</AuthUserContext.Consumer>
 		);
 	}
 }
@@ -114,4 +122,11 @@ class InfoBox extends React.Component {
 	}
 }
 
-export default Demo_Problem;
+const Demo_Problem = compose(
+	withRouter,
+	withFirebase
+)(Demo_ProblemBase);
+
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(Demo_Problem);
