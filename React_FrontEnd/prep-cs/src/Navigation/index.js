@@ -34,31 +34,31 @@ class HomeBar extends React.Component {
       <div className="homeBar">
         <AuthUserContext.Consumer>
           {authUser =>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div className="navbar-nav mr-auto">
-              <span className="Nav_link">
-                <NavLink to={ROUTES.LANDING}
-                  style={{ color: 'black' }}>
-                  PrepCS
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+              <div className="navbar-nav mr-auto">
+                <span className="Nav_link">
+                  <NavLink to={ROUTES.LANDING}
+                    style={{ color: 'black' }}>
+                    PrepCS
 						</NavLink>
-              </span>
-              <span className="Nav_link">
-                <NavLink to={ROUTES.PROBLEMS}
-                  style={{ color: 'black' }}
-                  activeStyle={{ color: 'yellow' }}>
-                  Problems
+                </span>
+                <span className="Nav_link">
+                  <NavLink to={ROUTES.PROBLEMS}
+                    style={{ color: 'black' }}
+                    activeStyle={{ color: 'yellow' }}>
+                    Problems
 							</NavLink>
-              </span>
-              <span className="Nav_link" >
-                <NavLink to={ROUTES.DEMO_PROBLEM}
-                  style={{ color: 'black' }}
-                  activeStyle={{ color: 'yellow' }}>
-                  Demo Problem
+                </span>
+                <span className="Nav_link" >
+                  <NavLink to={ROUTES.DEMO_PROBLEM}
+                    style={{ color: 'black' }}
+                    activeStyle={{ color: 'yellow' }}>
+                    Demo Problem
 						</NavLink>
-              </span>
-              <SignOutButton />
-            </div>
-          </nav>
+                </span>
+                <SignOutButton />
+              </div>
+            </nav>
           }
         </AuthUserContext.Consumer>
       </div>

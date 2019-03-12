@@ -5,6 +5,7 @@ import { SignUpPage } from '../SignUp';
 import ProblemsComponent from '../Problems';
 import { withAuthentication } from '../Session';
 import { HomeBar } from '../Navigation';
+import ProblemDetail from '../Problems/problem-detail';
 
 import {
   BrowserRouter as Router,
@@ -28,6 +29,7 @@ class HomePage extends React.Component {
           <Route path="/signup" exact component={SignUpPage}></Route>
           <Route path="/problems" exact component={ProblemsComponent}></Route>
           <Route path="/demo-problem" exact component={Demo_Problem}></Route>
+          <Route path="/problem-detail/:problem_id" component={ProblemDetail}></Route>
         </div>
       </Router>
     );

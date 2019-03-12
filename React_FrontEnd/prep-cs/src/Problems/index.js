@@ -3,6 +3,8 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
+import { NavLink } from 'react-router-dom';
+import * as ROUTES from '../constants/routes';
 
 class ProblemsComponentBase extends React.Component {
   constructor(props) {
@@ -15,20 +17,24 @@ class ProblemsComponentBase extends React.Component {
   }
 
   componentDidMount = () => {
-
     this.props.firebase.fs_problems()
       .get()
       .then(
         (snapshot) => snapshot.forEach(
           (doc) => {
-            this.state.listOfProblems.push(doc.data());
+            this.state.listOfProblems.push({"id": doc.id, "data": doc.data()});
           })
       )
       .then((snapshot) => {
         this.setState({
           problemListViews: this.state.listOfProblems.map(
-            (problem) => {
-              return <li>{problem.shortName}</li>
+            (problem, i) => {
+              return <li key={i}>
+              <NavLink to={ROUTES.PROBLEM_DETAIL+'/'+problem["id"]}
+                  style={{ color: 'black' }}>
+                  {problem["data"].shortName}
+						</NavLink>  
+            </li>
             })
         });
       })
@@ -41,11 +47,7 @@ class ProblemsComponentBase extends React.Component {
         {authUser =>
           <div>
             <h3>Problems Page. List of Problems is shown here.</h3>
-            <ul>{this.state.listOfProblems.map((problem, i) => {
-              return (<li key={i}>{problem.shortName}</li>)
-            })
-            }
-            </ul>
+              <ul>{this.state.problemListViews}</ul>
             <button onClick={() => console.log(this.state.problemListViews)}>show list</button>
           </div>}
       </AuthUserContext.Consumer>

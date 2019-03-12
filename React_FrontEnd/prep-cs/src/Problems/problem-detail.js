@@ -13,6 +13,8 @@ class ProblemDetailBase extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			problemName: null,
+			problemSummary: null,
 			code: null,
 			codeSubmissionEndpoint:
 				"https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code",
@@ -48,16 +50,28 @@ class ProblemDetailBase extends React.Component {
 		this.state.code = newValue;
 	}
 
+	componentDidMount = () => {
+		const { problem_id } = this.props.match.params;
+
+		this.props.firebase.fs_problems().doc(problem_id).get()
+		.then((doc) => {
+			const docData = doc.data();
+			this.setState({
+				problemName: docData.shortName,
+				problemSummary: docData.summary 
+			});
+		})
+		.catch();
+	}
+
 	render() {
 		return (
 			<AuthUserContext.Consumer>
 				{authUser =>
 					<span className="demoProblem">
 						<span className="problem-desc-container">
-							<h1>Two Sum</h1>
-							<h3>Given a list of numbers and a value, find all the pairs of numbers
-								in the list which sum up to the given value.
-					</h3>
+							<h1>{this.state.problemName}</h1>
+							<h3>{this.state.problemSummary}</h3>
 							<InfoBox
 								ref={this.infoBoxRef}
 								text={this.state.outputText} />
