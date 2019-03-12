@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Demo_Problem from './demo_problem';
+import Demo_Problem from './Problems/demo_problem';
+import { SignInPage } from './SignIn';
+import { SignUpPage } from './SignUp';
+import { SignOutButton } from './SignOut';
+import Firebase, { FirebaseContext } from './Firebase';
 
 import {
 	BrowserRouter as Router,
@@ -22,11 +26,10 @@ class Home_Page extends React.Component {
 		return (
 			<Router>
 				<div className="homePage">
-					{/*
-				<Home_Body/>
-				*/}
 					<Home_Bar />
-					{/* <Demo_Problem /> */}
+					<Route path="/" exact={true} component={Home_Body}></Route>
+					<Route path="/signin" exact={true} component={SignInPage}></Route>
+					<Route path="/signup" exact={true} component={SignUpPage}></Route>
 					<Route path="/problems" component={ProblemsComponent}></Route>
 					<Route path="/demo-problem" component={Demo_Problem}></Route>
 				</div>
@@ -43,35 +46,34 @@ class ProblemsComponent extends React.Component {
 	}
 }
 
-
-
 class Home_Bar extends React.Component {
 
 	render() {
 		return (
 			<div className="homeBar">
 				<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-					<span className="Nav_link">
-						<NavLink to="/"
-							style={{color: 'black'}}>
-							PrepCS
-						</NavLink>
-					</span>
 					<div className="navbar-nav mr-auto">
 						<span className="Nav_link">
-							<NavLink to="/problems" 
-								style={{color: 'black'}}
-								activeStyle={{color: 'yellow'}}>
+							<NavLink to="/"
+								style={{ color: 'black' }}>
+								PrepCS
+						</NavLink>
+						</span>
+						<span className="Nav_link">
+							<NavLink to="/problems"
+								style={{ color: 'black' }}
+								activeStyle={{ color: 'yellow' }}>
 								Problems
 							</NavLink>
 						</span>
 						<span className="Nav_link" >
-							<NavLink to="/demo-problem" 
-								style={{color: 'black'}}
-								activeStyle={{color: 'yellow'}}>
+							<NavLink to="/demo-problem"
+								style={{ color: 'black' }}
+								activeStyle={{ color: 'yellow' }}>
 								Demo Problem
 						</NavLink>
 						</span>
+						<SignOutButton/>
 					</div>
 				</nav>
 			</div>
@@ -113,30 +115,10 @@ class Home_Body extends React.Component {
 		);
 	}
 }
-/*
-def two_sum(l, t):
-    length = len(l)
-    ans = []
-    
-    for i in range(1, length):
-        for j in range(i+1, length):
-            if l[i] + l[j] == t:
-                ans.append((l[i], l[j]))
-                
-    return ans
-    
-def main():
-    l = [1, 2, 3, 4, 5]
-    t = 5
-    
-    ans = two_sum(l, t)
-    print(ans)
-    
-if __name__ == "__main__":
-    main()
 
-*/
 ReactDOM.render(
-	<Home_Page />,
+	<FirebaseContext.Provider value={ new Firebase() }>
+		<Home_Page />
+	</FirebaseContext.Provider>,
 	document.getElementById('root')
 );

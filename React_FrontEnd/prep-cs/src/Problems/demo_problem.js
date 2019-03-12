@@ -85,7 +85,7 @@ class InfoBox extends React.Component {
 	}
 	/**
 	 * @param {!Object} resultJson (should have "result", "error" and 
-	 * "error-status fields")
+	 * "error-status" fields)
 	 */
 	updateText = (resultJson) => {
 		this.setState({
