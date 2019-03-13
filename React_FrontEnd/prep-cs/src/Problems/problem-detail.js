@@ -13,19 +13,24 @@ class ProblemDetailBase extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			problemId: null,
 			problemName: null,
 			problemSummary: null,
 			code: null,
 			codeSubmissionEndpoint:
 				"https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code",
-			outputText: "Your code's output."
+			defaultOutputText: "Your code's output."
 		};
 
 		this.infoBoxRef = React.createRef();
 	}
 
+	/**
+	 * Sends an http request to AWS API Gateway for execution of the users's code.
+	 */
 	submitCode = () => {
 		if (!this.state.code) {
+			// TODO(awogbemila): maybe develop and use a custom alert system.
 			alert("can't submit. no value");
 		} else {
 			let xhr = new XMLHttpRequest();
@@ -37,8 +42,9 @@ class ProblemDetailBase extends React.Component {
 
 			xhr.onload = (res) => {
 				const response = JSON.parse(xhr.response);
-				const response_json = response["body"];
-				this.infoBoxRef.current.updateText(JSON.parse(response_json));
+				const responseJson = JSON.parse(response["body"]);
+				this.infoBoxRef.current.updateOutput(responseJson);
+				this.evaluateSubmission(responseJson);
 			}
 
 			const json_code = { code: this.state.code }
@@ -46,7 +52,38 @@ class ProblemDetailBase extends React.Component {
 		}
 	}
 
-	onChange = (newValue) => {
+	/**
+	 * @param {!Object} resultJson (should have "result", "error" and 
+	 * "error-status" fields)
+	 * TODO (awogbemila): Develop custom Result object in place of JSON.
+	 */
+	evaluateSubmission = (resultJson) => {
+		if (resultJson["error-status"]) {
+			// Nothing to do here really.
+		} else {
+			this.props.firebase.fs_user(this.props.firebase.getUid()).get()
+			.then((doc) => { 
+				let usersCurrentProblemIdsAttempted = doc.data().problems_attempted;
+				if (usersCurrentProblemIdsAttempted.includes(this.state.problemId)) {
+					// Nothing to do here really.
+				} else {
+					usersCurrentProblemIdsAttempted.push(this.state.problemId);
+					this.props.firebase.fs_user(this.props.firebase.getUid()).set(
+						{
+							problems_attempted: usersCurrentProblemIdsAttempted
+						}
+					)
+					.catch((error) => {/** TODO (awogbemila) Deal with errors, sigh.*/});
+				}
+			})
+			.catch((error) => { /** TODO (awogbemila) Deal with errors, sigh.*/});
+		}
+	}
+
+	/**
+	 * Updates the stored value of the user's code (a string).
+	 */
+	onTextEditorChange = (newValue) => {
 		this.state.code = newValue;
 	}
 
@@ -58,7 +95,8 @@ class ProblemDetailBase extends React.Component {
 			const docData = doc.data();
 			this.setState({
 				problemName: docData.shortName,
-				problemSummary: docData.summary 
+				problemSummary: docData.summary ,
+				problemId: problem_id
 			});
 		})
 		.catch();
@@ -74,7 +112,7 @@ class ProblemDetailBase extends React.Component {
 							<h3>{this.state.problemSummary}</h3>
 							<InfoBox
 								ref={this.infoBoxRef}
-								text={this.state.outputText} />
+								text={this.state.defaultOutputText}/>
 						</span>
 						<div className="ide-container">
 							<AceEditor
@@ -84,7 +122,7 @@ class ProblemDetailBase extends React.Component {
 								// width="100%"
 								width="100%"
 								height="600px"
-								onChange={this.onChange}
+								onChange={this.onTextEditorChange}
 							//name="UNIQUE_ID_OF_DIV"
 							//editorProps={{$blockScrolling: true}}
 							/>
@@ -109,10 +147,17 @@ class InfoBox extends React.Component {
 	 * @param {!Object} resultJson (should have "result", "error" and 
 	 * "error-status" fields)
 	 */
-	updateText = (resultJson) => {
-		this.setState({
-			text: resultJson["result"]
-		});
+	updateOutput = (resultJson) => {
+		if (resultJson["error-status"]) {
+			this.setState({
+				text: resultJson["result"] + "\nError:\n" + resultJson["error"] 
+			});
+		} else {
+			this.setState({
+				text: resultJson["result"] 
+			});
+		}
+		
 	}
 
 	render() {

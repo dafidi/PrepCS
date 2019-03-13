@@ -30,6 +30,8 @@ class Firebase {
 
   doSignOut = () => this.auth.signOut();
 
+  getUid = () => { return this.auth.currentUser.uid; }
+
   // *** User API ***
   // We are using "Cloud Firestore", not "Realtime Database" 
   // user = uid => this.db.ref(`users/${uid}`);
