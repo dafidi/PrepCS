@@ -184,6 +184,8 @@ class InfoBox extends React.Component {
 	updateOutput = (resultJson) => {
 		if (resultJson["error-status"]) {
 			this.setState({
+				// resultJson["result"] will itself needed to be parsed as JSON
+				// so we have more information about the result of the submission.
 				text: resultJson["result"] + "\nError:\n" + resultJson["error"]
 			});
 		} else {
