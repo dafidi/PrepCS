@@ -175,7 +175,7 @@ class InfoBox extends React.Component {
 
 		this.state = {
 			text: this.props.text
-		}
+		};
 	}
 	/**
 	 * @param {!Object} resultJson (should have "result", "error" and 
@@ -189,8 +189,29 @@ class InfoBox extends React.Component {
 				text: resultJson["result"] + "\nError:\n" + resultJson["error"]
 			});
 		} else {
+			let parsedResult = JSON.parse(resultJson["result"]);
+			parsedResult = JSON.parse(JSON.stringify(parsedResult));
+			const numTestsRun = parsedResult["num_run"]
+			const numTestsPassed = parsedResult["num_passed"]
+			const inputs = parsedResult["inputs"]
+			const outputs = parsedResult["outputs"]
+			const passFailByIndex = parsedResult["pass_fail_by_index"]
+
+			let scoreMessage = "Passed " + numTestsPassed + "/" + numTestsRun +
+													 " Cases." + "\n";
+
+			
+
+			if (numTestsRun > numTestsPassed) {
+				const indexOfFirstFailure = passFailByIndex.indexOf("FAIL");
+				const inp = inputs[indexOfFirstFailure];
+				scoreMessage += "Failed test case:\n" +
+												"Input: " + JSON.stringify(inp) + "\n" +
+												"Your Output:" + JSON.stringify(outputs[indexOfFirstFailure])
+			}
+
 			this.setState({
-				text: resultJson["result"]
+				text: scoreMessage
 			});
 		}
 
@@ -206,7 +227,7 @@ class InfoBox extends React.Component {
 					</TabList>
 
 					<TabPanel>
-						<h2>{this.state.text}</h2>
+						<h2>{ this.state.text }</h2>
 					</TabPanel>
 					<TabPanel>
 						<h2>Other information that we'll put here.</h2>

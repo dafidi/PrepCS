@@ -1,4 +1,5 @@
 import submission
+import json
 
 # Use table tests.
 # map input to expected output.
@@ -23,7 +24,6 @@ def run_tests():
     ans = submission.two_sum(test[0][0], test[0][1])
     outputs.append(ans)
     if set(ans) == set(test[1]):
-      print("test", num_tests_run, "passed.")
       num_tests_passed += 1
       pass_fail_by_index.append("PASS")
     else:
@@ -31,17 +31,17 @@ def run_tests():
 
     num_tests_run += 1  
   return {
-    'num_run': num_tests_run,
-    'num_passed': num_tests_passed,
-    'inputs': inputs,
-    'pass_fail_by_index': pass_fail_by_index,
-    'outputs': outputs
+    "num_run": num_tests_run,
+    "num_passed": num_tests_passed,
+    "inputs": inputs,
+    "pass_fail_by_index": pass_fail_by_index,
+    "outputs": outputs
   }
 
 
 def main():
     result_dictionary = run_tests()
-    print(result_dictionary)
+    print(json.dumps(result_dictionary))
 
 
 if __name__ == "__main__":
