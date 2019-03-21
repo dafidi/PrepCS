@@ -19,7 +19,9 @@ class ProblemDetailBase extends React.Component {
 			code: null,
 			codeSubmissionEndpoint:
 				"https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code",
-			defaultOutputText: "Your code's output."
+			defaultOutputText: "Your code's output.",
+			problemTestFilepath: null,
+			problemTestFile: null
 		};
 
 		this.infoBoxRef = React.createRef();
@@ -47,7 +49,10 @@ class ProblemDetailBase extends React.Component {
 				this.evaluateSubmission(responseJson);
 			}
 
-			const json_code = { code: this.state.code }
+			const json_code = {
+				code: this.state.code,
+				test: this.state.problemTestFile
+			};
 			xhr.send(JSON.stringify(json_code));
 		}
 	}
@@ -59,24 +64,25 @@ class ProblemDetailBase extends React.Component {
 	 */
 	evaluateSubmission = (resultJson) => {
 		if (resultJson["error-status"]) {
-			// Nothing to do here really.
+			// Nothing to do here really except alert the user that there is an error
+			// in their code.
 		} else {
 			this.props.firebase.fs_user(this.props.firebase.getUid()).get()
-			.then((doc) => { 
-				let usersCurrentProblemIdsAttempted = doc.data().problems_attempted;
-				if (usersCurrentProblemIdsAttempted.includes(this.state.problemId)) {
-					// Nothing to do here really.
-				} else {
-					usersCurrentProblemIdsAttempted.push(this.state.problemId);
-					this.props.firebase.fs_user(this.props.firebase.getUid()).set(
-						{
-							problems_attempted: usersCurrentProblemIdsAttempted
-						}
-					)
-					.catch((error) => {/** TODO (awogbemila) Deal with errors, sigh.*/});
-				}
-			})
-			.catch((error) => { /** TODO (awogbemila) Deal with errors, sigh.*/});
+				.then((doc) => {
+					let usersCurrentProblemIdsAttempted = doc.data().problems_attempted;
+					if (usersCurrentProblemIdsAttempted.includes(this.state.problemId)) {
+						// Nothing to do here really.
+					} else {
+						usersCurrentProblemIdsAttempted.push(this.state.problemId);
+						this.props.firebase.fs_user(this.props.firebase.getUid()).set(
+							{
+								problems_attempted: usersCurrentProblemIdsAttempted
+							}
+						)
+							.catch((error) => {/** TODO (awogbemila): Deal with errors, sigh.*/ });
+					}
+				})
+				.catch((error) => { /** TODO (awogbemila): Deal with errors, sigh.*/ });
 		}
 	}
 
@@ -90,16 +96,44 @@ class ProblemDetailBase extends React.Component {
 	componentDidMount = () => {
 		const { problem_id } = this.props.match.params;
 
+		// Fetch problem information from firebase database.
 		this.props.firebase.fs_problems().doc(problem_id).get()
-		.then((doc) => {
-			const docData = doc.data();
-			this.setState({
-				problemName: docData.shortName,
-				problemSummary: docData.summary ,
-				problemId: problem_id
-			});
-		})
-		.catch();
+			.then((doc) => {
+				const docData = doc.data();
+
+				this.setState({
+					problemName: docData.shortName,
+					problemSummary: docData.summary,
+					problemId: problem_id,
+					problemTestFilepath: docData.testFilePath
+				});
+
+				// Fetch test file.
+				let testFileData = null;
+				this.props.firebase.storage_file(this.state.problemTestFilepath)
+					.getDownloadURL()
+					.then((resourceUrl) => {
+						let xhr = new XMLHttpRequest();
+						xhr.responseType = 'blob';
+						xhr.onload = (event) => {
+							let blob = xhr.response;
+							let reader = new FileReader();
+
+							reader.onload = () => {
+								testFileData = reader.result;
+								this.setState({
+									problemTestFile: testFileData
+								});
+							}
+
+							reader.readAsText(blob);
+						}
+						xhr.open('GET', resourceUrl);
+						xhr.send();
+					})
+					.catch();
+			})
+			.catch();
 	}
 
 	render() {
@@ -112,7 +146,7 @@ class ProblemDetailBase extends React.Component {
 							<h3>{this.state.problemSummary}</h3>
 							<InfoBox
 								ref={this.infoBoxRef}
-								text={this.state.defaultOutputText}/>
+								text={this.state.defaultOutputText} />
 						</span>
 						<div className="ide-container">
 							<AceEditor
@@ -150,14 +184,14 @@ class InfoBox extends React.Component {
 	updateOutput = (resultJson) => {
 		if (resultJson["error-status"]) {
 			this.setState({
-				text: resultJson["result"] + "\nError:\n" + resultJson["error"] 
+				text: resultJson["result"] + "\nError:\n" + resultJson["error"]
 			});
 		} else {
 			this.setState({
-				text: resultJson["result"] 
+				text: resultJson["result"]
 			});
 		}
-		
+
 	}
 
 	render() {

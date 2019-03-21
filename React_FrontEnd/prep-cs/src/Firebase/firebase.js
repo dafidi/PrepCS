@@ -2,6 +2,7 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/firestore';
+import 'firebase/storage';
 
 // Initialize Firebase
 var config = {
@@ -20,6 +21,7 @@ class Firebase {
     this.auth = app.auth();
     this.db = app.database();
     this.fs = app.firestore();
+    this.storage = app.storage();
   }
 
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -43,8 +45,7 @@ class Firebase {
 
   fs_problems = () => this.fs.collection('problems');
 
-
-
+  storage_file = (filepath) => this.storage.ref(filepath);
 }
 
 export default Firebase;
