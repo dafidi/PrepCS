@@ -6,7 +6,7 @@ import { withFirebase } from '../Firebase';
 class SignOutButtonBase extends React.Component {
   render() {
     return (
-      <button type="button" onClick={this.props.firebase.doSignOut}>
+      <button type="button" class="btn btn-secondary" onClick={this.props.firebase.doSignOut}>
         Sign Out
       </button>
     );

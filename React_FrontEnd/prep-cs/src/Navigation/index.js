@@ -38,23 +38,21 @@ class HomeBar extends React.Component {
               <div className="navbar-nav mr-auto">
                 <span className="Nav_link">
                   <NavLink to={ROUTES.LANDING}
-                    style={{ color: 'black' }}>
+                    className="nav-link">
                     PrepCS
-						</NavLink>
+						      </NavLink>
                 </span>
                 <span className="Nav_link">
                   <NavLink to={ROUTES.PROBLEMS}
-                    style={{ color: 'black' }}
-                    activeStyle={{ color: 'yellow' }}>
+                    className="nav-link">
                     Problems
-							</NavLink>
+							    </NavLink>
                 </span>
                 <span className="Nav_link" >
                   <NavLink to={ROUTES.DEMO_PROBLEM}
-                    style={{ color: 'black' }}
-                    activeStyle={{ color: 'yellow' }}>
+                    className="nav-link">
                     Demo Problem
-						</NavLink>
+						      </NavLink>
                 </span>
                 <SignOutButton />
               </div>
