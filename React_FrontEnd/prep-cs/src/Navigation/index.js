@@ -5,25 +5,31 @@ import { AuthUserContext } from '../Session';
 
 import * as ROUTES from '../constants/routes';
 
-const Navigation = () => (
+const Navigation = ({ authUser }) => (
   <div>
-    <ul>
-      <li>
-        <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.LANDING}>Landing</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.HOME}>Home</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.ACCOUNT}>Account</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.ADMIN}>Admin</Link>
-      </li>
-    </ul>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div className="navbar-nav mr-auto">
+        <span className="Nav_link">
+          <NavLink to={ROUTES.LANDING}
+            className="nav-link">
+            PrepCS
+						      </NavLink>
+        </span>
+        <span className="Nav_link">
+          <NavLink to={ROUTES.PROBLEMS}
+            className="nav-link">
+            Problems
+							    </NavLink>
+        </span>
+        <span className="Nav_link" >
+          <NavLink to={ROUTES.DEMO_PROBLEM}
+            className="nav-link">
+            Demo Problem
+						      </NavLink>
+        </span>
+        {authUser && <SignOutButton/>}
+      </div>
+    </nav>
   </div>
 );
 
@@ -33,30 +39,8 @@ class HomeBar extends React.Component {
     return (
       <div className="homeBar">
         <AuthUserContext.Consumer>
-          {authUser =>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-              <div className="navbar-nav mr-auto">
-                <span className="Nav_link">
-                  <NavLink to={ROUTES.LANDING}
-                    className="nav-link">
-                    PrepCS
-						      </NavLink>
-                </span>
-                <span className="Nav_link">
-                  <NavLink to={ROUTES.PROBLEMS}
-                    className="nav-link">
-                    Problems
-							    </NavLink>
-                </span>
-                <span className="Nav_link" >
-                  <NavLink to={ROUTES.DEMO_PROBLEM}
-                    className="nav-link">
-                    Demo Problem
-						      </NavLink>
-                </span>
-                <SignOutButton />
-              </div>
-            </nav>
+          {
+            authUser => <Navigation authUser={authUser}/>
           }
         </AuthUserContext.Consumer>
       </div>

@@ -33,6 +33,34 @@ class Firebase {
   doSignOut = () => this.auth.signOut();
 
   getUid = () => { return this.auth.currentUser.uid; }
+  // *** Merge Auth and DB User API *** //
+
+  onAuthUserListener = (next, fallback) =>
+    this.auth.onAuthStateChanged(authUser => {
+      if (authUser) {
+        this.fs_user(authUser.uid)
+          .get()
+          .then(doc => {
+            const dbUser = doc.data();
+
+            // default empty roles
+            if (!dbUser.roles) {
+              dbUser.roles = [];
+            }
+
+            // merge auth and db user
+            authUser = {
+              uid: authUser.uid,
+              email: authUser.email,
+              ...dbUser,
+            };
+
+            next(authUser);
+          });
+      } else {
+        fallback();
+      }
+    });
 
   // *** User API ***
   // We are using "Cloud Firestore", not "Realtime Database" 

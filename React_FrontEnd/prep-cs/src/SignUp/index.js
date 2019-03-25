@@ -9,6 +9,7 @@ import * as ROUTES from '../constants/routes';
 const INITIAL_STATE = {
   username: '',
   email: '',
+  isProfessor: false,
   passwordOne: '',
   passwordTwo: '',
   error: null,
