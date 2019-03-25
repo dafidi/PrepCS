@@ -6,31 +6,33 @@ import { AuthUserContext } from '../Session';
 import * as ROUTES from '../constants/routes';
 
 const Navigation = ({ authUser }) => (
-  <div>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div className="navbar-nav mr-auto">
-        <span className="Nav_link">
-          <NavLink to={ROUTES.LANDING}
-            className="nav-link">
-            PrepCS
-						      </NavLink>
-        </span>
-        <span className="Nav_link">
+  <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div className="collapse navbar-collapse">
+      <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li>
+          <NavLink to={ROUTES.LANDING} className="nav-item active">
+            <span className="navbar-brand">PrepCS</span>
+          </NavLink>
+        </li>
+        <li className="nav-item">
           <NavLink to={ROUTES.PROBLEMS}
             className="nav-link">
             Problems
-							    </NavLink>
-        </span>
-        <span className="Nav_link" >
+						    </NavLink>
+        </li>
+        <li className="nav-item">
           <NavLink to={ROUTES.DEMO_PROBLEM}
             className="nav-link">
             Demo Problem
-						      </NavLink>
-        </span>
-        {authUser && <SignOutButton/>}
-      </div>
-    </nav>
-  </div>
+					      </NavLink>
+        </li>
+      </ul>
+      <form className="form-inline my-2 my-lg-0">
+        {authUser && <SignOutButton />}
+      </form>
+
+    </div>
+  </nav>
 );
 
 class HomeBar extends React.Component {
@@ -40,7 +42,7 @@ class HomeBar extends React.Component {
       <div className="homeBar">
         <AuthUserContext.Consumer>
           {
-            authUser => <Navigation authUser={authUser}/>
+            authUser => <Navigation authUser={authUser} />
           }
         </AuthUserContext.Consumer>
       </div>

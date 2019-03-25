@@ -48,7 +48,6 @@ class ProblemsComponentBase extends React.Component {
           <div>
             <h3>Problems Page. List of Problems is shown here.</h3>
               <ul>{this.state.problemListViews}</ul>
-            <button onClick={() => console.log(this.state.problemListViews)}>show list</button>
           </div>}
       </AuthUserContext.Consumer>
     )
