@@ -9,6 +9,10 @@
   display: flex;
 }
 
+#sign-in {
+  margin: 5px 0px;
+}
+
 .homePage{
   overflow: hidden;
 }
