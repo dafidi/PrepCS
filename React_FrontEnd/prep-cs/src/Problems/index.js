@@ -51,7 +51,9 @@ class ProblemsComponentBase extends React.Component {
         .get()
         .then((doc) => {
           const userData = doc.data();
-          this.setState({ problemsUserHasSolved: userData.problems_attempted_successfully });
+          if (userData.problems_attempted_successfully) {
+            this.setState({ problemsUserHasSolved: userData.problems_attempted_successfully });
+          }
         })
         .catch();
         
@@ -101,7 +103,7 @@ class ProblemsComponentBase extends React.Component {
                           {problem["data"].summary}
                         </TableCell>
                         <TableCell>
-                          { this.state.problemsUserHasSolved.includes(problem["id"]) && <img src={green_check} width="42" height="42" /> }
+                          {this.state.problemsUserHasSolved.includes(problem["id"]) && <img src={green_check} alt="done!" width="42" height="42" />}
                         </TableCell>
                       </TableRow>
                     ))}
