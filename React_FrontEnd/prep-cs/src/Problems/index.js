@@ -6,13 +6,23 @@ import { AuthUserContext, withAuthorization } from '../Session';
 import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 class ProblemsComponentBase extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       listOfProblems: [],
-      problemListViews: null
+      problemListViews: null,
+      problemTablePage: 0
     }
   }
 
@@ -22,7 +32,7 @@ class ProblemsComponentBase extends React.Component {
       .then(
         (snapshot) => snapshot.forEach(
           (doc) => {
-            this.state.listOfProblems.push({"id": doc.id, "data": doc.data()});
+            this.state.listOfProblems.push({ "id": doc.id, "data": doc.data() });
           })
       )
       .then((snapshot) => {
@@ -30,24 +40,77 @@ class ProblemsComponentBase extends React.Component {
           problemListViews: this.state.listOfProblems.map(
             (problem, i) => {
               return <li key={i}>
-              <NavLink to={ROUTES.PROBLEM_DETAIL+'/'+problem["id"]}
+                <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
                   style={{ color: 'black' }}>
                   {problem["data"].shortName}
-						</NavLink>  
-            </li>
+                </NavLink>
+              </li>
             })
         });
       })
       .catch();
   }
 
+  handleChangePage = (event, page) => {
+    this.setState({ problemTablePage: page });
+  }
+
+  handleChangeRowsPerPage = event => {
+    this.setState({ problemTablePage: 0, rowsPerPage: event.target.value });
+  };
+
   render() {
+    const page = 0;
+    const rowsPerPage = 5;
+
     return (
       <AuthUserContext.Consumer>
         {authUser =>
           <div>
-            <h3>Problems Page. List of Problems is shown here.</h3>
-              <ul>{this.state.problemListViews}</ul>
+            <h2>Pick a problem and hack away!</h2>
+            <Paper >
+              <Table >
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Problem</TableCell>
+                    <TableCell align="right">Description</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    this.state.listOfProblems.slice(this.state.problemTablePage * rowsPerPage, this.state.problemTablePage * rowsPerPage + rowsPerPage).map(problem => (
+                    <TableRow key={problem["id"]}>
+                      <TableCell component="th" scope="row">
+                        <button>
+                          <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
+                            style={{ color: 'black' }}>
+                            {problem["data"].shortName}
+                          </NavLink>
+                        </button>
+                      </TableCell>
+                      <TableCell align="right">{problem["data"].summary}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPageOptions={[5, 10, 25]}
+                      colSpan={3}
+                      count={this.state.listOfProblems.length}
+                      rowsPerPage={rowsPerPage}
+                      page={this.state.problemTablePage}
+                      SelectProps={{
+                        native: true,
+                      }}
+                      onChangePage={this.handleChangePage}
+                    // onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                    // ActionsComponent={TablePaginationActionsWrapped}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </Paper>
           </div>}
       </AuthUserContext.Consumer>
     )
