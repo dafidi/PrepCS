@@ -16,6 +16,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import green_check from '../resources/images/white-check-icon-on-green.png';
+
 class ProblemsComponentBase extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +25,9 @@ class ProblemsComponentBase extends React.Component {
     this.state = {
       listOfProblems: [],
       problemListViews: null,
-      problemTablePage: 0
+      problemTablePage: 0,
+      uid: null,
+      problemsUserHasSolved: []
     }
   }
 
@@ -31,27 +35,26 @@ class ProblemsComponentBase extends React.Component {
     this.props.firebase.fs_problems()
       .get()
       .then(
-        (snapshot) => snapshot.forEach(
-          (doc) => {
-            this.state.listOfProblems.push({ "id": doc.id, "data": doc.data() });
-          })
+        (snapshot) => {
+          snapshot.forEach(
+            (doc) => {
+              this.state.listOfProblems.push({ "id": doc.id, "data": doc.data() });
+            });
+        }
       )
       .then((snapshot) => {
-        this.setState({
-          problemListViews: this.state.listOfProblems.map(
-            (problem, i) => {
-              return <li key={i}>
-                <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
-                  style={{ color: 'black' }}>
-                  <ProblemListCard problemName={problem["data"].shortName}
-                    problemSummary={problem["data"].summary}
-                    problemCategory={problem["data"].category}>
-                    {/* {problem["data"].shortName} */}
-                  </ProblemListCard>
-                </NavLink>
-              </li>
-            })
-        });
+        // I'm only putting this here because there is a good chance the 
+        // firebase prop will have been fully populated when this code runs
+        this.setState({ uid: this.props.firebase.getUid() });
+
+        this.props.firebase.fs_user(this.state.uid)
+        .get()
+        .then((doc) => {
+          const userData = doc.data();
+          this.setState({ problemsUserHasSolved: userData.problems_attempted_successfully });
+        })
+        .catch();
+        
       })
       .catch();
   }
@@ -65,7 +68,6 @@ class ProblemsComponentBase extends React.Component {
   };
 
   render() {
-    const page = 0;
     const rowsPerPage = 5;
 
     return (
@@ -79,6 +81,7 @@ class ProblemsComponentBase extends React.Component {
                   <TableRow>
                     <TableCell>Problem</TableCell>
                     <TableCell align="right">Description</TableCell>
+                    <TableCell align="right">{/** Column for status. */}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -96,6 +99,9 @@ class ProblemsComponentBase extends React.Component {
                         </TableCell>
                         <TableCell align="right">
                           {problem["data"].summary}
+                        </TableCell>
+                        <TableCell>
+                          { this.state.problemsUserHasSolved.includes(problem["id"]) && <img src={green_check} width="42" height="42" /> }
                         </TableCell>
                       </TableRow>
                     ))}

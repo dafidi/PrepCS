@@ -32,7 +32,9 @@ class Firebase {
 
   doSignOut = () => this.auth.signOut();
 
-  getUid = () => { return this.auth.currentUser.uid; }
+  getUid = () => { 
+    return this.auth.currentUser.uid;
+  }
   // *** Merge Auth and DB User API *** //
 
   onAuthUserListener = (next, fallback) =>
