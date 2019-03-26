@@ -32,6 +32,10 @@ class ProblemsComponentBase extends React.Component {
   }
 
   componentDidMount = () => {
+    if (!this.props.firebase.auth.currentUser) {
+      return;
+    }
+    
     this.props.firebase.fs_problems()
       .get()
       .then(
@@ -48,15 +52,15 @@ class ProblemsComponentBase extends React.Component {
         this.setState({ uid: this.props.firebase.getUid() });
 
         this.props.firebase.fs_user(this.state.uid)
-        .get()
-        .then((doc) => {
-          const userData = doc.data();
-          if (userData.problems_attempted_successfully) {
-            this.setState({ problemsUserHasSolved: userData.problems_attempted_successfully });
-          }
-        })
-        .catch();
-        
+          .get()
+          .then((doc) => {
+            const userData = doc.data();
+            if (userData.problems_attempted_successfully) {
+              this.setState({ problemsUserHasSolved: userData.problems_attempted_successfully });
+            }
+          })
+          .catch();
+
       })
       .catch();
   }
@@ -71,63 +75,64 @@ class ProblemsComponentBase extends React.Component {
 
   render() {
     const rowsPerPage = 5;
-
     return (
       <AuthUserContext.Consumer>
-        {authUser =>
-          <div>
-            <h2>Pick a problem and hack away!</h2>
-            <Paper >
-              <Table >
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Problem</TableCell>
-                    <TableCell align="right">Description</TableCell>
-                    <TableCell align="right">{/** Column for status. */}</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {
-                    this.state.listOfProblems.slice(this.state.problemTablePage * rowsPerPage, this.state.problemTablePage * rowsPerPage + rowsPerPage).map(problem => (
-                      <TableRow key={problem["id"]}>
-                        <TableCell component="th" scope="row">
-                          <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
-                            style={{ color: 'black', textDecoration: 'none' }}>
-                            <ProblemListCard problemName={problem["data"].shortName}
-                              problemSummary={problem["data"].summary}
-                              problemCategory={problem["data"].category}>
-                            </ProblemListCard>
-                          </NavLink>
-                        </TableCell>
-                        <TableCell align="right">
-                          {problem["data"].summary}
-                        </TableCell>
-                        <TableCell>
-                          {this.state.problemsUserHasSolved.includes(problem["id"]) && <img src={green_check} alt="done!" width="42" height="42" />}
-                        </TableCell>
+        {
+          authUser => authUser ?
+              <div>
+                <h2>Pick a problem and hack away!</h2>
+                <Paper >
+                  <Table >
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Problem</TableCell>
+                        <TableCell align="right">Description</TableCell>
+                        <TableCell align="right">{/** Column for status. */}</TableCell>
                       </TableRow>
-                    ))}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      rowsPerPageOptions={[5, 10, 25]}
-                      colSpan={3}
-                      count={this.state.listOfProblems.length}
-                      rowsPerPage={rowsPerPage}
-                      page={this.state.problemTablePage}
-                      SelectProps={{
-                        native: true,
-                      }}
-                      onChangePage={this.handleChangePage}
-                    // onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                    // ActionsComponent={TablePaginationActionsWrapped}
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
-            </Paper>
-          </div>}
+                    </TableHead>
+                    <TableBody>
+                      {
+                        this.state.listOfProblems.slice(this.state.problemTablePage * rowsPerPage, this.state.problemTablePage * rowsPerPage + rowsPerPage).map(problem => (
+                          <TableRow key={problem["id"]}>
+                            <TableCell component="th" scope="row">
+                              <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
+                                style={{ color: 'black', textDecoration: 'none' }}>
+                                <ProblemListCard problemName={problem["data"].shortName}
+                                  problemSummary={problem["data"].summary}
+                                  problemCategory={problem["data"].category}>
+                                </ProblemListCard>
+                              </NavLink>
+                            </TableCell>
+                            <TableCell align="right">
+                              {problem["data"].summary}
+                            </TableCell>
+                            <TableCell>
+                              {this.state.problemsUserHasSolved.includes(problem["id"]) && <img src={green_check} alt="done!" width="42" height="42" />}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          rowsPerPageOptions={[5, 10, 25]}
+                          colSpan={3}
+                          count={this.state.listOfProblems.length}
+                          rowsPerPage={rowsPerPage}
+                          page={this.state.problemTablePage}
+                          SelectProps={{
+                            native: true,
+                          }}
+                          onChangePage={this.handleChangePage}
+                        // onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                        // ActionsComponent={TablePaginationActionsWrapped}
+                        />
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                </Paper>
+              </div> : <div></div>
+          }
       </AuthUserContext.Consumer>
     )
   }

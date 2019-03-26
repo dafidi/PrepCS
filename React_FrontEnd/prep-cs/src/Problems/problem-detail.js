@@ -69,6 +69,7 @@ class ProblemDetailBase extends React.Component {
 		} else {
 			this.props.firebase.fs_user(this.props.firebase.getUid()).get()
 				.then((doc) => {
+					// Record attempt at problem.
 					let usersCurrentProblemIdsAttempted = doc.data().problems_attempted;
 					if (usersCurrentProblemIdsAttempted.includes(this.state.problemId)) {
 						// Nothing to do here really.
@@ -81,8 +82,30 @@ class ProblemDetailBase extends React.Component {
 						)
 							.catch((error) => {/** TODO (awogbemila): Deal with errors, sigh.*/ });
 					}
+
+					let parsedResult = JSON.parse(resultJson["result"]);
+
+					const num_run = parsedResult["num_run"];
+					const num_passed = parsedResult["num_passed"];
+
+					// Record successful attempt at problem.
+					if (num_run === num_passed) {
+						let problemsUserHasSolved = doc.data().problems_attempted_successfully;
+						if (problemsUserHasSolved.includes(this.state.problemId)) {
+							// Nothing to do here really.
+						} else {
+							problemsUserHasSolved.push(this.state.problemId);
+							this.props.firebase.fs_user(this.props.firebase.getUid()).update(
+								{
+									problems_attempted_successfully: problemsUserHasSolved
+								})
+								.then()
+								.catch();
+						}
+					}
 				})
-				.catch((error) => { /** TODO (awogbemila): Deal with errors, sigh.*/ });
+				.catch((error) => {/** TODO (awogbemila): Deal with errors, sigh.*/
+				});
 		}
 	}
 
@@ -94,8 +117,7 @@ class ProblemDetailBase extends React.Component {
 	}
 
 	componentDidMount = () => {
-		const { problem_id } =  this.props.match.params;
-		console.log(problem_id);
+		const { problem_id } = this.props.match.params;
 		// Fetch problem information from firebase database.
 		this.props.firebase.fs_problems().doc(problem_id).get()
 			.then((doc) => {
@@ -198,16 +220,18 @@ class InfoBox extends React.Component {
 			const passFailByIndex = parsedResult["pass_fail_by_index"]
 
 			let scoreMessage = "Passed " + numTestsPassed + "/" + numTestsRun +
-													 " Cases." + "\n";
+				" Cases." + "\n";
 
-			
+
 
 			if (numTestsRun > numTestsPassed) {
 				const indexOfFirstFailure = passFailByIndex.indexOf("FAIL");
 				const inp = inputs[indexOfFirstFailure];
 				scoreMessage += "Failed test case:\n" +
-												"Input: " + JSON.stringify(inp) + "\n" +
-												"Your Output:" + JSON.stringify(outputs[indexOfFirstFailure])
+					"Input: " + JSON.stringify(inp) + "\n" +
+					"Your Output:" + JSON.stringify(outputs[indexOfFirstFailure])
+			} else if (numTestsRun == numTestsPassed) {
+				scoreMessage += "Congratulations you have solved this problem.";
 			}
 
 			this.setState({
@@ -227,7 +251,7 @@ class InfoBox extends React.Component {
 					</TabList>
 
 					<TabPanel>
-						<h2>{ this.state.text }</h2>
+						<h2>{this.state.text}</h2>
 					</TabPanel>
 					<TabPanel>
 						<h2>Other information that we'll put here.</h2>
