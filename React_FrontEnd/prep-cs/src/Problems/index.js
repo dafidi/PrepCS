@@ -5,6 +5,7 @@ import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
+import { ProblemListCard } from './problem-list-card';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -42,7 +43,11 @@ class ProblemsComponentBase extends React.Component {
               return <li key={i}>
                 <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
                   style={{ color: 'black' }}>
-                  {problem["data"].shortName}
+                  <ProblemListCard problemName={problem["data"].shortName}
+                    problemSummary={problem["data"].summary}
+                    problemCategory={problem["data"].category}>
+                    {/* {problem["data"].shortName} */}
+                  </ProblemListCard>
                 </NavLink>
               </li>
             })
@@ -79,18 +84,21 @@ class ProblemsComponentBase extends React.Component {
                 <TableBody>
                   {
                     this.state.listOfProblems.slice(this.state.problemTablePage * rowsPerPage, this.state.problemTablePage * rowsPerPage + rowsPerPage).map(problem => (
-                    <TableRow key={problem["id"]}>
-                      <TableCell component="th" scope="row">
-                        <button>
+                      <TableRow key={problem["id"]}>
+                        <TableCell component="th" scope="row">
                           <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
-                            style={{ color: 'black' }}>
-                            {problem["data"].shortName}
+                            style={{ color: 'black', textDecoration: 'none' }}>
+                            <ProblemListCard problemName={problem["data"].shortName}
+                              problemSummary={problem["data"].summary}
+                              problemCategory={problem["data"].category}>
+                            </ProblemListCard>
                           </NavLink>
-                        </button>
-                      </TableCell>
-                      <TableCell align="right">{problem["data"].summary}</TableCell>
-                    </TableRow>
-                  ))}
+                        </TableCell>
+                        <TableCell align="right">
+                          {problem["data"].summary}
+                        </TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
                 <TableFooter>
                   <TableRow>

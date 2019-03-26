@@ -94,8 +94,8 @@ class ProblemDetailBase extends React.Component {
 	}
 
 	componentDidMount = () => {
-		const { problem_id } = this.props.match.params;
-
+		const { problem_id } =  this.props.match.params;
+		console.log(problem_id);
 		// Fetch problem information from firebase database.
 		this.props.firebase.fs_problems().doc(problem_id).get()
 			.then((doc) => {
