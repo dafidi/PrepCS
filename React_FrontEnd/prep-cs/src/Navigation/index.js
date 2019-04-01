@@ -5,7 +5,7 @@ import { AuthUserContext } from '../Session';
 
 import * as ROUTES from '../constants/routes';
 
-const Navigation = ({ authUser, username }) => (
+const Navigation = ({ authUser, userInfo }) => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
     <div className="collapse navbar-collapse">
       <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -28,7 +28,7 @@ const Navigation = ({ authUser, username }) => (
         </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">
-        {authUser && <span>{username} <SignOutButton /></span>}
+        {authUser && <span>Hi, {userInfo.username} <SignOutButton /></span>}
       </form>
 
     </div>
@@ -38,12 +38,12 @@ const Navigation = ({ authUser, username }) => (
 class HomeBar extends React.Component { 
   render() {
 
-    const username = this.props.username;
+    const userInfo = this.props.userInfo;
     return (
       <div className="homeBar">
         <AuthUserContext.Consumer>
           {
-            authUser => <Navigation authUser={authUser} username={username} />
+            authUser => <Navigation authUser={authUser} userInfo={userInfo} />
           }
         </AuthUserContext.Consumer>
       </div>

@@ -64,8 +64,7 @@ class SignUpFormBase extends Component {
             username: username,
             email: email,
             problems_attempted: [],
-            problems_attempted_incomplete: [],
-            problems_attempted_complete: []
+            problems_attempted_successfully: []
           });
       })
       .then(authUser => {

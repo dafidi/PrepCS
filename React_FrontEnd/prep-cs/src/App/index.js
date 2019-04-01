@@ -20,11 +20,12 @@ import 'brace/theme/solarized_dark';
 class HomePage extends React.Component {
 
   render() {
-    const username = this.props.username;
+    const userInfo = this.props.userInfo;
+
     return (
       <Router>
         <div className="homePage">
-          <HomeBar username={username}/>
+          <HomeBar userInfo={userInfo} />
           <Route path="/" exact component={HomeBody}></Route>
           <Route path="/signin" exact component={SignInPage}></Route>
           <Route path="/signup" exact component={SignUpPage}></Route>
@@ -77,37 +78,41 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      username: '',
-      firstName: '',
-      lastName: ''
+      userInfo: {
+        username: '',
+        firstName: '',
+        lastName: ''
+      }
     }
 
     this.props.firebase.fs_users()
-    .get()
-    .then((docsSnapshot) => {
-      // docsSnapshot.forEach((doc) => {
-      // });
-      if (!this.props.firebase.auth.currentUser) {
-        return;
-      }
-
-      this.props.firebase.fs_user(this.props.firebase.getUid())
       .get()
-      .then((doc) => {
-        this.setState({
-          username: doc.data().username,
-          firstName: doc.data().firstName,
-          lastName: doc.data().lastName
-        });
+      .then((docsSnapshot) => {
+        // docsSnapshot.forEach((doc) => {
+        // });
+        if (!this.props.firebase.auth.currentUser) {
+          return;
+        }
+
+        this.props.firebase.fs_user(this.props.firebase.getUid())
+          .get()
+          .then((doc) => {
+            this.setState({
+              userInfo: {
+                username: doc.data().username,
+                firstName: doc.data().firstName,
+                lastName: doc.data().lastName
+              }
+            });
+          })
+          .catch();
       })
       .catch();
-    })
-    .catch();
   }
 
   render() {
-    const { username } = this.state;
-    return (<HomePage username={username} />);
+    const { userInfo } = this.state;
+    return (<HomePage userInfo={userInfo} />);
   }
 }
 

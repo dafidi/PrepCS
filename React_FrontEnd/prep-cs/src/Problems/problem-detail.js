@@ -285,7 +285,7 @@ class InfoBox extends React.Component {
 						<h2>{this.state.text}</h2>
 					</TabPanel>
 					<TabPanel>
-						<h2>Other information that we'll put here.</h2>
+						<h2>Further information about this problem.</h2>
 					</TabPanel>
 				</Tabs>
 			</div>
