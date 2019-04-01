@@ -4,9 +4,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 class ProblemListCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

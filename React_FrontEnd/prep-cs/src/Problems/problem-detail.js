@@ -21,7 +21,9 @@ class ProblemDetailBase extends React.Component {
 				"https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code",
 			defaultOutputText: "Your code's output.",
 			problemTestFilepath: null,
-			problemTestFile: null
+			problemTestFile: null,
+			problemStarterCodeFilepath: null,
+			problemStarterCode: ''
 		};
 
 		this.infoBoxRef = React.createRef();
@@ -49,11 +51,11 @@ class ProblemDetailBase extends React.Component {
 				this.evaluateSubmission(responseJson);
 			}
 
-			const json_code = {
+			const json_submission = {
 				code: this.state.code,
 				test: this.state.problemTestFile
 			};
-			xhr.send(JSON.stringify(json_code));
+			xhr.send(JSON.stringify(json_submission));
 		}
 	}
 
@@ -75,7 +77,7 @@ class ProblemDetailBase extends React.Component {
 						// Nothing to do here really.
 					} else {
 						usersCurrentProblemIdsAttempted.push(this.state.problemId);
-						this.props.firebase.fs_user(this.props.firebase.getUid()).set(
+						this.props.firebase.fs_user(this.props.firebase.getUid()).update(
 							{
 								problems_attempted: usersCurrentProblemIdsAttempted
 							}
@@ -127,7 +129,9 @@ class ProblemDetailBase extends React.Component {
 					problemName: docData.shortName,
 					problemSummary: docData.summary,
 					problemId: problem_id,
-					problemTestFilepath: docData.testFilePath
+					problemTestFilepath: docData.testFilePath,
+					problemStarterCodeFilepath: docData.starterCodeFilePath
+
 				});
 
 				// Fetch test file.
@@ -145,6 +149,32 @@ class ProblemDetailBase extends React.Component {
 								testFileData = reader.result;
 								this.setState({
 									problemTestFile: testFileData
+								});
+							}
+
+							reader.readAsText(blob);
+						}
+						xhr.open('GET', resourceUrl);
+						xhr.send();
+					})
+					.catch();
+
+				// Fetch test file.
+				let problemStarterCode = null;
+				this.props.firebase.storage_file(this.state.problemStarterCodeFilepath)
+					.getDownloadURL()
+					.then((resourceUrl) => {
+						let xhr = new XMLHttpRequest();
+						xhr.responseType = 'blob';
+						xhr.onload = (event) => {
+							let blob = xhr.response;
+							let reader = new FileReader();
+
+							reader.onload = () => {
+								problemStarterCode = reader.result;
+								this.setState({
+									problemStarterCode: problemStarterCode,
+									code: problemStarterCode
 								});
 							}
 
@@ -179,7 +209,8 @@ class ProblemDetailBase extends React.Component {
 								width="100%"
 								height="600px"
 								onChange={this.onTextEditorChange}
-							//name="UNIQUE_ID_OF_DIV"
+								value={this.state.problemStarterCode}
+								name="ide-container"
 							//editorProps={{$blockScrolling: true}}
 							/>
 							<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>
@@ -220,7 +251,7 @@ class InfoBox extends React.Component {
 			const passFailByIndex = parsedResult["pass_fail_by_index"]
 
 			let scoreMessage = "Passed " + numTestsPassed + "/" + numTestsRun +
-				" Cases." + "\n";
+				" Cases.\n";
 
 
 
@@ -230,7 +261,7 @@ class InfoBox extends React.Component {
 				scoreMessage += "Failed test case:\n" +
 					"Input: " + JSON.stringify(inp) + "\n" +
 					"Your Output:" + JSON.stringify(outputs[indexOfFirstFailure])
-			} else if (numTestsRun == numTestsPassed) {
+			} else if (numTestsRun === numTestsPassed) {
 				scoreMessage += "Congratulations you have solved this problem.";
 			}
 

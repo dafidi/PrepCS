@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { SignOutButton } from '../SignOut';
 import { AuthUserContext } from '../Session';
 
@@ -35,11 +35,7 @@ const Navigation = ({ authUser, username }) => (
   </nav>
 );
 
-class HomeBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
+class HomeBar extends React.Component { 
   render() {
 
     const username = this.props.username;
