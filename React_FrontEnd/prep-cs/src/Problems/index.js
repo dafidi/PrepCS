@@ -33,6 +33,7 @@ class ProblemsComponentBase extends React.Component {
 
   componentDidMount = () => {
     if (!this.props.firebase.auth.currentUser) {
+      console.log(" user was not signed in.");
       return;
     }
     

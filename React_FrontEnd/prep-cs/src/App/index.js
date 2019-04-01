@@ -20,10 +20,11 @@ import 'brace/theme/solarized_dark';
 class HomePage extends React.Component {
 
   render() {
+    const username = this.props.username;
     return (
       <Router>
         <div className="homePage">
-          <HomeBar />
+          <HomeBar username={username}/>
           <Route path="/" exact component={HomeBody}></Route>
           <Route path="/signin" exact component={SignInPage}></Route>
           <Route path="/signup" exact component={SignUpPage}></Route>
@@ -72,8 +73,41 @@ class HomeBody extends React.Component {
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: '',
+      firstName: '',
+      lastName: ''
+    }
+
+    this.props.firebase.fs_users()
+    .get()
+    .then((docsSnapshot) => {
+      // docsSnapshot.forEach((doc) => {
+      // });
+      if (!this.props.firebase.auth.currentUser) {
+        return;
+      }
+
+      this.props.firebase.fs_user(this.props.firebase.getUid())
+      .get()
+      .then((doc) => {
+        this.setState({
+          username: doc.data().username,
+          firstName: doc.data().firstName,
+          lastName: doc.data().lastName
+        });
+      })
+      .catch();
+    })
+    .catch();
+  }
+
   render() {
-    return (<HomePage />);
+    const { username } = this.state;
+    return (<HomePage username={username} />);
   }
 }
 
