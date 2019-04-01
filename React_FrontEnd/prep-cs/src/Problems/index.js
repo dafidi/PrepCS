@@ -32,11 +32,6 @@ class ProblemsComponentBase extends React.Component {
   }
 
   componentDidMount = () => {
-    if (!this.props.firebase.auth.currentUser) {
-      console.log(" user was not signed in.");
-      return;
-    }
-    
     this.props.firebase.fs_problems()
       .get()
       .then(
@@ -60,10 +55,15 @@ class ProblemsComponentBase extends React.Component {
               this.setState({ problemsUserHasSolved: userData.problems_attempted_successfully });
             }
           })
-          .catch();
+          .catch((error) => {
+            // Uncaught errors can be problematic.
+          });
 
       })
-      .catch();
+      .catch((error) => {
+        // Uncaught errors can be problematic.
+      });
+    
   }
 
   handleChangePage = (event, page) => {
