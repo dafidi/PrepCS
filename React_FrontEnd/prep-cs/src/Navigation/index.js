@@ -28,7 +28,7 @@ const Navigation = ({ authUser }) => (
         </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">
-        {authUser && <SignOutButton />}
+        {authUser && <span><p>{authUser.userName}</p> <SignOutButton /></span>}
       </form>
 
     </div>

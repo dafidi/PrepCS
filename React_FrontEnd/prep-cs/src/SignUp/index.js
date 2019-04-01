@@ -5,8 +5,9 @@ import { withFirebase } from '../Firebase';
 
 import * as ROUTES from '../constants/routes';
 
-
 const INITIAL_STATE = {
+  firstName: '',
+  lastName: '',
   username: '',
   email: '',
   isProfessor: false,
@@ -18,7 +19,9 @@ const INITIAL_STATE = {
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
-    <SignUpForm />
+    <div className="auth-box">
+      <SignUpForm />
+    </div>
   </div>
 );
 
@@ -33,11 +36,21 @@ class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE };
+    // this.state = { ...INITIAL_STATE };
+    this.state = {
+      firstName: '',
+      lastName: '',
+      username: '',
+      email: '',
+      isProfessor: false,
+      passwordOne: '',
+      passwordTwo: '',
+      error: null,
+    };
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    const { firstName, lastName, username, email, passwordOne } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -46,8 +59,10 @@ class SignUpFormBase extends Component {
         return this.props.firebase.fs_users()
           .doc(authUser.user.uid)
           .set({
+            firstName: firstName,
+            lastName: lastName,
             username: username,
-            email:email,
+            email: email,
             problems_attempted: [],
             problems_attempted_incomplete: [],
             problems_attempted_complete: []
@@ -70,11 +85,13 @@ class SignUpFormBase extends Component {
 
   render() {
     const {
+      firstName,
+      lastName,
       username,
       email,
       passwordOne,
       passwordTwo,
-      error,
+      error
     } = this.state;
 
     const isInvalid =
@@ -85,37 +102,70 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+        <div className="auth-box-input">
+          First Name<br></br>
+          <input
+            name="firstName"
+            value={firstName}
+            onChange={this.onChange}
+            type="text"
+            placeholder="First Name"
+          /><br></br>
+        </div>
+        <div className="auth-box-input">
+          Last Name<br></br>
+          <input
+            name="lastName"
+            value={lastName}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Last Name"
+          /><br></br>
+        </div>
+        <div className="auth-box-input">
+          Username<br></br>
+          <input
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Username"
+          /><br></br>
+        </div>
+        <div className="auth-box-input">
+          Email Address<br></br>
+          <input
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          /><br></br>
+        </div>
+        <div className="auth-box-input">
+          Password<br></br>
+          <input
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          /><br></br>
+        </div>
+        <div className="auth-box-input">
+          <input
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+          /><br></br>
+        </div>
+        <div className="auth-box-input">
+          <button disabled={isInvalid} type="submit">
+            Sign Up
+          </button>
+        </div>
 
         {error && <p>{error.message}</p>}
       </form>

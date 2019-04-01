@@ -13,6 +13,14 @@
   margin: 5px 0px;
 }
 
+.auth-box {
+  width: 50vh
+}
+
+.auth-box-input {
+  margin: 10px;
+}
+
 .homePage{
   overflow: hidden;
 }
