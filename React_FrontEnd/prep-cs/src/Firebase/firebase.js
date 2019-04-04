@@ -69,6 +69,9 @@ class Firebase {
   // user = uid => this.db.ref(`users/${uid}`);
   // users = () => this.db.ref('users');
 
+  // fs_ prefix is to stand for firestore. This is a vestige of
+  // a switch from realtime database to cloud firestore.
+
   fs_users = () => this.fs.collection('users');
 
   fs_user = uid => this.fs.collection('users').doc(uid);
@@ -76,6 +79,8 @@ class Firebase {
   fs_problems = () => this.fs.collection('problems');
 
   storage_file = (filepath) => this.storage.ref(filepath);
+
+  fs_events = () => this.fs.collection('events');
 }
 
 export default Firebase;

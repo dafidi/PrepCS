@@ -1,16 +1,13 @@
 import React from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import { withFirebase } from '../Firebase';
 import BigCalendar from 'react-big-calendar';
-// import globalize from 'globalize';
-import 'react-big-calendar/lib/css/react-big-calendar.css'
-
 import moment from 'moment';
-
+import { withFirebase } from '../Firebase';
 import { withAuthorization } from '../Session';
 
-// const locale = moment.locale('en');
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+
 const localizer = BigCalendar.momentLocalizer(moment);
 const allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
@@ -18,11 +15,12 @@ const events = [{
   'title': 'UPE Induction Ceremony',
   'bgColor': '#ff0050',
   'start': new Date(2019, 3, 4, 12, 0),
-  'end': new Date(2019, 3, 4, 17, 0)
+  'end': new Date(2019, 3, 4, 17, 0),
+  'id': 'Id of UPR induction ceremony'
 },
 {
   'title': 'O(1) Memory Protection Lecture by Professor X',
-  'bgColor': '#ff7f50',
+  'id': 'mem-prot-X',
   'start': new Date(2019, 4, 4, 12, 0),
   'end': new Date(2019, 4, 4, 17, 0)
 }];
@@ -30,35 +28,40 @@ const events = [{
 class EventsPageBase extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      events: [],
+      sortedEvents: []
+    };
   }
 
-  prevClick = () => {
+  componentDidMount() {
+    let listOfEvents = [];
 
-  }
-
-  nextClick = () => {
-
-  }
-
-  onSelectDate = () => {
-
-  }
-
-  onViewChange = () => {
-
-  }
-
-  eventItemClick = () => {
-
+    this.props.firebase.fs_events()
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          const docData = doc.data();
+          listOfEvents.push({
+            title: docData.title,
+            id: docData.id,
+            start: new Date(docData.start.seconds * 1000),
+            end: new Date(docData.end.seconds * 1000)
+          });
+        });
+        this.setState({events: listOfEvents});
+      })
+      .catch((error) => { console.warn(error) });
   }
 
   render() {
     return (
       <div>
         <h2>Upcoming CS events @ HU</h2>
-        <div style={{height:400}}>
+        <div style={{ height: 400 }}>
           <BigCalendar
-            events={events}
+            events={this.state.events}
             views={allViews}
             step={60}
             showMultiDayTimes
@@ -66,6 +69,7 @@ class EventsPageBase extends React.Component {
             localizer={localizer}
             startAccessor="start"
             endAccessor="end"
+            onSelectEvent={(event) => { console.log(event.id + " has been clicked") }}
           />
         </div>
       </div>
