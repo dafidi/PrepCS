@@ -6,6 +6,7 @@ import ProblemsComponent from '../Problems';
 import { withAuthentication } from '../Session';
 import { HomeBar } from '../Navigation';
 import ProblemDetail from '../Problems/problem-detail';
+import { EventsPage } from '../Events';
 
 import {
   BrowserRouter as Router,
@@ -32,6 +33,7 @@ class HomePage extends React.Component {
           <Route path="/problems" exact component={ProblemsComponent}></Route>
           <Route path="/demo-problem" exact component={Demo_Problem}></Route>
           <Route path="/problem-detail/:problem_id" component={ProblemDetail}></Route>
+          <Route path="/events" exact component={EventsPage}></Route>
         </div>
       </Router>
     );

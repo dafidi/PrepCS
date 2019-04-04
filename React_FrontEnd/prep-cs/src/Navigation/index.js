@@ -26,6 +26,12 @@ const Navigation = ({ authUser, userInfo }) => (
             Demo Problem
 					      </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink to={ROUTES.EVENTS}
+            className="nav-link">
+           Events
+					      </NavLink>
+        </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">
         {authUser && <span>Hi, {userInfo.username} <SignOutButton /></span>}
