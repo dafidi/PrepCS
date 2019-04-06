@@ -9,3 +9,4 @@ export const PROBLEMS = '/problems';
 export const DEMO_PROBLEM = '/demo-problem';
 export const PROBLEM_DETAIL = '/problem-detail';
 export const EVENTS = '/events';
+export const DASHBOARD = '/dashboard';

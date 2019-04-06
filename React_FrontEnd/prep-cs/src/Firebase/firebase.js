@@ -35,8 +35,8 @@ class Firebase {
   getUid = () => { 
     return this.auth.currentUser.uid;
   }
-  // *** Merge Auth and DB User API *** //
 
+  // *** Merge Auth and DB User API *** //
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
       if (authUser) {

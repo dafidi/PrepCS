@@ -1,11 +1,12 @@
 import React from 'react';
 import Demo_Problem from '../Problems/demo_problem';
+import ProblemsComponent from '../Problems';
+import DashboardComponent from '../Dashboard';
+import HomeBar from '../Navigation';
+import ProblemDetail from '../Problems/problem-detail';
 import { SignInPage } from '../SignIn';
 import { SignUpPage } from '../SignUp';
-import ProblemsComponent from '../Problems';
-import { withAuthentication } from '../Session';
-import { HomeBar } from '../Navigation';
-import ProblemDetail from '../Problems/problem-detail';
+import { AuthUserContext, withAuthentication } from '../Session';
 import { EventsPage } from '../Events';
 
 import {
@@ -21,12 +22,10 @@ import 'brace/theme/solarized_dark';
 class HomePage extends React.Component {
 
   render() {
-    const userInfo = this.props.userInfo;
-
     return (
       <Router>
         <div className="homePage">
-          <HomeBar userInfo={userInfo} />
+          <HomeBar authUser={this.props.authUser} />
           <Route path="/" exact component={HomeBody}></Route>
           <Route path="/signin" exact component={SignInPage}></Route>
           <Route path="/signup" exact component={SignUpPage}></Route>
@@ -34,6 +33,7 @@ class HomePage extends React.Component {
           <Route path="/demo-problem" exact component={Demo_Problem}></Route>
           <Route path="/problem-detail/:problem_id" component={ProblemDetail}></Route>
           <Route path="/events" exact component={EventsPage}></Route>
+          <Route path="/dashboard" exact component={DashboardComponent}></Route>
         </div>
       </Router>
     );
@@ -76,45 +76,17 @@ class HomeBody extends React.Component {
 }
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userInfo: {
-        username: '',
-        firstName: '',
-        lastName: ''
-      }
-    }
-
-    this.props.firebase.fs_users()
-      .get()
-      .then((docsSnapshot) => {
-        // docsSnapshot.forEach((doc) => {
-        // });
-        if (!this.props.firebase.auth.currentUser) {
-          return;
-        }
-
-        this.props.firebase.fs_user(this.props.firebase.getUid())
-          .get()
-          .then((doc) => {
-            this.setState({
-              userInfo: {
-                username: doc.data().username,
-                firstName: doc.data().firstName,
-                lastName: doc.data().lastName
-              }
-            });
-          })
-          .catch();
-      })
-      .catch();
-  }
 
   render() {
-    const { userInfo } = this.state;
-    return (<HomePage userInfo={userInfo} />);
+    return (
+      <AuthUserContext.Consumer>
+        {
+          authUser => {
+            return (<HomePage authUser={authUser} />);
+          }
+        }
+      </AuthUserContext.Consumer>
+    );
   }
 }
 
