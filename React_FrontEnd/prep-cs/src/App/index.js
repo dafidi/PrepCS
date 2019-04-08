@@ -50,7 +50,7 @@ class HomeBody extends React.Component {
           <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
           <hr className="my-4"></hr>
           <div className="list-group">
-            <a href="/" style={{ color: "white", backgroundColor: "#F3969A" }} className="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="/" style={{ color: "white", backgroundColor: "#e51937" }} className="list-group-item list-group-item-action flex-column align-items-start">
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">Coding Interview Readiness</h5>
               </div>
