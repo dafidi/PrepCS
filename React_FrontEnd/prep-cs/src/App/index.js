@@ -20,7 +20,6 @@ import 'brace/mode/python';
 import 'brace/theme/solarized_dark';
 
 class HomePage extends React.Component {
-
   render() {
     return (
       <Router>
@@ -41,7 +40,6 @@ class HomePage extends React.Component {
 }
 
 class HomeBody extends React.Component {
-
   render() {
     return (
       <div className="homeBody">
