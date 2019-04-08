@@ -159,7 +159,7 @@ class ProblemDetailBase extends React.Component {
 					})
 					.catch();
 
-				// Fetch test file.
+				// Fetch starter code file.
 				let problemStarterCode = null;
 				this.props.firebase.storage_file(this.state.problemStarterCodeFilepath)
 					.getDownloadURL()
