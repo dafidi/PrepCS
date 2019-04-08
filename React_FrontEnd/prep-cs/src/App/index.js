@@ -58,9 +58,9 @@ class HomeBody extends React.Component {
             </a>
             <a href="/" className="list-group-item list-group-item-action flex-column align-items-start">
               <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1">Resume Building</h5>
+                <h5 className="mb-1">Personalized Dashboard</h5>
               </div>
-              <p className="mb-1">Stand out from the crowd and your fellow peers.</p>
+              <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
             </a>
             <a href="/" className="list-group-item list-group-item-action flex-column align-items-start active">
               <div className="d-flex w-100 justify-content-between">
