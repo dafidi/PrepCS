@@ -11,7 +11,6 @@
     "cldr": "^5.0.1",
     "cldr-core": "^35.0.0",
     "cldr-data": "^34.0.0",
-    "cldr-data-coverage": "full",
     "cldr-dates-full": "^35.0.0",
     "cldr-numbers-full": "^35.0.0",
     "cldrjs": "^0.5.1",
