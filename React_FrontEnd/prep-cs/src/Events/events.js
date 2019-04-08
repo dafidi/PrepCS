@@ -35,7 +35,7 @@ class EventsPageBase extends React.Component {
     let listOfEvents = [];
 
     
-    this._isMounted == true && this.props.firebase.fs_events()
+    this._isMounted === true && this.props.firebase.fs_events()
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
