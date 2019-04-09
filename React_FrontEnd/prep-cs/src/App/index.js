@@ -128,8 +128,8 @@ updateWindowDimensions() {
             </div>
           </div>
           <div style={Is_Mid_Desktop ? {marginTop: "55px", marginBottom: "55px", marginLeft: "27vw"} : {marginTop: "55px", marginBottom: "55px", marginLeft: "38vw"}} >
-            <a href="/signin"><button type="button" className="btn btn-secondary" style={Is_Mid_Desktop ? {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign In</button></a>
-            <a href="/signup"><button type="button" className="btn btn-secondary" style={Is_Mid_Desktop ? {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign Up</button></a>
+            <a href="/signin"><button type="button" className="btn btn-warning" style={Is_Mid_Desktop ? {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign In</button></a>
+            <a href="/signup"><button type="button" className="btn btn-warning" style={Is_Mid_Desktop ? {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign Up</button></a>
           </div>
         </div>
       );
