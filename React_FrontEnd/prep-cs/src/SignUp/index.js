@@ -16,16 +16,6 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
-    <div className="auth-box">
-      <SignUpForm />
-    </div>
-  </div>
-);
-
-
 const SignUpLink = () => (
   <p>
     Don't have an account? <Link to="/signup">Sign Up</Link>
@@ -69,7 +59,7 @@ class SignUpFormBase extends Component {
       })
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.LANDING);
+        this.props.history.push(ROUTES.DASHBOARD);
       })
       .catch(error => {
         this.setState({ error });
@@ -100,81 +90,84 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <div className="auth-box-input">
-          First Name<br></br>
-          <input
-            name="firstName"
-            value={firstName}
-            onChange={this.onChange}
-            type="text"
-            placeholder="First Name"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Last Name<br></br>
-          <input
-            name="lastName"
-            value={lastName}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Last Name"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Username<br></br>
-          <input
-            name="username"
-            value={username}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Username"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Email Address<br></br>
-          <input
-            name="email"
-            value={email}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Email Address"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Password<br></br>
-          <input
-            name="passwordOne"
-            value={passwordOne}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Password"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          <input
-            name="passwordTwo"
-            value={passwordTwo}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Confirm Password"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          <button disabled={isInvalid} type="submit">
-            Sign Up
+      <div>
+        <h1>SignUp</h1>
+        <form onSubmit={this.onSubmit}>
+          <div className="auth-box-input">
+            First Name<br></br>
+            <input
+              name="firstName"
+              value={firstName}
+              onChange={this.onChange}
+              type="text"
+              placeholder="First Name"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Last Name<br></br>
+            <input
+              name="lastName"
+              value={lastName}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Last Name"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Username<br></br>
+            <input
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Username"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Email Address<br></br>
+            <input
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Password<br></br>
+            <input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            <input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm Password"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            <button disabled={isInvalid} type="submit">
+              Sign Up
           </button>
-        </div>
+          </div>
 
-        {error && <p>{error.message}</p>}
-      </form>
+          {error && <p>{error.message}</p>}
+        </form>
+      </div>
     );
   }
 }
 
-const SignUpForm = compose(
+const SignUpPage = compose(
   withRouter,
   withFirebase,
 )(SignUpFormBase);
 
-export { SignUpForm, SignUpLink, SignUpPage };
+export { SignUpLink, SignUpPage };

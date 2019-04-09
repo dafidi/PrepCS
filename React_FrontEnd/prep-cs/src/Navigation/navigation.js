@@ -4,7 +4,6 @@ import { SignOutButton } from '../SignOut';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-import { withAuthorization } from '../Session';
 import * as ROUTES from '../constants/routes';
 
 class Navigation extends React.Component {
@@ -165,4 +164,4 @@ const HomeBar = compose(
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(HomeBar);
+export default HomeBar;
