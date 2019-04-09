@@ -19,6 +19,10 @@ import './index.css';
 import 'brace/mode/python';
 import 'brace/theme/solarized_dark';
 
+import ImageGallery from 'react-image-gallery';
+import image1 from '../resources/images/1.jpg';
+import image2 from '../resources/images/2.jpg';
+
 class HomePage extends React.Component {
 	
   render() {
@@ -62,6 +66,18 @@ updateWindowDimensions() {
 }
 
   render() {
+
+    const images = [
+      {
+        original: {image1},
+        thumbnail: {image2}
+      },
+      {
+        original: {image2},
+        thumbnail: {image2}
+      }
+    ]
+
     var Is_Mid_Desktop = this.state.width < 1100;
     var Is_Mobile_View = this.state.width < 450;
     if (Is_Mobile_View === true){
@@ -102,30 +118,9 @@ updateWindowDimensions() {
     else {
       return (
         <div className="homeBody" style={{height: "100vh", width: "100vw"}}>
-          <div className="jumbotron" style={{ marginTop: "5vh", marginBottom: "5vh", marginLeft: "5vw", marginRight: "5vw"}} >
-            <h1 className="display-3">Welcome to PrepCS!</h1>
-            <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
-            <hr className="my-4"></hr>
-            <div className="list-group">
-              <a href="/dashboard" style={{ color: "white", backgroundColor: "#e51937" }} className="list-group-item list-group-item-action flex-column align-items-start">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">Personalized Dashboard</h5>
-                </div>
-                <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
-              </a>
-              <a href="/courses" className="list-group-item list-group-item-action flex-column align-items-start">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">Coding Interview Readiness</h5>
-                </div>
-                <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
-              </a>
-              <a href="/events" className="list-group-item list-group-item-action flex-column align-items-start active">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">CS-Related Event Tracking</h5>
-                </div>
-                <p className="mb-1">Always be in the know to further your career goals.</p>
-              </a>
-            </div>
+          <img src={image1}></img>
+          <div>
+            <ImageGallery items={images} />
           </div>
           <div style={Is_Mid_Desktop ? {marginTop: "55px", marginBottom: "55px", marginLeft: "27vw"} : {marginTop: "55px", marginBottom: "55px", marginLeft: "38vw"}} >
             <a href="/signin"><button type="button" className="btn btn-warning" style={Is_Mid_Desktop ? {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign In</button></a>

@@ -27,6 +27,7 @@
     "react-big-scheduler": "^0.2.6",
     "react-dom": "^16.8.3",
     "react-globalize": "^1.0.0",
+    "react-image-gallery": "^0.8.16",
     "react-native": "^0.59.0",
     "react-native-elements": "^1.1.0",
     "react-native-web": "^0.10.1",
