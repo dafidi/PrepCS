@@ -8,25 +8,25 @@ import * as ROUTES from '../constants/routes';
 
 class Navigation extends React.Component {
 
-constructor(props) {
+  constructor(props) {
     super(props);
     this.state = { data: this.props }
     this.state = { width: '1920' };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-}
+  }
 
-componentDidMount() {
+  componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
-}
+  }
 
-componentWillUnmount() {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
-}
+  }
 
-updateWindowDimensions() {
+  updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
-}
+  }
 
   render() {
     var Is_Mid_Desktop = this.state.width < 1100;
@@ -36,80 +36,80 @@ updateWindowDimensions() {
         <div>
           <div className="navline"></div>
           <div className="navbar_edit">
-        <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px" , height: "45px"}}>
-          <div className="collapse navbar-collapse">
-            <NavLink to={ROUTES.LANDING} className="nav-item active">
-                <span className="navbar-brand">PrepCS</span>
-            </NavLink>
+            <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "45px" }}>
+              <div className="collapse navbar-collapse">
+                <NavLink to={ROUTES.LANDING} className="nav-item active">
+                  <span className="navbar-brand">PrepCS</span>
+                </NavLink>
+              </div>
+              <span>
+                {this.props.userInfo && <span><span style={{ marginRight: "10px", color: "white", display: "inline-block", marginTop: "10px" }}> Hi, {this.props.userInfo.username}! </span> <SignOutButton /> </span>}
+              </span>
+            </div>
+            <div className="navbar navbar-expand-lg navbar-dark bg-secondary" style={{ minWidth: "350px", height: "45px" }}>
+              <div className="collapse navbar-collapse">
+                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={{ fontSize: "1.171875rem" }}>
+                  <li className="nav-item">
+                    <NavLink to={ROUTES.DASHBOARD}
+                      className="nav-link">
+                      Dashboard
+                  </NavLink>
+                  </li>
+                  <li className="nav-item" style={{ marginLeft: "11vw", marginRight: "11vw" }}>
+                    <NavLink to={ROUTES.COURSES}
+                      className="nav-link">
+                      Courses
+                  </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to={ROUTES.EVENTS}
+                      className="nav-link">
+                      Events
+                  </NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <span>
-              {this.props.userInfo && <span><span style={{marginRight: "10px", color: "white", display: "inline-block", marginTop: "10px"}}> Hi, {this.props.userInfo.username}! </span> <SignOutButton /> </span>}
-          </span>
-        </div>
-        <div className="navbar navbar-expand-lg navbar-dark bg-secondary" style={{ minWidth: "350px" , height: "45px"}}>
-          <div className="collapse navbar-collapse">
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={{fontSize: "1.171875rem"}}>
-              <li className="nav-item">
-                <NavLink to={ROUTES.DASHBOARD}
-                  className="nav-link">
-                  Dashboard
-                  </NavLink>
-              </li>
-              <li className="nav-item" style={{ marginLeft: "11vw", marginRight: "11vw"}}>
-                <NavLink to={ROUTES.COURSES}
-                  className="nav-link">
-                  Courses
-                  </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={ROUTES.EVENTS}
-                  className="nav-link">
-                  Events
-                  </NavLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-        </div>
         </div>
       );
     }
     else {
       return (
         <div>
-        <div className="navline"></div>
-        <div className="navbar_edit">
-        <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px" , height: "90px"}}>
-          <div className="collapse navbar-collapse">
-            <NavLink to={ROUTES.LANDING} className="nav-item active">
-                <span className="navbar-brand">PrepCS</span>
-            </NavLink>
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={Is_Mid_Desktop ? {marginLeft: "19vw", fontSize: "1.171875rem"} : {marginLeft: "35vw", fontSize: "1.171875rem"}}>
-              <li className="nav-item">
-                <NavLink to={ROUTES.DASHBOARD}
-                  className="nav-link">
-                  Dashboard
+          <div className="navline"></div>
+          <div className="navbar_edit">
+            <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "90px" }}>
+              <div className="collapse navbar-collapse">
+                <NavLink to={ROUTES.LANDING} className="nav-item active">
+                  <span className="navbar-brand">PrepCS</span>
+                </NavLink>
+                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={Is_Mid_Desktop ? { marginLeft: "19vw", fontSize: "1.171875rem" } : { marginLeft: "35vw", fontSize: "1.171875rem" }}>
+                  <li className="nav-item">
+                    <NavLink to={ROUTES.DASHBOARD}
+                      className="nav-link">
+                      Dashboard
                   </NavLink>
-              </li>
-              <li className="nav-item" style={Is_Mid_Desktop ? { marginLeft: "3vw", marginRight: "3vw"} : { marginLeft: "5vw", marginRight: "5vw"}}>
-                <NavLink to={ROUTES.COURSES}
-                  className="nav-link">
-                  Courses
+                  </li>
+                  <li className="nav-item" style={Is_Mid_Desktop ? { marginLeft: "3vw", marginRight: "3vw" } : { marginLeft: "5vw", marginRight: "5vw" }}>
+                    <NavLink to={ROUTES.COURSES}
+                      className="nav-link">
+                      Courses
                   </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={ROUTES.EVENTS}
-                  className="nav-link">
-                  Events
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to={ROUTES.EVENTS}
+                      className="nav-link">
+                      Events
                   </NavLink>
-              </li>
-            </ul>
+                  </li>
+                </ul>
+              </div>
+              <span>
+                {this.props.userInfo && <span><span style={{ marginRight: "10px", color: "white", display: "inline-block", marginTop: "10px" }}> Hi, {this.props.userInfo.username}! </span> <SignOutButton /> </span>}
+              </span>
+            </div>
           </div>
-          <span>
-              {this.props.userInfo && <span><span style={{ marginRight: "10px", color: "white", display: "inline-block", marginTop: "10px"}}> Hi, {this.props.userInfo.username}! </span> <SignOutButton /> </span>}
-          </span>
-        </div>
-        </div>
         </div>
       );
 
@@ -145,7 +145,7 @@ class HomeBarBase extends React.Component {
           });
         })
         .catch(error => console.warn(error));
-      } 
+    }
   }
 
   render() {
@@ -161,7 +161,5 @@ const HomeBar = compose(
   withRouter,
   withFirebase
 )(HomeBarBase);
-
-const condition = authUser => !!authUser;
 
 export default HomeBar;
