@@ -41,11 +41,31 @@ class HomePage extends React.Component {
 }
 
 class HomeBody extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: this.props }
+    this.state = { width: '1920' };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+}
+
+componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+}
+
+componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+}
+
+updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+}
 
   render() {
+    var Is_Mobile_View = this.state.width < 450;
     return (
-      <div className="homeBody">
-        <div className="jumbotron" style={{ marginTop: "10px"}} >
+      <div className="homeBody" style={Is_Mobile_View ? {height: "100%", width: "100%"} : {height: "100vh", width: "100vw"}}>
+        <div className="jumbotron" style={{ marginTop: "5vh", marginBottom: "5vh", marginLeft: "5vw", marginRight: "5vw"}} >
           <h1 className="display-3">Welcome to PrepCS!</h1>
           <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
           <hr className="my-4"></hr>
