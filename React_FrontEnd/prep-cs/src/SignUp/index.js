@@ -16,33 +16,33 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const SignUpPage = () => (
+const SignUpPageBase = () => (
   <div>
-    <div className="jumbotron" style={{ marginTop: "5vh", marginBottom: "5vh", marginLeft: "5vw", marginRight: "5vw"}} >
-            <h1 className="display-3">Welcome to PrepCS!</h1>
-            <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
-            <hr className="my-4"></hr>
-            <div className="list-group">
-              <a href="/dashboard" style={{ color: "white", backgroundColor: "#e51937" }} className="list-group-item list-group-item-action flex-column align-items-start">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">Personalized Dashboard</h5>
-                </div>
-                <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
-              </a>
-              <a href="/courses" className="list-group-item list-group-item-action flex-column align-items-start">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">Coding Interview Readiness</h5>
-                </div>
-                <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
-              </a>
-              <a href="/events" className="list-group-item list-group-item-action flex-column align-items-start active">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">CS-Related Event Tracking</h5>
-                </div>
-                <p className="mb-1">Always be in the know to further your career goals.</p>
-              </a>
-            </div>
+    <div className="jumbotron" style={{ marginTop: "5vh", marginBottom: "5vh", marginLeft: "5vw", marginRight: "5vw" }} >
+      <h1 className="display-3">Welcome to PrepCS!</h1>
+      <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
+      <hr className="my-4"></hr>
+      <div className="list-group">
+        <a href="/dashboard" style={{ color: "white", backgroundColor: "#e51937" }} className="list-group-item list-group-item-action flex-column align-items-start">
+          <div className="d-flex w-100 justify-content-between">
+            <h5 className="mb-1">Personalized Dashboard</h5>
           </div>
+          <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
+        </a>
+        <a href="/courses" className="list-group-item list-group-item-action flex-column align-items-start">
+          <div className="d-flex w-100 justify-content-between">
+            <h5 className="mb-1">Coding Interview Readiness</h5>
+          </div>
+          <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
+        </a>
+        <a href="/events" className="list-group-item list-group-item-action flex-column align-items-start active">
+          <div className="d-flex w-100 justify-content-between">
+            <h5 className="mb-1">CS-Related Event Tracking</h5>
+          </div>
+          <p className="mb-1">Always be in the know to further your career goals.</p>
+        </a>
+      </div>
+    </div>
     <div className="auth-box">
       <SignUpForm />
     </div>
@@ -56,7 +56,7 @@ const SignUpLink = () => (
   </p>
 );
 
-class SignUpFormBase extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
 
@@ -125,75 +125,75 @@ class SignUpFormBase extends Component {
 
     return (
       <div>
-          <h1>SignUp</h1>
-      <form onSubmit={this.onSubmit}>
-        <div className="auth-box-input">
-          First Name<br></br>
-          <input
-            name="firstName"
-            value={firstName}
-            onChange={this.onChange}
-            type="text"
-            placeholder="First Name"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Last Name<br></br>
-          <input
-            name="lastName"
-            value={lastName}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Last Name"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Username<br></br>
-          <input
-            name="username"
-            value={username}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Username"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Email Address<br></br>
-          <input
-            name="email"
-            value={email}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Email Address"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          Password<br></br>
-          <input
-            name="passwordOne"
-            value={passwordOne}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Password"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          <input
-            name="passwordTwo"
-            value={passwordTwo}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Confirm Password"
-          /><br></br>
-        </div>
-        <div className="auth-box-input">
-          <button disabled={isInvalid} type="submit">
-            Sign Up
+        <h1>SignUp</h1>
+        <form onSubmit={this.onSubmit}>
+          <div className="auth-box-input">
+            First Name<br></br>
+            <input
+              name="firstName"
+              value={firstName}
+              onChange={this.onChange}
+              type="text"
+              placeholder="First Name"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Last Name<br></br>
+            <input
+              name="lastName"
+              value={lastName}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Last Name"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Username<br></br>
+            <input
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Username"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Email Address<br></br>
+            <input
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            Password<br></br>
+            <input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            <input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm Password"
+            /><br></br>
+          </div>
+          <div className="auth-box-input">
+            <button disabled={isInvalid} type="submit">
+              Sign Up
           </button>
           </div>
 
-        {error && <p>{error.message}</p>}
-      </form>
+          {error && <p>{error.message}</p>}
+        </form>
       </div>
     );
   }
@@ -202,6 +202,6 @@ class SignUpFormBase extends Component {
 const SignUpPage = compose(
   withRouter,
   withFirebase,
-)(SignUpFormBase);
+)(SignUpPageBase);
 
 export { SignUpLink, SignUpPage };
