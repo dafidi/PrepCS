@@ -10,6 +10,8 @@
   width: 100%;
   left: 0;
   background-color: #003a63;
+  position: relative;
+  z-index: 9001;
 }
 
 .nav_menu_items{

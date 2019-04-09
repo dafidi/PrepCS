@@ -17,8 +17,8 @@ const INITIAL_STATE = {
 };
 
 const SignUpPageBase = () => (
-  <div>
-    <div className="jumbotron" style={{ marginTop: "5vh", marginBottom: "5vh", marginLeft: "5vw", marginRight: "5vw" }} >
+  <div style={{width: "100%", overflow: "hidden"}}>
+    <div className="jumbotron" style={{width: "50vw", float: "left"}} >
       <h1 className="display-3">Welcome to PrepCS!</h1>
       <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
       <hr className="my-4"></hr>
@@ -43,7 +43,7 @@ const SignUpPageBase = () => (
         </a>
       </div>
     </div>
-    <div className="auth-box">
+    <div className="auth-box" style={{ float: "right", marginRight: "10vw"}}>
       <SignUpForm />
     </div>
   </div>
@@ -127,6 +127,20 @@ class SignUpForm extends Component {
       <div>
         <h1>SignUp</h1>
         <form onSubmit={this.onSubmit}>
+
+        <div className="input-group mb-3">
+            <div className="input-group-prepend">
+        <span className="input-group-text">First Name</span>
+      </div>
+            <input className="form-control"
+              name="firstName"
+              value={firstName}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Enter Name Here"
+            /><br></br>
+          </div>
+
           <div className="auth-box-input">
             First Name<br></br>
             <input
