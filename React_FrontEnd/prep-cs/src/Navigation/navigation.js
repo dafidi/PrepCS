@@ -57,7 +57,7 @@ updateWindowDimensions() {
                   </NavLink>
               </li>
               <li className="nav-item" style={{ marginLeft: "11vw", marginRight: "11vw"}}>
-                <NavLink to={ROUTES.PROBLEMS}
+                <NavLink to={ROUTES.COURSES}
                   className="nav-link">
                   Courses
                   </NavLink>
@@ -93,7 +93,7 @@ updateWindowDimensions() {
                   </NavLink>
               </li>
               <li className="nav-item" style={Is_Mid_Desktop ? { marginLeft: "3vw", marginRight: "3vw"} : { marginLeft: "5vw", marginRight: "5vw"}}>
-                <NavLink to={ROUTES.PROBLEMS}
+                <NavLink to={ROUTES.COURSES}
                   className="nav-link">
                   Courses
                   </NavLink>

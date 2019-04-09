@@ -29,7 +29,7 @@ class HomePage extends React.Component {
           <Route path="/" exact component={HomeBody}></Route>
           <Route path="/signin" exact component={SignInPage}></Route>
           <Route path="/signup" exact component={SignUpPage}></Route>
-          <Route path="/problems" exact component={ProblemsComponent}></Route>
+          <Route path="/courses" exact component={ProblemsComponent}></Route>
           <Route path="/demo-problem" exact component={Demo_Problem}></Route>
           <Route path="/problem-detail/:problem_id" component={ProblemDetail}></Route>
           <Route path="/events" exact component={EventsPage}></Route>
@@ -50,19 +50,19 @@ class HomeBody extends React.Component {
           <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
           <hr className="my-4"></hr>
           <div className="list-group">
-            <a href="/" style={{ color: "white", backgroundColor: "#e51937" }} className="list-group-item list-group-item-action flex-column align-items-start">
-              <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1">Coding Interview Readiness</h5>
-              </div>
-              <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
-            </a>
-            <a href="/" className="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="/dashboard" style={{ color: "white", backgroundColor: "#e51937" }} className="list-group-item list-group-item-action flex-column align-items-start">
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">Personalized Dashboard</h5>
               </div>
               <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
             </a>
-            <a href="/" className="list-group-item list-group-item-action flex-column align-items-start active">
+            <a href="/courses" className="list-group-item list-group-item-action flex-column align-items-start">
+              <div className="d-flex w-100 justify-content-between">
+                <h5 className="mb-1">Coding Interview Readiness</h5>
+              </div>
+              <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
+            </a>
+            <a href="/events" className="list-group-item list-group-item-action flex-column align-items-start active">
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">CS-Related Event Tracking</h5>
               </div>
