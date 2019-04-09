@@ -45,7 +45,10 @@ class Demo_ProblemBase extends React.Component {
 	}
 
 	onChange = (newValue) => {
-		this.state.code = newValue;
+		// this.state.code = newValue;
+		this.setState({
+			code: newValue
+		})
 	}
 
 	render() {

@@ -31,7 +31,7 @@ updateWindowDimensions() {
   render() {
     var Is_Mid_Desktop = this.state.width < 1100;
     var Is_Mobile_View = this.state.width < 450;
-    if (Is_Mobile_View == true) {
+    if (Is_Mobile_View === true) {
       return (
         <div>
           <div className="navline"></div>
