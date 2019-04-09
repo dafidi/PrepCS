@@ -45,7 +45,7 @@ class HomeBody extends React.Component {
   render() {
     return (
       <div className="homeBody">
-        <div className="jumbotron">
+        <div className="jumbotron" style={{ marginTop: "10px"}} >
           <h1 className="display-3">Welcome to PrepCS!</h1>
           <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
           <hr className="my-4"></hr>

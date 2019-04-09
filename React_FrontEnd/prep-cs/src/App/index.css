@@ -1,3 +1,21 @@
+.navline{
+  background-color: #e51937;
+  width: 100%;
+  height: 5px;
+  display: block;
+}
+
+.navbar_edit{
+  box-shadow: 0 0 10px 5px rgba(0,0,0,.3);
+  width: 100%;
+  left: 0;
+  background-color: #003a63;
+}
+
+.nav_menu_items{
+  left: 50%;
+}
+
 .demoProblem{
   margin-left: 10px;
   margin-top: 20px;
@@ -4692,7 +4710,7 @@
    }
  }
  
- @media (min-width: 992px) {
+ @media (min-width: 0px) {
    .navbar-expand-lg {
      -webkit-box-orient: horizontal;
      -webkit-box-direction: normal;
@@ -8551,10 +8569,12 @@
    margin: 0.5rem !important;
  }
  
+ /*
  .mt-2,
  .my-2 {
    margin-top: 0.5rem !important;
  }
+ */
  
  .mr-2,
  .mx-2 {
