@@ -115,7 +115,10 @@ class ProblemDetailBase extends React.Component {
 	 * Updates the stored value of the user's code (a string).
 	 */
 	onTextEditorChange = (newValue) => {
-		this.state.code = newValue;
+		// this.state.code = newValue;
+		this.setState({
+			code: 'newValue'
+		})
 	}
 
 	componentDidMount = () => {

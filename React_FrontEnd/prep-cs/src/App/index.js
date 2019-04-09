@@ -64,7 +64,7 @@ updateWindowDimensions() {
   render() {
     var Is_Mid_Desktop = this.state.width < 1100;
     var Is_Mobile_View = this.state.width < 450;
-    if (Is_Mobile_View == true){
+    if (Is_Mobile_View === true){
       return (
         <div className="homeBody" style={{height: "100%", width: "100%"}}>
           <div className="jumbotron" style={{ marginTop: "5vh", marginBottom: "5vh", marginLeft: "5vw", marginRight: "5vw"}} >
@@ -128,8 +128,8 @@ updateWindowDimensions() {
             </div>
           </div>
           <div style={Is_Mid_Desktop ? {marginTop: "55px", marginBottom: "55px", marginLeft: "27vw"} : {marginTop: "55px", marginBottom: "55px", marginLeft: "38vw"}} >
-            <a href="/signin"><button type="button" className="btn btn-warning" style={Is_Mid_Desktop ? {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign In</button></a>
-            <a href="/signup"><button type="button" className="btn btn-warning" style={Is_Mid_Desktop ? {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign Up</button></a>
+            <a href="/signin"><button type="button" className="btn btn-secondary" style={Is_Mid_Desktop ? {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign In</button></a>
+            <a href="/signup"><button type="button" className="btn btn-secondary" style={Is_Mid_Desktop ? {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"} : {marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px"}}>Sign Up</button></a>
           </div>
         </div>
       );
