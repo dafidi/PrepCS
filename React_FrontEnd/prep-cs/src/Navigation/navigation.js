@@ -84,7 +84,7 @@ class Navigation extends React.Component {
                 <NavLink to={ROUTES.LANDING} className="nav-item active">
                   <span className="navbar-brand">PrepCS</span>
                 </NavLink>
-                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={Is_Mid_Desktop ? { marginLeft: "19vw", fontSize: "1.171875rem" } : { marginLeft: "35vw", fontSize: "1.171875rem" }}>
+                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={Is_Mid_Desktop ? { marginLeft: "19vw", fontSize: "1.171875rem" } : { marginLeft: "28vw", fontSize: "1.171875rem" }}>
                   <li className="nav-item">
                     <NavLink to={ROUTES.DASHBOARD}
                       className="nav-link">
