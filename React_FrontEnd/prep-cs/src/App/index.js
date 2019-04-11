@@ -79,12 +79,12 @@ class HomeBodyBase extends React.Component {
 
     const images = [
       {
-        original: '/../resources/images/1.jpg',
-        thumbnail: '/../resources/images/1.jpg'
+        original: require('../resources/images/1.jpg'),
+        thumbnail: require('../resources/images/1.jpg')
       },
       {
-        original: '../resources/images/1.jpg',
-        thumbnail: '../resources/images/1.jpg'
+        original: require('../resources/images/1.jpg'),
+        thumbnail: require('../resources/images/1.jpg')
       }
     ]
 
