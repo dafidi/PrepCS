@@ -11,7 +11,7 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = { data: this.props }
-    this.state = { width: '1920' };
+    this.state = { width: '500' };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -30,7 +30,7 @@ class Navigation extends React.Component {
 
   render() {
     var Is_Mid_Desktop = this.state.width < 1100;
-    var Is_Mobile_View = this.state.width < 450;
+    var Is_Mobile_View = this.state.width < 700;
     if (Is_Mobile_View === true) {
       return (
         <div>
@@ -38,7 +38,7 @@ class Navigation extends React.Component {
           <div className="navbar_edit">
             <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "45px" }}>
               <div className="collapse navbar-collapse">
-                <NavLink to={ROUTES.LANDING} className="nav-item active">
+                <NavLink to="/home" className="nav-item active">
                   <span className="navbar-brand">PrepCS</span>
                 </NavLink>
               </div>
@@ -81,7 +81,7 @@ class Navigation extends React.Component {
           <div className="navbar_edit">
             <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "90px" }}>
               <div className="collapse navbar-collapse">
-                <NavLink to={ROUTES.LANDING} className="nav-item active">
+                <NavLink to={ROUTES.HOME} className="nav-item active">
                   <span className="navbar-brand">PrepCS</span>
                 </NavLink>
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={Is_Mid_Desktop ? { marginLeft: "19vw", fontSize: "1.171875rem" } : { marginLeft: "35vw", fontSize: "1.171875rem" }}>

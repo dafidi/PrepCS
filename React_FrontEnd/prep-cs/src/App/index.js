@@ -32,7 +32,7 @@ class HomePage extends React.Component {
       <Router>
         <div className="homePage">
           <HomeBar authUser={this.props.authUser} />
-          <Route path="/" exact render={(props) => <HomeBody {...props} authUser={this.props.authUser} />}></Route>
+          <Route path="/home" exact render={(props) => <HomeBody {...props} authUser={this.props.authUser} />}></Route>
           <Route path="/signin" exact component={SignInPage}></Route>
           <Route path="/signup" exact component={SignUpPage}></Route>
           <Route path="/courses" exact component={ProblemsComponent}></Route>
@@ -50,7 +50,7 @@ class HomeBodyBase extends React.Component {
   constructor(props) {
     super(props);
     this.state = { data: this.props }
-    this.state = { width: '1920' };
+    this.state = { width: '500' };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -79,17 +79,17 @@ class HomeBodyBase extends React.Component {
 
     const images = [
       {
-        original: {image1},
-        thumbnail: {image2}
+        original: '/../resources/images/1.jpg',
+        thumbnail: '/../resources/images/1.jpg'
       },
       {
-        original: {image2},
-        thumbnail: {image2}
+        original: '../resources/images/1.jpg',
+        thumbnail: '../resources/images/1.jpg'
       }
     ]
 
     var Is_Mid_Desktop = this.state.width < 1100;
-    var Is_Mobile_View = this.state.width < 450;
+    var Is_Mobile_View = this.state.width < 700;
     if (Is_Mobile_View === true) {
       return (
         <div className="homeBody" style={{ height: "100%", width: "100%" }}>

@@ -2,6 +2,7 @@
   "name": "prep-cs",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@babel/core": "^7.3.4",
     "@material-ui/core": "^3.9.2",

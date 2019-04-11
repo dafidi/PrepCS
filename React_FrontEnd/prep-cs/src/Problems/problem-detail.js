@@ -115,10 +115,14 @@ class ProblemDetailBase extends React.Component {
 	 * Updates the stored value of the user's code (a string).
 	 */
 	onTextEditorChange = (newValue) => {
-		// this.state.code = newValue;
-		this.setState({
-			code: 'newValue'
-		})
+		/**
+		 * DO NOT CHANGE THIS LINE!
+		 * Otherwise, the editor won't work. I know we shouldn't
+		 * set state like this but using setState breaks the site, you can try it
+		 * out locally and see. I know the warning in developer console is;t pretty 
+		 * but it's what we got. :)
+		 */
+		this.state.code = newValue;
 	}
 
 	componentDidMount = () => {
@@ -207,14 +211,14 @@ class ProblemDetailBase extends React.Component {
 							<AceEditor
 								mode="python"
 								theme="solarized_dark"
-								// height="100%"
-								// width="100%"
+								height="100%"
+								width="100%"
 								width="100%"
 								height="600px"
 								onChange={this.onTextEditorChange}
 								value={this.state.problemStarterCode}
 								name="ide-container"
-							//editorProps={{$blockScrolling: true}}
+								editorProps={{ $blockScrolling: true }}
 							/>
 							<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>
 						</div>
@@ -255,9 +259,6 @@ class InfoBox extends React.Component {
 
 			let scoreMessage = "Passed " + numTestsPassed + "/" + numTestsRun +
 				" Cases.\n";
-
-
-
 			if (numTestsRun > numTestsPassed) {
 				const indexOfFirstFailure = passFailByIndex.indexOf("FAIL");
 				const inp = inputs[indexOfFirstFailure];
