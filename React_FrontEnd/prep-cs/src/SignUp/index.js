@@ -17,8 +17,8 @@ const INITIAL_STATE = {
 };
 
 const SignUpPageBase = () => (
-  <div style={{width: "100%", overflow: "hidden"}}>
-    <div className="jumbotron" style={{width: "50vw", float: "left"}} >
+  <div style={{ width: "100%", overflow: "hidden" }}>
+    <div className="jumbotron" style={{ width: "50vw", float: "left" }} >
       <h1 className="display-3">Welcome to PrepCS!</h1>
       <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
       <hr className="my-4"></hr>
@@ -43,7 +43,7 @@ const SignUpPageBase = () => (
         </a>
       </div>
     </div>
-    <div className="auth-box" style={{ float: "right", marginRight: "10vw"}}>
+    <div className="auth-box" style={{ float: "right", marginRight: "10vw" }}>
       <SignUpForm />
     </div>
   </div>
@@ -51,7 +51,7 @@ const SignUpPageBase = () => (
 
 
 const SignUpLink = () => (
-  <p style={{textAlign:'center'}}>
+  <p style={{ textAlign: 'center' }}>
     Don't have an account? <Link to="/signup">Sign Up</Link>
   </p>
 );
@@ -128,59 +128,58 @@ class SignUpForm extends Component {
         <h1>SignUp</h1>
         <form onSubmit={this.onSubmit}>
 
-        <div className="input-group mb-3">
+          <div className="input-group mb-3">
             <div className="input-group-prepend">
-        <span className="input-group-text">First Name</span>
-      </div>
+              <span className="input-group-text">First Name</span>
+            </div>
             <input className="form-control"
               name="firstName"
               value={firstName}
               onChange={this.onChange}
               type="text"
-              placeholder="Enter Name Here"
+              placeholder="Enter First Name Here"
             /><br></br>
           </div>
 
-          <div className="auth-box-input">
-            First Name<br></br>
-            <input
-              name="firstName"
-              value={firstName}
-              onChange={this.onChange}
-              type="text"
-              placeholder="First Name"
-            /><br></br>
-          </div>
-          <div className="auth-box-input">
-            Last Name<br></br>
-            <input
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Last Name</span>
+            </div>
+            <input className="form-control"
               name="lastName"
               value={lastName}
               onChange={this.onChange}
               type="text"
-              placeholder="Last Name"
+              placeholder="Enter Last Name Here"
             /><br></br>
           </div>
-          <div className="auth-box-input">
-            Username<br></br>
-            <input
-              name="username"
+
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">User Name</span>
+            </div>
+            <input className="form-control"
+              name="userName"
               value={username}
               onChange={this.onChange}
               type="text"
-              placeholder="Username"
+              placeholder="Enter Username Here"
             /><br></br>
           </div>
-          <div className="auth-box-input">
-            Email Address<br></br>
-            <input
+
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Email</span>
+            </div>
+            <input className="form-control"
               name="email"
               value={email}
               onChange={this.onChange}
               type="text"
-              placeholder="Email Address"
+              placeholder="Enter Email Address Here"
             /><br></br>
           </div>
+
           <div className="auth-box-input">
             Password<br></br>
             <input

@@ -16,6 +16,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
+
+import Collapsible from 'react-collapsible';
+
 import green_check from '../resources/images/white-check-icon-on-green.png';
 
 class ProblemsComponentBase extends React.Component {
@@ -27,7 +32,12 @@ class ProblemsComponentBase extends React.Component {
       problemListViews: null,
       problemTablePage: 0,
       uid: null,
-      problemsUserHasSolved: []
+      problemsUserHasSolved: [],
+      categories: {
+        // "Data Structures": [],
+        // "Algorithms": [],
+        // "Miscellaneous": []
+      }
     }
   }
 
@@ -39,6 +49,23 @@ class ProblemsComponentBase extends React.Component {
           snapshot.forEach(
             (doc) => {
               this.state.listOfProblems.push({ "id": doc.id, "data": doc.data() });
+              if (doc.data().category) {
+                if (this.state.categories[doc.data().category]) {
+                  this.state.categories[doc.data().category].push(
+                    { "id": doc.id, "data": doc.data() }
+                  );
+                } else {
+                  this.state.categories[doc.data().category] = [];
+                  this.state.categories[doc.data().category].push(
+                    { "id": doc.id, "data": doc.data() }
+                  );
+                }
+
+              } else {
+                this.state.categories["Miscellaneous"].push(
+                  { "id": doc.id, "data": doc.data() }
+                );
+              }
             });
         }
       )
@@ -63,7 +90,7 @@ class ProblemsComponentBase extends React.Component {
       .catch((error) => {
         // Uncaught errors can be problematic.
       });
-    
+
   }
 
   handleChangePage = (event, page) => {
@@ -75,12 +102,36 @@ class ProblemsComponentBase extends React.Component {
   };
 
   render() {
-    const rowsPerPage = 5;
     return (
       <AuthUserContext.Consumer>
         {
           authUser => authUser ?
-              <div>
+            <div>
+              <div style={{marginLeft:"25px", width:"80vw"}}>
+                {Object.keys(this.state.categories).slice().map(category => (
+                  <Collapsible key={category} trigger={
+                    <Card style={{height:"100px"}}>
+                      <Typography variant="h5" component="h2">
+                        {category}
+                      </Typography>
+                    </Card>}>
+                    {
+                      this.state.categories[category].slice().map(
+                        problem => (
+                          <div key={problem.id}>
+                            <ProblemListCard
+                              problemName={problem["data"].shortName}
+                              problemSummary={problem["data"].summary}
+                              problemCategory={problem["data"].category}
+                              userHasDone={this.state.problemsUserHasSolved
+                                .includes(problem["id"])}>
+                            </ProblemListCard>
+                          </div>))
+                    }
+                  </Collapsible>))
+                }
+              </div>
+              {/* <div>
                 <h2>Pick a problem and hack away!</h2>
                 <Paper >
                   <Table >
@@ -88,7 +139,7 @@ class ProblemsComponentBase extends React.Component {
                       <TableRow>
                         <TableCell>Problem</TableCell>
                         <TableCell align="right">Description</TableCell>
-                        <TableCell align="right">{/** Column for status. */}</TableCell>
+                        <TableCell align="right">{}</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -132,8 +183,9 @@ class ProblemsComponentBase extends React.Component {
                     </TableFooter>
                   </Table>
                 </Paper>
-              </div> : <div></div>
-          }
+              </div>*/}
+            </div> : <div></div>
+        }
       </AuthUserContext.Consumer>
     )
   }
