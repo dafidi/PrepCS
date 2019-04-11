@@ -107,10 +107,10 @@ class ProblemsComponentBase extends React.Component {
         {
           authUser => authUser ?
             <div>
-              <div style={{marginLeft:"25px", width:"80vw"}}>
+              <div style={{ marginLeft: "25px", width: "80vw" }}>
                 {Object.keys(this.state.categories).slice().map(category => (
                   <Collapsible key={category} trigger={
-                    <Card style={{height:"100px"}}>
+                    <Card style={{ height: "100px", textAlign:'center', verticalAlign:'middle' }}>
                       <Typography variant="h5" component="h2">
                         {category}
                       </Typography>
@@ -119,13 +119,16 @@ class ProblemsComponentBase extends React.Component {
                       this.state.categories[category].slice().map(
                         problem => (
                           <div key={problem.id}>
-                            <ProblemListCard
-                              problemName={problem["data"].shortName}
-                              problemSummary={problem["data"].summary}
-                              problemCategory={problem["data"].category}
-                              userHasDone={this.state.problemsUserHasSolved
-                                .includes(problem["id"])}>
-                            </ProblemListCard>
+                            <NavLink to={ROUTES.PROBLEM_DETAIL+'/'+problem.id}
+                                     style={{ color:'black',textDecoration:'none', textAlign:'left'}}>
+                              <ProblemListCard
+                                problemName={problem.data.shortName}
+                                problemSummary={problem["data"].summary}
+                                problemCategory={problem["data"].category}
+                                userHasDone={this.state.problemsUserHasSolved
+                                  .includes(problem["id"])}>
+                              </ProblemListCard>
+                            </NavLink>
                           </div>))
                     }
                   </Collapsible>))
