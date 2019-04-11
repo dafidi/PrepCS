@@ -24,6 +24,7 @@ import 'brace/theme/solarized_dark';
 import ImageGallery from 'react-image-gallery';
 import image1 from '../resources/images/1.jpg';
 import image2 from '../resources/images/2.jpg';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 class HomePage extends React.Component {
 
@@ -128,8 +129,8 @@ class HomeBodyBase extends React.Component {
     else {
       return (
         <div className="homeBody" style={{height: "100vh", width: "100vw"}}>
-          <img src={image1}></img>
           <div>
+            {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <ImageGallery items={images} />
           </div>
           {!this.props.authUser &&
