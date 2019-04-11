@@ -213,7 +213,6 @@ class ProblemDetailBase extends React.Component {
 								theme="solarized_dark"
 								height="100%"
 								width="100%"
-								width="100%"
 								height="600px"
 								onChange={this.onTextEditorChange}
 								value={this.state.problemStarterCode}

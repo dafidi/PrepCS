@@ -9,7 +9,7 @@ import { withFirebase } from '../Firebase';
 
 const SignInPage = () => (
   <div>
-    <h1>SignIn</h1>
+    <h1 style={{textAlign: 'center'}}>Sign In</h1>
     <SignInForm />
     <SignUpLink />
   </div>
@@ -83,9 +83,11 @@ class SignInFormBase extends Component {
           type="password"
           placeholder="Password"
         />
+        <div style={{textAlign: 'center'}}>
         <button disabled={isInvalid} type="submit" className="btn btn-primary">
           Sign In
         </button>
+        </div>
 
         {error && <p>{error.message}</p>}
       </form>

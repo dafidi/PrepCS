@@ -26,6 +26,7 @@
     "react-art": "^16.8.5",
     "react-big-calendar": "^0.20.4",
     "react-big-scheduler": "^0.2.6",
+    "react-collapsible": "^2.6.0",
     "react-dom": "^16.8.3",
     "react-globalize": "^1.0.0",
     "react-image-gallery": "^0.8.16",
@@ -33,7 +34,7 @@
     "react-native-elements": "^1.1.0",
     "react-native-web": "^0.10.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5",
+    "react-scripts": "^2.1.8",
     "react-tabs": "^3.0.0",
     "recompose": "^0.30.0"
   },
