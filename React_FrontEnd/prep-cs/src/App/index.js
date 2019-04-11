@@ -33,6 +33,7 @@ class HomePage extends React.Component {
       <Router>
         <div className="homePage">
           <HomeBar authUser={this.props.authUser} />
+          <div style={{paddingTop: "95px"}}>
           <Route path="/home" exact render={(props) => <HomeBody {...props} authUser={this.props.authUser} />}></Route>
           <Route path="/signin" exact component={SignInPage}></Route>
           <Route path="/signup" exact component={SignUpPage}></Route>
@@ -41,6 +42,7 @@ class HomePage extends React.Component {
           <Route path="/problem-detail/:problem_id" component={ProblemDetail}></Route>
           <Route path="/events" exact component={EventsPage}></Route>
           <Route path="/dashboard" exact component={DashboardComponent}></Route>
+          </div>
         </div>
       </Router>
     );

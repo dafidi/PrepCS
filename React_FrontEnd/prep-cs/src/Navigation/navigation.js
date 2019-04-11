@@ -34,8 +34,8 @@ class Navigation extends React.Component {
     if (Is_Mobile_View === true) {
       return (
         <div>
-          <div className="navline"></div>
           <div className="navbar_edit">
+          <div className="navline"></div>
             <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "45px" }}>
               <div className="collapse navbar-collapse">
                 <NavLink to="/home" className="nav-item active">
@@ -77,8 +77,8 @@ class Navigation extends React.Component {
     else {
       return (
         <div>
-          <div className="navline"></div>
           <div className="navbar_edit">
+          <div className="navline"></div>
             <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "90px" }}>
               <div className="collapse navbar-collapse">
                 <NavLink to={ROUTES.HOME} className="nav-item active">

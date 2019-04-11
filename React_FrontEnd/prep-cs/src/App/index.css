@@ -10,7 +10,7 @@
   width: 100%;
   left: 0;
   background-color: #003a63;
-  position: relative;
+  position: fixed;
   z-index: 9001;
 }
 
