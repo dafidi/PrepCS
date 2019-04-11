@@ -10,6 +10,8 @@
   width: 100%;
   left: 0;
   background-color: #003a63;
+  position: relative;
+  z-index: 9001;
 }
 
 .nav_menu_items{
@@ -28,7 +30,13 @@
 }
 
 #sign-in {
-  margin: 5px 0px;
+  margin: 0px auto 5px;
+  width: 65%;
+}
+
+#password {
+  margin: 0px auto 5px;
+  width: 65%;
 }
 
 .auth-box {
