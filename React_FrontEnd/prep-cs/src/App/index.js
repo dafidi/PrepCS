@@ -52,7 +52,7 @@ class HomeBodyBase extends React.Component {
   constructor(props) {
     super(props);
     this.state = { data: this.props }
-    this.state = { width: '500' };
+    this.state = { width: '1920' };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -103,30 +103,9 @@ class HomeBodyBase extends React.Component {
     if (Is_Mobile_View === true) {
       return (
         <div className="homeBody" style={{ height: "100%", width: "100%" }}>
-          <div className="jumbotron" style={{ marginTop: "5vh", marginBottom: "5vh", marginLeft: "5vw", marginRight: "5vw" }} >
-            <h1 className="display-3">Welcome to PrepCS!</h1>
-            <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
-            <hr className="my-4"></hr>
-            <div className="list-group">
-              <a href="/dashboard" style={{ color: "white", backgroundColor: "#e51937" }} className="list-group-item list-group-item-action flex-column align-items-start">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">Personalized Dashboard</h5>
-                </div>
-                <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
-              </a>
-              <a href="/courses" className="list-group-item list-group-item-action flex-column align-items-start">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">Coding Interview Readiness</h5>
-                </div>
-                <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
-              </a>
-              <a href="/events" className="list-group-item list-group-item-action flex-column align-items-start active">
-                <div className="d-flex w-100 justify-content-between">
-                  <h5 className="mb-1">CS-Related Event Tracking</h5>
-                </div>
-                <p className="mb-1">Always be in the know to further your career goals.</p>
-              </a>
-            </div>
+          <div>
+            {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
+            <ImageGallery items={images} />
           </div>
           <div style={{ marginTop: "55px", marginBottom: "55px", marginLeft: "9vw" }}>
             <a href="/signin"><button type="button" className="btn btn-warning" style={{ paddingLeft: "40px", paddingRight: "40px", fontSize: "20px" }}>Sign In</button></a>
