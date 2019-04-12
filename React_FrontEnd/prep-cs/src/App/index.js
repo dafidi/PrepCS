@@ -51,9 +51,30 @@ class HomePage extends React.Component {
 class HomeBodyBase extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data: this.props }
+    //this.state = { data: this.props }
     this.state = { width: '1920' };
+    this.state = { height: '1080' };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+
+    this.state = {
+      autoPlay: true,
+      showIndex: false,
+      showBullets: true,
+      infinite: true,
+      showThumbnails: false,
+      showFullscreenButton: false,
+      showGalleryFullscreenButton: true,
+      showPlayButton: true,
+      showGalleryPlayButton: true,
+      showNav: true,
+      isRTL: false,
+      slideDuration: 450,
+      slideInterval: 2000,
+      slideOnThumbnailOver: false,
+      thumbnailPosition: 'bottom',
+      showVideo: {},
+    };
+
   }
 
   componentDidMount() {
@@ -81,8 +102,8 @@ class HomeBodyBase extends React.Component {
 
     const images = [
       {
-        original: require('../resources/images/1.png'),
-        thumbnail: require('../resources/images/1.png')
+        original: require('../resources/images/1.jpg'),
+        thumbnail: require('../resources/images/1.jpg')
       },
       {
         original: require('../resources/images/2.jpg'),
@@ -95,16 +116,24 @@ class HomeBodyBase extends React.Component {
       {
         original: require('../resources/images/4.jpg'),
         thumbnail: require('../resources/images/4.jpg')
+      },
+      {
+        original: require('../resources/images/5.jpg'),
+        thumbnail: require('../resources/images/5.jpg')
       }
     ]
 
     var Is_Mobile_View = this.state.width < 700;
-    if (Is_Mobile_View === true) {
+
+    var Page_Height = this.state.height - 95;
+    Page_Height = "" + Page_Height + "px";
+
+    if (Is_Mobile_View == true) {
       return (
         <div className="homeBody" style={{height: "100vh", width: "100vw"}}>
-          <div>
+          <div style={{margin: "0px auto"}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
-            <ImageGallery items={images} />
+            <ImageGallery items={images} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
           </div>
           {!this.props.authUser &&
             <div style={{ margin: "50px auto", textAlign: "center" }} >
@@ -116,16 +145,17 @@ class HomeBodyBase extends React.Component {
     }
     else {
       return (
-        <div className="homeBody" style={{height: "100vh", width: "100vw"}}>
-          <div>
+        /* NEED TO SOMEHOW CHANGE IMAGE STYLING IN THE GALLERY_ IMPORTANT */
+        <div className="homeBody" style={{height: Page_Height}}>
+          <div style={{margin: "0px 95px", height: Page_Height}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
-            <ImageGallery items={images} />
+            <ImageGallery items={images} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
           </div>
-          {!this.props.authUser &&
+          {/*!this.props.authUser &&
             <div style={{ margin: "50px auto", textAlign: "center" }} >
               <button type="button" onClick={this.goToSignInPage} className="btn btn-warning" style={{ paddingLeft: "30px", paddingRight: "30px" }}>Sign In</button>
               <button type="button" onClick={this.goToSignUpPage} className="btn btn-warning" style={{ marginLeft: "60px", paddingLeft: "30px", paddingRight: "30px" }}>Sign Up</button>
-            </div>}
+          </div>*/}
         </div>
       );
     }
