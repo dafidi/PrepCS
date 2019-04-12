@@ -7,21 +7,10 @@ import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { ProblemListCard } from './problem-list-card';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableFooter from '@material-ui/core/TableFooter';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 
 import Collapsible from 'react-collapsible';
-
-import green_check from '../resources/images/white-check-icon-on-green.png';
 
 class ProblemsComponentBase extends React.Component {
   constructor(props) {

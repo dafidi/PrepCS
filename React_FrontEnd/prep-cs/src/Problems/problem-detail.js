@@ -16,7 +16,7 @@ class ProblemDetailBase extends React.Component {
 			problemId: null,
 			problemName: null,
 			problemSummary: null,
-			code: null,
+			code: "",
 			codeSubmissionEndpoint:
 				"https://9ypm29b2j3.execute-api.us-east-1.amazonaws.com/prod/submit-code",
 			defaultOutputText: "Your code's output.",
@@ -213,9 +213,8 @@ class ProblemDetailBase extends React.Component {
 								theme="solarized_dark"
 								height="100%"
 								width="100%"
-								height="600px"
 								onChange={this.onTextEditorChange}
-								value={this.state.problemStarterCode}
+								value={this.state.code}
 								name="ide-container"
 								editorProps={{ $blockScrolling: true }}
 							/>

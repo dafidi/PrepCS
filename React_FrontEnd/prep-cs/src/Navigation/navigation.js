@@ -29,7 +29,6 @@ class Navigation extends React.Component {
   }
 
   render() {
-    var Is_Mid_Desktop = this.state.width < 1100;
     var Is_Mobile_View = this.state.width < 700;
     if (Is_Mobile_View === true) {
       return (
