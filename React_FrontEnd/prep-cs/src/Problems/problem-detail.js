@@ -66,6 +66,7 @@ class ProblemDetailBase extends React.Component {
 	 * TODO (awogbemila): Develop custom Result object in place of JSON.
 	 */
 	evaluateSubmission = (resultJson) => {
+		this.recordLastProblemAttempted(this.state.problemId);
 		if (resultJson["error-status"]) {
 			// Nothing to do here really except alert the user that there is an error
 			// in their code.
@@ -127,87 +128,115 @@ class ProblemDetailBase extends React.Component {
 	}
 
 	componentDidMount = () => {
-		const { problem_id } = this.props.match.params;
+		this.props.firebase.auth.onAuthStateChanged((user) => {
+			if (user) {
+				const { problem_id } = this.props.match.params;
 
-		this.recordLastProblemOpened(problem_id);
-		// Fetch problem information from firebase database.
-		this.props.firebase.fs_problems().doc(problem_id).get()
-			.then((doc) => {
-				const docData = doc.data();
+				// Fetch problem information from firebase database.
+				this.props.firebase.fs_problems().doc(problem_id).get()
+					.then((doc) => {
+						const docData = doc.data();
 
-				this.setState({
-					problemName: docData.shortName,
-					problemSummary: docData.summary,
-					problemId: problem_id,
-					problemTestFilepath: docData.testFilePath,
-					problemStarterCodeFilepath: docData.starterCodeFilePath
-				});
+						this.setState({
+							problemName: docData.shortName,
+							problemSummary: docData.summary,
+							problemId: problem_id,
+							problemTestFilepath: docData.testFilePath,
+							problemStarterCodeFilepath: docData.starterCodeFilePath,
+							userId: this.props.firebase.getUid()
+						});
 
-				// Fetch test file.
-				let testFileData = null;
-				this.props.firebase.storage_file(this.state.problemTestFilepath)
-					.getDownloadURL()
-					.then((resourceUrl) => {
-						let xhr = new XMLHttpRequest();
-						xhr.responseType = 'blob';
-						xhr.onload = (event) => {
-							let blob = xhr.response;
-							let reader = new FileReader();
+						this.recordLastProblemOpened(problem_id);
 
-							reader.onload = () => {
-								testFileData = reader.result;
-								this.setState({
-									problemTestFile: testFileData
-								});
-							}
-
-							reader.readAsText(blob);
-						}
-						xhr.open('GET', resourceUrl);
-						xhr.send();
+						this.getStarterCode();
+						this.getTestFile();
 					})
 					.catch();
+			} else {
 
-				// Fetch starter code file.
-				let problemStarterCode = null;
-				this.props.firebase.storage_file(this.state.problemStarterCodeFilepath)
-					.getDownloadURL()
-					.then((resourceUrl) => {
-						let xhr = new XMLHttpRequest();
-						xhr.responseType = 'blob';
-						xhr.onload = (event) => {
-							let blob = xhr.response;
-							let reader = new FileReader();
+			}
+		});
+	}
 
-							reader.onload = () => {
-								problemStarterCode = reader.result;
-								this.setState({
-									problemStarterCode: problemStarterCode,
-									code: problemStarterCode
-								});
-							}
+	recordLastProblemOpened = (problemId) => {
+		if (problemId && this.state.userId) {
+			this.props.firebase.fs_user(this.state.userId)
+				.update({ last_problem_opened: problemId })
+				.then(() => {
+					// Nothing to do really.
+				})
+				.catch((error) => { console.warn(error) });
+		} else {
+			// Noting to do really.
+		}
+	}
 
-							reader.readAsText(blob);
-						}
-						xhr.open('GET', resourceUrl);
-						xhr.send();
-					})
-					.catch();
+	recordLastProblemAttempted = (problemId) => {
+		if (problemId && this.state.userId) {
+			this.props.firebase.fs_user(this.state.userId)
+				.update({ last_problem_attempted: problemId })
+				.then(() => {
+					console.log("last problem attempted recorded.");
+					// Nothing to do really.
+				})
+				.catch((error) => { console.warn(error) });
+		} else {
+			console.log("last problem attempted not recorded.");
+			// Noting to do really.
+		}
+	}
+
+	getTestFile = () => {
+		// Fetch test file.
+		let testFileData = null;
+		this.props.firebase.storage_file(this.state.problemTestFilepath)
+			.getDownloadURL()
+			.then((resourceUrl) => {
+				let xhr = new XMLHttpRequest();
+				xhr.responseType = 'blob';
+				xhr.onload = (event) => {
+					let blob = xhr.response;
+					let reader = new FileReader();
+
+					reader.onload = () => {
+						testFileData = reader.result;
+						this.setState({
+							problemTestFile: testFileData
+						});
+					}
+					reader.readAsText(blob);
+				}
+				xhr.open('GET', resourceUrl);
+				xhr.send();
 			})
 			.catch();
 	}
 
-	recordLastProblemOpened = (problemId) => {
-		if (problemId) {
-			this.props.firebase.fs_user(this.state.userId)
-			.set({last_problem_opened: problemId })
-			.then(() => {
-				console.log("last problem opened recorded successfully.");
-			})
-			.catch((error) => { console.warn(error) });
-		} else {
+	getStarterCode = () => {
+		// Fetch starter code file.
+		let problemStarterCode = null;
+		this.props.firebase.storage_file(this.state.problemStarterCodeFilepath)
+			.getDownloadURL()
+			.then((resourceUrl) => {
+				let xhr = new XMLHttpRequest();
+				xhr.responseType = 'blob';
+				xhr.onload = (event) => {
+					let blob = xhr.response;
+					let reader = new FileReader();
 
-		}
+					reader.onload = () => {
+						problemStarterCode = reader.result;
+						this.setState({
+							problemStarterCode: problemStarterCode,
+							code: problemStarterCode
+						});
+					}
+					reader.readAsText(blob);
+				}
+				xhr.open('GET', resourceUrl);
+				xhr.send();
+			})
+			.catch();
 	}
 
 	render() {
@@ -222,7 +251,7 @@ class ProblemDetailBase extends React.Component {
 								ref={this.infoBoxRef}
 								text={this.state.defaultOutputText} />
 						</span>
-						<div className="ide-container">
+						<div className="ide-container" style={{height: "50vh"}}>
 							<AceEditor
 								mode="python"
 								theme="solarized_dark"
