@@ -19,12 +19,38 @@ const INITIAL_STATE = {
 /* Shrink Width for Mobile */
 class SignUpPageBase extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { data: this.props }
+    this.state = { width: '1920' };
+    this.state = { width: '1080' };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
   render() {
+
+    var Is_Mid_Desktop = this.state.width < 1300;
+    var Is_Mobile_View = this.state.width < 700;
+    var Page_Width = "" + this.state.width + "px"
+
     return (
       <div style={{ backgroundColor: "#002a42" }}>
         <br></br><br></br>
-        <div className="jumbotron" style={{ width: "530px", margin: "0px auto", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-          <h3 className="display-3">Welcome to PrepCS!</h3>
+        <div className="jumbotron" style={ Is_Mobile_View ? { width: Page_Width, margin: "0px auto", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { width: "800px", margin: "0px auto", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+          <h3 className="display-3" style={{fontSize: "2rem", color: "#003a63"}}>Welcome to PrepCS!</h3>
           <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
           <hr className="my-4"></hr>
           <div className="list-group">
@@ -49,7 +75,7 @@ class SignUpPageBase extends React.Component {
           </div>
         </div>
         <br></br><br></br>
-        <div className="auth-box" style={{ margin: "0px auto" }}>
+        <div className="auth-box" style={Is_Mobile_View ? { margin: "0px auto", width: Page_Width } : { margin: "0px auto", width: "800px" }}>
           <SignUpForm />
         </div>
         <br></br><br></br>
@@ -67,6 +93,10 @@ const SignUpLink = () => (
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
+    this.state = { data: this.props }
+    this.state = { width: '1920' };
+    this.state = { width: '1080' };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
     // this.state = { ...INITIAL_STATE };
     this.state = {
@@ -79,6 +109,19 @@ class SignUpForm extends Component {
       passwordTwo: '',
       error: null,
     };
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   onSubmit = event => {
@@ -130,109 +173,202 @@ class SignUpForm extends Component {
       passwordOne === '' ||
       email === '' ||
       username === '';
-
-    return (
-      <div>
-        <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-          <div className="card-header">
-            <h3 style={{ textAlign: 'center' }}>Sign Up<small className="text-muted"> to PrepCS</small></h3>
-          </div>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    
+      var Is_Mid_Desktop = this.state.width < 1300;
+      var Is_Mobile_View = this.state.width < 700;
+    
+    if (Is_Mobile_View == true){
+      return (
+        <div>
+          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+            <div className="card-header">
+              <h3 style={{ textAlign: 'center' }}>Sign Up<small className="text-muted"> to PrepCS</small></h3>
+            </div>
+            <div className="card-body">
+              <form onSubmit={this.onSubmit}>
+  
+                <div className="input-group mb-3">
+                  <input className="form-control"
+                    name="firstName"
+                    value={firstName}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter First Name Here"
+                  /><br></br>
                 </div>
-                <input className="form-control"
-                  name="firstName"
-                  value={firstName}
-                  onChange={this.onChange}
-                  type="text"
-                  placeholder="Enter First Name Here"
-                /><br></br>
-              </div>
+  
+                <div className="input-group mb-3">
 
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <input className="form-control"
+                    name="lastName"
+                    value={lastName}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter Last Name Here"
+                  /><br></br>
                 </div>
-                <input className="form-control"
-                  name="lastName"
-                  value={lastName}
-                  onChange={this.onChange}
-                  type="text"
-                  placeholder="Enter Last Name Here"
-                /><br></br>
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  
+                <div className="input-group mb-3">
+                  <input className="form-control"
+                    name="userName"
+                    value={username}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter Username Here"
+                  /><br></br>
                 </div>
-                <input className="form-control"
-                  name="userName"
-                  value={username}
-                  onChange={this.onChange}
-                  type="text"
-                  placeholder="Enter Username Here"
-                /><br></br>
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  
+                <div className="input-group mb-3">
+                  <input className="form-control"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter Email Address Here"
+                  /><br></br>
                 </div>
-                <input className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={this.onChange}
-                  type="text"
-                  placeholder="Enter Email Address Here"
-                /><br></br>
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  
+                <div className="input-group mb-3">
+                  <input className="form-control"
+                    name="passwordOne"
+                    value={passwordOne}
+                    onChange={this.onChange}
+                    type="password"
+                    placeholder="Enter Password Here"
+                  /><br></br>
                 </div>
-                <input className="form-control"
-                  name="passwordOne"
-                  value={passwordOne}
-                  onChange={this.onChange}
-                  type="password"
-                  placeholder="Enter Password Here"
-                /><br></br>
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">Confirm Password&nbsp;</span>
+  
+                <div className="input-group mb-3">
+                  <input className="form-control"
+                    name="passwordTwo"
+                    value={passwordTwo}
+                    onChange={this.onChange}
+                    type="password"
+                    placeholder="Retype Password Here"
+                  /><br></br>
                 </div>
-                <input className="form-control"
-                  name="passwordTwo"
-                  value={passwordTwo}
-                  onChange={this.onChange}
-                  type="password"
-                  placeholder="Retype Password Here"
-                /><br></br>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <button disabled={isInvalid} type="submit" className="btn btn-secondary">
-                  Sign Up
-          </button>
-          <br></br><br></br>
-          <p style={{ textAlign: 'center' }}>
-            Already have an account? <Link to="/signin">Sign In</Link>
-          </p>
-              </div>
-
-              {error && <p>{error.message}</p>}
-            </form>
+                <div style={{ textAlign: 'center' }}>
+                  <button disabled={isInvalid} type="submit" className="btn btn-secondary">
+                    Sign Up
+            </button>
+            <br></br><br></br>
+            <p style={{ textAlign: 'center' }}>
+              Already have an account? <Link to="/signin">Sign In</Link>
+            </p>
+                </div>
+  
+                {error && <p>{error.message}</p>}
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+
+    else {
+      return (
+        <div>
+          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+            <div className="card-header">
+              <h3 style={{ textAlign: 'center' }}>Sign Up<small className="text-muted"> to PrepCS</small></h3>
+            </div>
+            <div className="card-body">
+              <form onSubmit={this.onSubmit}>
+  
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </div>
+                  <input className="form-control"
+                    name="firstName"
+                    value={firstName}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter First Name Here"
+                  /><br></br>
+                </div>
+  
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </div>
+                  <input className="form-control"
+                    name="lastName"
+                    value={lastName}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter Last Name Here"
+                  /><br></br>
+                </div>
+  
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </div>
+                  <input className="form-control"
+                    name="userName"
+                    value={username}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter Username Here"
+                  /><br></br>
+                </div>
+  
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </div>
+                  <input className="form-control"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
+                    type="text"
+                    placeholder="Enter Email Address Here"
+                  /><br></br>
+                </div>
+  
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </div>
+                  <input className="form-control"
+                    name="passwordOne"
+                    value={passwordOne}
+                    onChange={this.onChange}
+                    type="password"
+                    placeholder="Enter Password Here"
+                  /><br></br>
+                </div>
+  
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Confirm Password&nbsp;</span>
+                  </div>
+                  <input className="form-control"
+                    name="passwordTwo"
+                    value={passwordTwo}
+                    onChange={this.onChange}
+                    type="password"
+                    placeholder="Retype Password Here"
+                  /><br></br>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <button disabled={isInvalid} type="submit" className="btn btn-secondary">
+                    Sign Up
+            </button>
+            <br></br><br></br>
+            <p style={{ textAlign: 'center' }}>
+              Already have an account? <Link to="/signin">Sign In</Link>
+            </p>
+                </div>
+  
+                {error && <p>{error.message}</p>}
+              </form>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
