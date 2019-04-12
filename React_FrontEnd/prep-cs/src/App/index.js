@@ -102,15 +102,16 @@ class HomeBodyBase extends React.Component {
     var Is_Mobile_View = this.state.width < 700;
     if (Is_Mobile_View === true) {
       return (
-        <div className="homeBody" style={{ height: "100%", width: "100%" }}>
+        <div className="homeBody" style={{height: "100vh", width: "100vw"}}>
           <div>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <ImageGallery items={images} />
           </div>
-          <div style={{ marginTop: "55px", marginBottom: "55px", marginLeft: "9vw" }}>
-            <a href="/signin"><button type="button" className="btn btn-warning" style={{ paddingLeft: "40px", paddingRight: "40px", fontSize: "20px" }}>Sign In</button></a>
-            <a href="/signup"><button type="button" className="btn btn-warning" style={{ marginLeft: "7vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px" }}>Sign Up</button></a>
-          </div>
+          {!this.props.authUser &&
+            <div style={{ margin: "50px auto", textAlign: "center" }} >
+              <button type="button" onClick={this.goToSignInPage} className="btn btn-warning" style={{ paddingLeft: "30px", paddingRight: "30px" }}>Sign In</button>
+              <button type="button" onClick={this.goToSignUpPage} className="btn btn-warning" style={{ marginLeft: "60px", paddingLeft: "30px", paddingRight: "30px" }}>Sign Up</button>
+            </div>}
         </div>
       );
     }
@@ -122,9 +123,9 @@ class HomeBodyBase extends React.Component {
             <ImageGallery items={images} />
           </div>
           {!this.props.authUser &&
-            <div style={Is_Mid_Desktop ? { marginTop: "55px", marginBottom: "55px", marginLeft: "27vw" } : { marginTop: "55px", marginBottom: "55px", marginLeft: "38vw" }} >
-              <button type="button" onClick={this.goToSignInPage} className="btn btn-warning" style={Is_Mid_Desktop ? { paddingLeft: "40px", paddingRight: "40px", fontSize: "20px" } : { paddingLeft: "40px", paddingRight: "40px", fontSize: "20px" }}>Sign In</button>
-              <button type="button" onClick={this.goToSignUpPage} className="btn btn-warning" style={Is_Mid_Desktop ? { marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px" } : { marginLeft: "15vw", paddingLeft: "40px", paddingRight: "40px", fontSize: "20px" }}>Sign Up</button>
+            <div style={{ margin: "50px auto", textAlign: "center" }} >
+              <button type="button" onClick={this.goToSignInPage} className="btn btn-warning" style={{ paddingLeft: "30px", paddingRight: "30px" }}>Sign In</button>
+              <button type="button" onClick={this.goToSignUpPage} className="btn btn-warning" style={{ marginLeft: "60px", paddingLeft: "30px", paddingRight: "30px" }}>Sign Up</button>
             </div>}
         </div>
       );
