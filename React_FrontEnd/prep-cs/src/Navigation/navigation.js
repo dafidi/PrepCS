@@ -36,7 +36,7 @@ class Navigation extends React.Component {
         <div>
           <div className="navbar_edit">
           <div className="navline"></div>
-            <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "45px" }}>
+            <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ height: "45px" }}>
               <div className="collapse navbar-collapse">
                 <NavLink to="/home" className="nav-item active">
                   <span className="navbar-brand">PrepCS</span>
@@ -46,16 +46,16 @@ class Navigation extends React.Component {
                 {this.props.userInfo && <span><span style={{ marginRight: "10px", color: "white", display: "inline-block", marginTop: "10px" }}> Hi, {this.props.userInfo.username}! </span> <SignOutButton /> </span>}
               </span>
             </div>
-            <div className="navbar navbar-expand-lg navbar-dark bg-secondary" style={{ minWidth: "350px", height: "45px" }}>
+            <div className="navbar navbar-expand-lg navbar-dark bg-secondary" style={{ height: "45px" }}>
               <div className="collapse navbar-collapse">
-                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={{ fontSize: "1.171875rem" }}>
+                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={{ position: "absolute", margin: "0px auto", left: "50%", transform: "translate(-50%)", fontSize: "1.171875rem" }}>
                   <li className="nav-item">
                     <NavLink to={ROUTES.DASHBOARD}
                       className="nav-link">
                       Dashboard
                   </NavLink>
                   </li>
-                  <li className="nav-item" style={{ marginLeft: "11vw", marginRight: "11vw" }}>
+                  <li className="nav-item" style={{ marginLeft: "30px", marginRight: "30px" }}>
                     <NavLink to={ROUTES.COURSES}
                       className="nav-link">
                       Courses
@@ -84,14 +84,14 @@ class Navigation extends React.Component {
                 <NavLink to={ROUTES.HOME} className="nav-item active">
                   <span className="navbar-brand">PrepCS</span>
                 </NavLink>
-                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={Is_Mid_Desktop ? { marginLeft: "19vw", fontSize: "1.171875rem" } : { marginLeft: "28vw", fontSize: "1.171875rem" }}>
+                <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={{ position: "absolute", margin: "0px auto", left: "50%", transform: "translate(-50%)", fontSize: "1.171875rem" }}>
                   <li className="nav-item">
                     <NavLink to={ROUTES.DASHBOARD}
                       className="nav-link">
                       Dashboard
                   </NavLink>
                   </li>
-                  <li className="nav-item" style={Is_Mid_Desktop ? { marginLeft: "3vw", marginRight: "3vw" } : { marginLeft: "5vw", marginRight: "5vw" }}>
+                  <li className="nav-item" style={{ marginLeft: "30px", marginRight: "30px" }}>
                     <NavLink to={ROUTES.COURSES}
                       className="nav-link">
                       Courses
