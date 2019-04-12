@@ -154,44 +154,84 @@ class SignInFormBase extends Component {
 
     const isInvalid = password === '' || email === '';
 
-    return (
-      <form onSubmit={this.onSubmit}>
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text">Email Address</span>
-          </div>
-          <input className="form-control"
-            name="email"
-            id="sign-in"
-            value={email}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Enter Email Address Here"
-          />
-        </div>
+    var Is_Mid_Desktop = this.state.width < 1300;
+    var Is_Mobile_View = this.state.width < 700;
 
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    if (Is_Mobile_View = true){
+      return (
+        <form onSubmit={this.onSubmit}>
+          <div className="input-group mb-3">
+            <input className="form-control"
+              name="email"
+              id="sign-in"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Enter Email Address Here"
+            />
           </div>
-          <input className="form-control"
-            name="password"
-            id="password"
-            value={password}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Enter Password Here"
-          />
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <button disabled={isInvalid} type="submit" className="btn btn-secondary">
-            Sign In
-        </button>
-        </div>
+  
+          <div className="input-group mb-3">
+            <input className="form-control"
+              name="password"
+              id="password"
+              value={password}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Enter Password Here"
+            />
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <button disabled={isInvalid} type="submit" className="btn btn-secondary">
+              Sign In
+          </button>
+          </div>
+  
+          {error && <p>{error.message}</p>}
+        </form>
+      );
+    }
 
-        {error && <p>{error.message}</p>}
-      </form>
-    );
+    else{
+      return (
+        <form onSubmit={this.onSubmit}>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Email Address</span>
+            </div>
+            <input className="form-control"
+              name="email"
+              id="sign-in"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Enter Email Address Here"
+            />
+          </div>
+  
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+            <input className="form-control"
+              name="password"
+              id="password"
+              value={password}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Enter Password Here"
+            />
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <button disabled={isInvalid} type="submit" className="btn btn-secondary">
+              Sign In
+          </button>
+          </div>
+  
+          {error && <p>{error.message}</p>}
+        </form>
+      );
+    }
   }
 }
 
