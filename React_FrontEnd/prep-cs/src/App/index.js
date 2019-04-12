@@ -22,8 +22,6 @@ import 'brace/mode/python';
 import 'brace/theme/solarized_dark';
 
 import ImageGallery from 'react-image-gallery';
-import image1 from '../resources/images/1.jpg';
-import image2 from '../resources/images/2.jpg';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 class HomePage extends React.Component {
@@ -82,12 +80,20 @@ class HomeBodyBase extends React.Component {
 
     const images = [
       {
-        original: require('../resources/images/1.jpg'),
-        thumbnail: require('../resources/images/1.jpg')
+        original: require('../resources/images/1.png'),
+        thumbnail: require('../resources/images/1.png')
       },
       {
-        original: require('../resources/images/1.jpg'),
-        thumbnail: require('../resources/images/1.jpg')
+        original: require('../resources/images/2.jpg'),
+        thumbnail: require('../resources/images/2.jpg')
+      },
+      {
+        original: require('../resources/images/3.jpg'),
+        thumbnail: require('../resources/images/3.jpg')
+      },
+      {
+        original: require('../resources/images/4.jpg'),
+        thumbnail: require('../resources/images/4.jpg')
       }
     ]
 
