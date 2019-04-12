@@ -8,23 +8,89 @@ import { SignUpLink } from '../SignUp';
 import { withFirebase } from '../Firebase';
 
 class SignInPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: this.props }
+    this.state = { width: '1920' };
+    this.state = { width: '1080' };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+  goToSignInPage = () => {
+    this.props.history.push('/signin');
+  }
+
+  goToSignUpPage = () => {
+    this.props.history.push('/signup');
+  }
 
   render() {
-    return (
-      /* Change minHeight later. Remove width styling for Mobile.*/
-      <div style={{ minHeight: "900px", backgroundColor: "#002a42" }}>
-        <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 50%)", width: "50%" }}>
-          <div className="card-header">
-            <h3 style={{ textAlign: 'center' }}>Sign In<small className="text-muted"> to PrepCS</small></h3>
-          </div>
-          <div className="card-body">
-            <SignInForm />
-            <br></br>
-            <SignUpLink />
+    var Is_Mid_Desktop = this.state.width < 1300;
+    var Is_Mobile_View = this.state.width < 700;
+    var Page_Height = this.state.height - 95;
+    Page_Height = "" + Page_Height + "px";
+
+    if (Is_Mobile_View == true){
+      return (
+        <div style={{ minHeight: Page_Height, backgroundColor: "#002a42", overflow: "hidden"}}>
+          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 30%)"}}>
+            <div className="card-header">
+              <h3 style={{ textAlign: 'center' }}>Sign In<small className="text-muted"> to PrepCS</small></h3>
+            </div>
+            <div className="card-body">
+              <SignInForm />
+              <br></br>
+              <SignUpLink />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+    else if (Is_Mid_Desktop == true){
+      return (
+        <div style={{ minHeight: Page_Height, backgroundColor: "#002a42", overflow: "hidden"}}>
+          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 80%)", width: "50%" }}>
+            <div className="card-header">
+              <h3 style={{ textAlign: 'center' }}>Sign In<small className="text-muted"> to PrepCS</small></h3>
+            </div>
+            <div className="card-body">
+              <SignInForm />
+              <br></br>
+              <SignUpLink />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div style={{ minHeight: Page_Height, backgroundColor: "#002a42", overflow: "hidden"}}>
+          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 80%)", width: "30%" }}>
+            <div className="card-header">
+              <h3 style={{ textAlign: 'center' }}>Sign In<small className="text-muted"> to PrepCS</small></h3>
+            </div>
+            <div className="card-body">
+              <SignInForm />
+              <br></br>
+              <SignUpLink />
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

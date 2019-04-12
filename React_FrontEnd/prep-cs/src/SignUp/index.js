@@ -221,6 +221,10 @@ class SignUpForm extends Component {
                 <button disabled={isInvalid} type="submit" className="btn btn-secondary">
                   Sign Up
           </button>
+          <br></br><br></br>
+          <p style={{ textAlign: 'center' }}>
+            Already have an account? <Link to="/signin">Sign In</Link>
+          </p>
               </div>
 
               {error && <p>{error.message}</p>}
