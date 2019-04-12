@@ -30,12 +30,12 @@
 }
 
 #sign-in {
-  margin: 0px auto 5px;
+  margin: 0px auto;
   width: 65%;
 }
 
 #password {
-  margin: 0px auto 5px;
+  margin: 0px auto;
   width: 65%;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .homeBody{
-  background-color: #002f43;
+  background-color:#002a42;
   display: inline-block;
 }
 
