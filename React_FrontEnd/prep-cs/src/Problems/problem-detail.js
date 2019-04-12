@@ -23,7 +23,8 @@ class ProblemDetailBase extends React.Component {
 			problemTestFilepath: null,
 			problemTestFile: null,
 			problemStarterCodeFilepath: null,
-			problemStarterCode: ''
+			problemStarterCode: '',
+			userId: null
 		};
 
 		this.infoBoxRef = React.createRef();
@@ -127,6 +128,8 @@ class ProblemDetailBase extends React.Component {
 
 	componentDidMount = () => {
 		const { problem_id } = this.props.match.params;
+
+		this.recordLastProblemOpened(problem_id);
 		// Fetch problem information from firebase database.
 		this.props.firebase.fs_problems().doc(problem_id).get()
 			.then((doc) => {
@@ -138,7 +141,6 @@ class ProblemDetailBase extends React.Component {
 					problemId: problem_id,
 					problemTestFilepath: docData.testFilePath,
 					problemStarterCodeFilepath: docData.starterCodeFilePath
-
 				});
 
 				// Fetch test file.
@@ -193,6 +195,19 @@ class ProblemDetailBase extends React.Component {
 					.catch();
 			})
 			.catch();
+	}
+
+	recordLastProblemOpened = (problemId) => {
+		if (problemId) {
+			this.props.firebase.fs_user(this.state.userId)
+			.set({last_problem_opened: problemId })
+			.then(() => {
+				console.log("last problem opened recorded successfully.");
+			})
+			.catch((error) => { console.warn(error) });
+		} else {
+
+		}
 	}
 
 	render() {
@@ -271,7 +286,6 @@ class InfoBox extends React.Component {
 				text: scoreMessage
 			});
 		}
-
 	}
 
 	render() {

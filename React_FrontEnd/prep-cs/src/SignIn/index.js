@@ -7,21 +7,26 @@ import * as ROUTES from '../constants/routes';
 import { SignUpLink } from '../SignUp';
 import { withFirebase } from '../Firebase';
 
-const SignInPage = () => (
-  /* Change minHeight later. Remove width styling for Mobile.*/
-  <div style={{minHeight: "900px", backgroundColor: "#002a42"}}>
-  <div className="card text-white bg-primary mb-3" style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 50%)", width: "50%"}}>
-  <div className="card-header">
-    <h3 style={{textAlign: 'center'}}>Sign In<small className="text-muted"> to PrepCS</small></h3>
-    </div>
-    <div className="card-body">
-    <SignInForm />
-    <br></br>
-    <SignUpLink />
-    </div>
-  </div>
-  </div>
-);
+class SignInPage extends React.Component {
+
+  render() {
+    return (
+      /* Change minHeight later. Remove width styling for Mobile.*/
+      <div style={{ minHeight: "900px", backgroundColor: "#002a42" }}>
+        <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 50%)", width: "50%" }}>
+          <div className="card-header">
+            <h3 style={{ textAlign: 'center' }}>Sign In<small className="text-muted"> to PrepCS</small></h3>
+          </div>
+          <div className="card-body">
+            <SignInForm />
+            <br></br>
+            <SignUpLink />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 const INITIAL_STATE = {
   email: '',
@@ -86,35 +91,35 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text">Email Address</span>
-            </div>
-        <input className="form-control"
-          name="email"
-          id="sign-in"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Enter Email Address Here"
-        />
+          <div className="input-group-prepend">
+            <span className="input-group-text">Email Address</span>
+          </div>
+          <input className="form-control"
+            name="email"
+            id="sign-in"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Enter Email Address Here"
+          />
         </div>
-        
+
         <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            </div>
-        <input className="form-control"
-          name="password"
-          id="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Enter Password Here"
-        />
+          <div className="input-group-prepend">
+            <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </div>
+          <input className="form-control"
+            name="password"
+            id="password"
+            value={password}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Enter Password Here"
+          />
         </div>
-        <div style={{textAlign: 'center'}}>
-        <button disabled={isInvalid} type="submit" className="btn btn-secondary">
-          Sign In
+        <div style={{ textAlign: 'center' }}>
+          <button disabled={isInvalid} type="submit" className="btn btn-secondary">
+            Sign In
         </button>
         </div>
 
