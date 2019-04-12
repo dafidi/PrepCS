@@ -16,6 +16,7 @@ const SignInPage = () => (
     </div>
     <div className="card-body">
     <SignInForm />
+    <br></br>
     <SignUpLink />
     </div>
   </div>
