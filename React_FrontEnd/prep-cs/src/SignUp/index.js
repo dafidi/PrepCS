@@ -16,10 +16,12 @@ const INITIAL_STATE = {
   error: null,
 };
 
+/* Shrink Width for Mobile */
 const SignUpPageBase = () => (
-  <div style={{ width: "100%", overflow: "hidden" }}>
-    <div className="jumbotron" style={{ width: "50vw", float: "left" }} >
-      <h1 className="display-3">Welcome to PrepCS!</h1>
+  <div style={{backgroundColor: "#002a42"}}>
+    <br></br><br></br>
+    <div className="jumbotron" style={{width: "530px", margin: "0px auto", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+      <h3 className="display-3">Welcome to PrepCS!</h3>
       <p className="lead">PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform on 3 major fronts:</p>
       <hr className="my-4"></hr>
       <div className="list-group">
@@ -43,9 +45,11 @@ const SignUpPageBase = () => (
         </a>
       </div>
     </div>
-    <div className="auth-box" style={{ float: "right", marginRight: "10vw" }}>
+    <br></br><br></br>
+    <div className="auth-box" style={{margin: "0px auto"}}>
       <SignUpForm />
     </div>
+    <br></br><br></br>
   </div>
 );
 
@@ -125,12 +129,16 @@ class SignUpForm extends Component {
 
     return (
       <div>
-        <h1>SignUp</h1>
+        <div className="card text-white bg-primary mb-3" style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+        <div className="card-header">
+        <h3 style={{textAlign: 'center'}}>Sign Up<small className="text-muted"> to PrepCS</small></h3>
+        </div>
+        <div className="card-body">
         <form onSubmit={this.onSubmit}>
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text">First Name</span>
+              <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </div>
             <input className="form-control"
               name="firstName"
@@ -143,7 +151,7 @@ class SignUpForm extends Component {
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text">Last Name</span>
+              <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </div>
             <input className="form-control"
               name="lastName"
@@ -156,7 +164,7 @@ class SignUpForm extends Component {
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text">User Name</span>
+              <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </div>
             <input className="form-control"
               name="userName"
@@ -169,7 +177,7 @@ class SignUpForm extends Component {
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text">Email</span>
+              <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </div>
             <input className="form-control"
               name="email"
@@ -180,33 +188,41 @@ class SignUpForm extends Component {
             /><br></br>
           </div>
 
-          <div className="auth-box-input">
-            Password<br></br>
-            <input
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+            <input className="form-control"
               name="passwordOne"
               value={passwordOne}
               onChange={this.onChange}
               type="password"
-              placeholder="Password"
+              placeholder="Enter Password Here"
             /><br></br>
           </div>
-          <div className="auth-box-input">
-            <input
+
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Confirm Password&nbsp;</span>
+            </div>
+            <input className="form-control"
               name="passwordTwo"
               value={passwordTwo}
               onChange={this.onChange}
               type="password"
-              placeholder="Confirm Password"
+              placeholder="Retype Password Here"
             /><br></br>
           </div>
-          <div className="auth-box-input">
-            <button disabled={isInvalid} type="submit">
+          <div style={{textAlign: 'center'}}>
+            <button disabled={isInvalid} type="submit" className="btn btn-secondary">
               Sign Up
           </button>
           </div>
 
           {error && <p>{error.message}</p>}
         </form>
+        </div>
+        </div>
       </div>
     );
   }
