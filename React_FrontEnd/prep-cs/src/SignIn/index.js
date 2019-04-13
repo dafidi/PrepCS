@@ -62,7 +62,7 @@ class SignInPage extends React.Component {
     else if (Is_Mid_Desktop == true){
       return (
         <div style={{ minHeight: Page_Height, backgroundColor: "#002a42", overflow: "hidden"}}>
-          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 80%)", width: "50%" }}>
+          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 70%)", width: "50%" }}>
             <div className="card-header">
               <h3 style={{ textAlign: 'center' }}>Sign In<small className="text-muted"> to PrepCS</small></h3>
             </div>
@@ -78,7 +78,7 @@ class SignInPage extends React.Component {
     else {
       return (
         <div style={{ minHeight: Page_Height, backgroundColor: "#002a42", overflow: "hidden"}}>
-          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 80%)", width: "30%" }}>
+          <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 70%)", width: "30%" }}>
             <div className="card-header">
               <h3 style={{ textAlign: 'center' }}>Sign In<small className="text-muted"> to PrepCS</small></h3>
             </div>
@@ -157,7 +157,7 @@ class SignInFormBase extends Component {
     var Is_Mid_Desktop = this.state.width < 1300;
     var Is_Mobile_View = this.state.width < 700;
 
-    if (Is_Mobile_View = true){
+    if (Is_Mobile_View == true){
       return (
         <form onSubmit={this.onSubmit}>
           <div className="input-group mb-3">
@@ -186,8 +186,10 @@ class SignInFormBase extends Component {
               Sign In
           </button>
           </div>
-  
-          {error && <p>{error.message}</p>}
+          <div style={{margin: "0px auto", textAlign: "center"}}>
+          <br></br>
+          {error && <p className="text-danger">{error.message}</p>}
+          </div>
         </form>
       );
     }
@@ -227,8 +229,10 @@ class SignInFormBase extends Component {
               Sign In
           </button>
           </div>
-  
-          {error && <p>{error.message}</p>}
+          <div style={{margin: "0px auto", textAlign: "center"}}>
+          <br></br>
+          {error && <p className="text-danger">{error.message}</p>}
+          </div>
         </form>
       );
     }

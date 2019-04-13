@@ -255,9 +255,11 @@ class SignUpForm extends Component {
             <p style={{ textAlign: 'center' }}>
               Already have an account? <Link to="/signin">Sign In</Link>
             </p>
+                </div>  
+                <div style={{margin: "0px auto", textAlign: "center"}}>
+                <br></br>
+                {error && <p className="text-danger">{error.message}</p>}
                 </div>
-  
-                {error && <p>{error.message}</p>}
               </form>
             </div>
           </div>
@@ -362,7 +364,10 @@ class SignUpForm extends Component {
             </p>
                 </div>
   
-                {error && <p>{error.message}</p>}
+                <div style={{margin: "0px auto", textAlign: "center"}}>
+                <br></br>
+                {error && <p className="text-danger">{error.message}</p>}
+                </div>
               </form>
             </div>
           </div>
