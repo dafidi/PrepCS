@@ -36,7 +36,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "react-tabs": "^3.0.0",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "victory": "^32.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

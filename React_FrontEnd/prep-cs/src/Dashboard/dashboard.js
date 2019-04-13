@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import { withAuthorization } from '../Session';
 
+import {VictoryBar, VictoryChart, VictoryLine, VictoryPie} from "victory";
+
 class DashboardComponentBase extends React.Component {
   constructor(props) {
     super(props);
@@ -59,6 +61,40 @@ class DashboardComponentBase extends React.Component {
           ? <h2>You've completed all {this.state.numberOfProblemsUserHasAttempted} problems</h2>
           : <h2>You've completed {this.state.numberOfProblemsUserHasAttemptedSuccessfully} of them</h2>
         }
+
+        <VictoryChart domainPadding={40}>
+        <VictoryBar
+          style={{ data: { fill: "#003a63" } }}
+          data={[
+            { x: "A", y: 1234 },
+            { x: "B", y: 2048 },
+            { x: "C", y: 2600 },
+            { x: "D", y: 9000 }
+          ]}
+        />
+      </VictoryChart>
+      <VictoryPie
+        colorScale={["#003a63", "#e51937", "#18BC9C", "#F39C12"]}
+        data={[
+          { x: "A", y: 4000 },
+          { x: "B", y: 2048 },
+          { x: "C", y: 2600 },
+          { x: "D", y: 1800 }
+        ]}
+      />
+
+      <VictoryChart>
+        <VictoryLine
+        style ={{data: {fill: "#e51937"}}}
+          data={[
+            { x: "A", y: 1234 },
+            { x: "B", y: 2048 },
+            { x: "C", y: 2600 },
+            { x: "D", y: 9000 }
+          ]}
+        />
+      </VictoryChart>
+
       </div>
     )
   }
