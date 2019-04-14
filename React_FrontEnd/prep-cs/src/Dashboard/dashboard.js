@@ -72,8 +72,10 @@ class DashboardComponentBase extends React.Component {
     Page_Height = "" + Page_Height + "px";
     var Page_Width = this.state.width - 190;
     var Card_Width = Page_Width - 47.5 - (Page_Width/2)
+    var Triple_Section_Width = (Page_Width - 405)/3;
     Page_Width = "" + Page_Width + "px";
     Card_Width = "" + Card_Width + "px";
+    Triple_Section_Width = "" + Triple_Section_Width + "px";
 
     if (Is_Mobile_View == true || Is_Mid_Desktop == true){
       return (
@@ -125,12 +127,13 @@ class DashboardComponentBase extends React.Component {
             </div>
             <div className="card-body">
             <p style={{margin: "0px 90px"}}>
-            <h5 className="text-primary"><strong>Problems Solved:</strong></h5>
+            <h5 className="text-primary"><strong>Total Problems Solved:</strong></h5>
             <div className="progress">
               <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: "10%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <br></br>
 
+            <div style={{float: "left", width: Triple_Section_Width, marginRight: "90px"}}>
             <h5 className="text-success"><strong>Arrays & Strings:</strong></h5>
             <div className="progress">
               <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -148,7 +151,9 @@ class DashboardComponentBase extends React.Component {
               <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <br></br>
+            </div>
 
+            <div style={{float: "left", width: Triple_Section_Width, marginRight: "90px"}}> 
             <h5 className="text-danger"><strong>Linked Lists:</strong></h5>
             <div className="progress">
               <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{width: "100%"}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
@@ -166,7 +171,9 @@ class DashboardComponentBase extends React.Component {
               <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{width: "50%"}} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <br></br>
+            </div>
 
+            <div style={{float: "left", width: Triple_Section_Width}}>
             <h5 className="text-warning"><strong>Mathematics & Probability:</strong></h5>
             <div className="progress">
               <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -184,6 +191,10 @@ class DashboardComponentBase extends React.Component {
               <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <br></br>
+            </div>
+
+            <div style={{clear: "both"}}>
+            </div>
 
               </p>
             </div>
