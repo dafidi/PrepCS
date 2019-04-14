@@ -141,9 +141,7 @@ class HomeBodyBase extends React.Component {
           <div style={{margin: "0px auto", height: Page_Height, position: "relative"}}>
           <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width_mobile, height: testing_height_mobile, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
           <p>
-            <br></br><br></br><br></br><br></br><br></br><br></br>
             <h3 style={{ color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS</h3>
-            <br></br><br></br><br></br>
             <h5 style={{ margin: "0px 45px", color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform.</h5>
           </p>
           {!this.props.authUser &&
@@ -165,9 +163,7 @@ class HomeBodyBase extends React.Component {
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width, height: testing_height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
             <p>
-            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
             <h1 style={{ color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS</h1>
-            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
             <h4 style={{ margin: "0px 90px", color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform.</h4>
             </p>
             {!this.props.authUser &&
