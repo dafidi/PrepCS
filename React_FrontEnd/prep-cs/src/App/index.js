@@ -151,11 +151,11 @@ class HomeBodyBase extends React.Component {
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <ImageGallery items={images} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
           </div>
-          {/*!this.props.authUser &&
+          {!this.props.authUser &&
             <div style={{ margin: "50px auto", textAlign: "center" }} >
               <button type="button" onClick={this.goToSignInPage} className="btn btn-warning" style={{ paddingLeft: "30px", paddingRight: "30px" }}>Sign In</button>
               <button type="button" onClick={this.goToSignUpPage} className="btn btn-warning" style={{ marginLeft: "60px", paddingLeft: "30px", paddingRight: "30px" }}>Sign Up</button>
-          </div>*/}
+          </div>}
         </div>
       );
     }

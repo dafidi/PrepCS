@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import { withAuthorization } from '../Session';
 
-import {VictoryBar, VictoryChart, VictoryLine, VictoryPie} from "victory";
+import {VictoryBar, VictoryChart, VictoryStack, VictoryPie} from "victory";
 
 class DashboardComponentBase extends React.Component {
   constructor(props) {
@@ -92,6 +92,12 @@ class DashboardComponentBase extends React.Component {
 
     return (
       <div>
+        
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+
         <div className="last_problem_opened" style={{margin: "90px auto", width: Page_Width}}>
         <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
             <div className="card-header">
@@ -106,6 +112,11 @@ class DashboardComponentBase extends React.Component {
             </div>
           </div>
         </div>
+
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
 
         <div className="progress_bars" style={{margin: "90px auto", width: Page_Width}}>
         <div className="card border-secondary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
@@ -178,6 +189,11 @@ class DashboardComponentBase extends React.Component {
             </div>
           </div>
         </div>
+
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
         
         <div className="events_and_leaderboard" style={{margin: "90px auto", width: Page_Width}}>
           <span className="events" style={{width: Card_Width, float: "left"}}>
@@ -256,26 +272,124 @@ class DashboardComponentBase extends React.Component {
           </div>
         </div>
 
-        <div className="difficulty_and_placeholder">
-          <span className="difficulty">
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
 
-          </span>
-          <span className="placeholder">
+        <div className="difficulty_and_placeholder" style={{margin: "90px auto", width: Page_Width}}>
+          <span className="difficulty" style={{width: Card_Width, float: "left"}}>
+            <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+                <div className="card-header" style={{backgroundColor: "#E74C3C"}}>
+                  <h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
+                </div>
+                <div className="card-body">
+                  <p style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-danger"><strong>Your Proficiency vs Difficulty:</strong></h5><br></br>
 
+        <VictoryStack
+        labels={["A & S", "S & S", "S & Q", "LL", "T & G", "R & DP", "M & P", "BM", "Misc"]}
+          colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
+        >
+          <VictoryBar
+            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 3}, {x: "Stacks & Queues", y: 2}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 3}, {x: "Recursion and Dynamic Programming", y: 2}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 3}, {x: "Miscellaneous", y: 2}]}
+          />
+          <VictoryBar
+            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 4}, {x: "Stacks & Queues", y: 1}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 4}, {x: "Recursion and Dynamic Programming", y: 1}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 4}, {x: "Miscellaneous", y: 1}]}
+          />
+          <VictoryBar
+            data={[{x: "Arrays & Strings", y: 6}, {x: "Search & Sort", y: 2}, {x: "Stacks & Queues", y: 3}, {x: "Linked Lists", y: 6}, {x: "Trees & Graphs", y: 2}, {x: "Recursion and Dynamic Programming", y: 3}, {x: "Mathematics & Probability", y: 6}, {x: "Bit Manipulation", y: 2}, {x: "Miscellaneous", y: 3}]}
+          />
+        </VictoryStack>
+
+                  </p>
+                </div>
+              </div>
           </span>
+          <span className="placeholder" style={{width: Card_Width, float: "right"}}>
+          <div className="card border-info mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+                <div className="card-header" style={{backgroundColor: "#3498DB"}}>
+                  <h4 style={{ color: "white", textAlign: 'center' }}>Placeholder</h4>
+                </div>
+                <div className="card-body">
+                  <p style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-info"><strong>Graph Placeholder:</strong></h5><br></br>
+                  
+        <VictoryChart domainPadding={40}>
+        <VictoryBar
+          style={{ data: { fill: (datum) => datum.fill } }}
+          data={[
+            { x: "A", y: 2000, fill: "#3498DB" },
+            { x: "B", y: 3000, fill: "#E74C3C" },
+            { x: "C", y: 2500, fill: "#18BC9C" },
+            { x: "D", y: 4000, fill: "#F39C12" }
+          ]}
+        />
+      </VictoryChart>
+
+                  </p>
+                </div>
+              </div>
+          </span>
+          <div style={{clear: "both"}}>
+          </div>
         </div>
 
-        <div className="strengths_and_weaknesses">
-        <span className="strengths">
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
 
-        </span>
-        <span className="weaknesses">
+        <div className="strengths_and_weaknesses" style={{margin: "90px auto", width: Page_Width}}>
+        <span className="strengths" style={{width: Card_Width, float: "left"}}>
+        <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+                <div className="card-header" style={{backgroundColor: "#18BC9C"}}>
+                  <h4 style={{ color: "white", textAlign: 'center' }}>Your Strengths</h4>
+                </div>
+                <div className="card-body">
+                  <p style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-success"><strong>Analyzing your Strengths:</strong></h5>
 
+      <VictoryPie
+        colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12"]}
+        data={[
+          { x: "A", y: 4000 },
+          { x: "B", y: 2048 },
+          { x: "C", y: 2600 },
+          { x: "D", y: 1800 }
+        ]}
+      />
+                  
+                  </p>
+                </div>
+              </div>
         </span>
+        <span className="weaknesses" style={{width: Card_Width, float: "right"}}>
+        <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+                <div className="card-header" style={{backgroundColor: "#F39C12"}}>
+                  <h4 style={{ color: "white", textAlign: 'center' }}>Your Weaknesses</h4>
+                </div>
+                <div className="card-body">
+                  <p style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Analyzing your Weaknesses:</strong></h5>
+                  
+      <VictoryPie
+        colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12"]}
+        padAngle={3}
+        innerRadius={100}
+        data={[
+          { x: "A", y: 4000 },
+          { x: "B", y: 2048 },
+          { x: "C", y: 2600 },
+          { x: "D", y: 1800 }
+        ]}
+      />
+                  </p>
+                </div>
+              </div>
+        </span>
+        <div style={{clear: "both"}}>
+        </div>
         </div>
         
         
-        
+        {/*
         <h2>This is your dashboard.</h2>
         <h2>You've attempted {this.state.numberOfProblemsUserHasAttempted} problem{this.state.numberOfProblemsUserHasAttempted === 1 ? "" :"s" }.</h2>
         {
@@ -284,58 +398,7 @@ class DashboardComponentBase extends React.Component {
           ? <h2>You've completed all {this.state.numberOfProblemsUserHasAttempted} problems</h2>
           : <h2>You've completed {this.state.numberOfProblemsUserHasAttemptedSuccessfully} of them</h2>
         }
-
-          <div className="card border-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 30%)"}}>
-            <div className="card-header" style={{backgroundColor: "#003a63"}}>
-              <h3 style={{ color: "white", textAlign: 'center' }}>Victory Bar</h3>
-            </div>
-            <div className="card-body" style={{backgroundColor: "#ecf0f1"}}>
-            <VictoryChart domainPadding={40}>
-        <VictoryBar
-          style={{ data: { fill: "#003a63" } }}
-          data={[
-            { x: "A", y: 1234 },
-            { x: "B", y: 2048 },
-            { x: "C", y: 2600 },
-            { x: "D", y: 9000 }
-          ]}
-        />
-      </VictoryChart>
-            </div>
-          </div>
-
-        <VictoryChart domainPadding={40}>
-        <VictoryBar
-          style={{ data: { fill: "#003a63" } }}
-          data={[
-            { x: "A", y: 1234 },
-            { x: "B", y: 2048 },
-            { x: "C", y: 2600 },
-            { x: "D", y: 9000 }
-          ]}
-        />
-      </VictoryChart>
-      <VictoryPie
-        colorScale={["#003a63", "#e51937", "#18BC9C", "#F39C12"]}
-        data={[
-          { x: "A", y: 4000 },
-          { x: "B", y: 2048 },
-          { x: "C", y: 2600 },
-          { x: "D", y: 1800 }
-        ]}
-      />
-
-      <VictoryChart>
-        <VictoryLine
-        style ={{data: {fill: "#e51937"}}}
-          data={[
-            { x: "A", y: 1234 },
-            { x: "B", y: 2048 },
-            { x: "C", y: 2600 },
-            { x: "D", y: 9000 }
-          ]}
-        />
-      </VictoryChart>
+      */}
 
       </div>
     )
