@@ -75,11 +75,13 @@ class DashboardComponentBase extends React.Component {
     var Card_Width = Page_Width - 47.5 - (Page_Width/2)
     var Triple_Section_Width = (Page_Width - 405)/3;
     var Triple_Section_Width_Mobile = (Total_Page_Width)/3 - 28;
+    var Triple_Section_Width_Mid_Desktop = Triple_Section_Width_Mobile - 69.32;
     Total_Page_Width = "" + Total_Page_Width + "px";
     Page_Width = "" + Page_Width + "px";
     Card_Width = "" + Card_Width + "px";
     Triple_Section_Width = "" + Triple_Section_Width + "px";
     Triple_Section_Width_Mobile = "" + Triple_Section_Width_Mobile + "px";
+    Triple_Section_Width_Mid_Desktop = "" + Triple_Section_Width_Mid_Desktop + "px";
 
     if (Is_Mobile_View == true || Is_Mid_Desktop == true){
       return (
@@ -89,7 +91,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
-        <div className="last_problem_opened" style={{marginTop: "45px", width: Total_Page_Width}}>
+        <div className="last_problem_opened" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
         <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
             <div className="card-header">
               <h4 style={{ textAlign: 'center' }}>Last Problem Attempted</h4>
@@ -109,7 +111,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
-        <div className="progress_bars" style={{marginTop: "45px", width: Total_Page_Width}}>
+        <div className="progress_bars" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
         <div className="card border-secondary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
             <div className="card-header" style={{backgroundColor: "#e51937"}}>
               <h4 style={{ color: "white", textAlign: 'center' }}>Progress Bars</h4>
@@ -122,7 +124,7 @@ class DashboardComponentBase extends React.Component {
             </div>
             <br></br>
 
-            <div style={{float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px"}}>
+            <div style={Is_Mobile_View ? {float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px"} : {float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px"}}>
             <h5 className="text-success"><strong>A & S:</strong></h5>
             <div className="progress">
               <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -142,7 +144,7 @@ class DashboardComponentBase extends React.Component {
             <br></br>
             </div>
 
-            <div style={{float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px"}}> 
+            <div style={Is_Mobile_View ? {float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px"} : {float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px"}}> 
             <h5 className="text-danger"><strong>LL:</strong></h5>
             <div className="progress">
               <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{width: "100%"}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
@@ -162,7 +164,7 @@ class DashboardComponentBase extends React.Component {
             <br></br>
             </div>
 
-            <div style={{float: "left", width: Triple_Section_Width_Mobile}}>
+            <div style={Is_Mobile_View ? {float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px"} : {float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px"}}>
             <h5 className="text-warning"><strong>M & P:</strong></h5>
             <div className="progress">
               <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -195,7 +197,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
-        <div className="events" style={{marginTop: "45px", width: Total_Page_Width}}>
+        <div className="events" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
             <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
               <div className="card-header" style={{backgroundColor: "#18BC9C"}}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>Your Events</h4>
@@ -237,7 +239,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
         
-          <div className="leaderboard" style={{marginTop: "45px", width: Total_Page_Width}}>
+          <div className="leaderboard" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
           <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
               <div className="card-header" style={{backgroundColor: "#F39C12"}}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>PrepCS Leaderboard</h4>
@@ -280,7 +282,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
-        <div className="difficulty" style={{marginTop: "45px", width: Total_Page_Width}}>
+        <div className="difficulty" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
             <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
                 <div className="card-header" style={{backgroundColor: "#E74C3C"}}>
                   <h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
@@ -313,7 +315,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
-        <div className="placeholder" style={{marginTop: "45px", width: Total_Page_Width}}>
+        <div className="placeholder" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
           <div className="card border-info mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
                 <div className="card-header" style={{backgroundColor: "#3498DB"}}>
                   <h4 style={{ color: "white", textAlign: 'center' }}>Placeholder</h4>
@@ -343,7 +345,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
-        <div className="strengths" style={{marginTop: "45px", width: Total_Page_Width}}>
+        <div className="strengths" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
         <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
                 <div className="card-header" style={{backgroundColor: "#18BC9C"}}>
                   <h4 style={{ color: "white", textAlign: 'center' }}>Your Strengths</h4>
@@ -371,7 +373,7 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
-        <div className="weaknesses" style={{marginTop: "45px", marginBottom: "45px", width: Total_Page_Width}}>
+        <div className="weaknesses" style={Is_Mobile_View ? {marginTop: "45px", width: Total_Page_Width} : {margin: "90px auto", width: Page_Width}}>
         <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
                 <div className="card-header" style={{backgroundColor: "#F39C12"}}>
                   <h4 style={{ color: "white", textAlign: 'center' }}>Your Weaknesses</h4>
