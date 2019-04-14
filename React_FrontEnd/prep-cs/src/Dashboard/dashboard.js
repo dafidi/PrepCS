@@ -9,6 +9,10 @@ import {VictoryBar, VictoryChart, VictoryLine, VictoryPie} from "victory";
 class DashboardComponentBase extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { data: this.props }
+    this.state = { width: '1920' };
+    this.state = { width: '1080' };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
     this.state = {
       userInfo: {
@@ -22,6 +26,10 @@ class DashboardComponentBase extends React.Component {
   }
 
   componentDidMount() {
+
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+
     this.props.firebase.auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({userInfo: {uid: this.props.firebase.getUid()} });
@@ -49,10 +57,225 @@ class DashboardComponentBase extends React.Component {
     // this.props.firebase.fs_user()
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
   render() {
+    var Is_Mid_Desktop = this.state.width < 1300;
+    var Is_Mobile_View = this.state.width < 700;
+    var Page_Height = this.state.height - 95;
+    Page_Height = "" + Page_Height + "px";
+    var Page_Width = this.state.width - 190;
+    var Card_Width = Page_Width - 47.5 - (Page_Width/2)
+    Page_Width = "" + Page_Width + "px";
+    Card_Width = "" + Card_Width + "px";
+
+    if (Is_Mobile_View == true || Is_Mid_Desktop == true){
+      return (
+        <div>
+          <h2>This is your dashboard.</h2>
+          <h2>You've attempted {this.state.numberOfProblemsUserHasAttempted} problem{this.state.numberOfProblemsUserHasAttempted === 1 ? "" :"s" }.</h2>
+          {
+            
+            this.state.numberOfProblemsUserHasAttempted === this.state.numberOfProblemsUserHasAttemptedSuccessfully
+            ? <h2>You've completed all {this.state.numberOfProblemsUserHasAttempted} problems</h2>
+            : <h2>You've completed {this.state.numberOfProblemsUserHasAttemptedSuccessfully} of them</h2>
+          }
+        </div>
+      )
+    }
 
     return (
       <div>
+        <div className="last_problem_opened" style={{margin: "90px auto", width: Page_Width}}>
+        <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+            <div className="card-header">
+              <h4 style={{ textAlign: 'center' }}>Last Problem Attempted</h4>
+            </div>
+            <div className="card-body">
+              <p style={{ margin: "0px 90px", textAlign: 'center' }}><h5> Looks like you last attempted the problem <span style={{color: "#F39C12", fontSize: "1.3rem"}}>"TwoSum"</span>. Would you like to go back to the problem?</h5><br></br>
+              <button type="submit" className="btn btn-warning">
+                Go to Problem
+              </button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="progress_bars" style={{margin: "90px auto", width: Page_Width}}>
+        <div className="card border-secondary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+            <div className="card-header" style={{backgroundColor: "#e51937"}}>
+              <h4 style={{ color: "white", textAlign: 'center' }}>Progress Bars</h4>
+            </div>
+            <div className="card-body">
+            <p style={{margin: "0px 90px"}}>
+            <h5 className="text-primary"><strong>Problems Solved:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: "10%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-success"><strong>Arrays & Strings:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-info"><strong>Search & Sort:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{width: "50%"}} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-warning"><strong>Stacks & Queues:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-danger"><strong>Linked Lists:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{width: "100%"}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-success"><strong>Trees & Graphs:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-info"><strong>Recursion & Dynamic Programming:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{width: "50%"}} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-warning"><strong>Mathematics & Probability:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{width: "75%"}} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-danger"><strong>Bit Manipulation:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{width: "100%"}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+            <h5 className="text-success"><strong>Miscellaneous:</strong></h5>
+            <div className="progress">
+              <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{width: "25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br></br>
+
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="events_and_leaderboard" style={{margin: "90px auto", width: Page_Width}}>
+          <span className="events" style={{width: Card_Width, float: "left"}}>
+            <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+              <div className="card-header" style={{backgroundColor: "#18BC9C"}}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>Your Events</h4>
+              </div>
+              <div className="card-body">
+                <p style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-success"><strong>Here's a list of your events:</strong></h5><br></br>
+                <div className="list-group">
+                  <a href="/dashboard" style={{ color: "white", backgroundColor: "#3498DB" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                    <div className="d-flex w-100 justify-content-between">
+                      <h5 className="mb-1">Personalized Dashboard</h5>
+                    </div>
+                    <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
+                  </a>
+                  <a href="/courses" style={{ color: "white", backgroundColor: "#F39C12" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                    <div className="d-flex w-100 justify-content-between">
+                      <h5 className="mb-1">Coding Interview Readiness</h5>
+                    </div>
+                    <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
+                  </a>
+                  <a href="/events" style={{ color: "white", backgroundColor: "#E74C3C" }} className="list-group-item list-group-item-action flex-column align-items-start active">
+                    <div className="d-flex w-100 justify-content-between">
+                      <h5 className="mb-1">CS-Related Event Tracking</h5>
+                    </div>
+                    <p className="mb-1">Always be in the know to further your career goals.</p>
+                  </a>
+                </div>
+
+                <br></br>
+                <button type="submit" className="btn btn-success">
+                  Go to Calender
+                </button>
+                </p>
+              </div>
+            </div>
+          </span>
+          <span className="leaderboard" style={{width: Card_Width, float: "right"}}>
+          <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+              <div className="card-header" style={{backgroundColor: "#F39C12"}}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>PrepCS Leaderboard</h4>
+              </div>
+              <div className="card-body">
+                <p style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Here's the current standings of the Leaderboard:</strong></h5><br></br>
+                <div className="list-group">
+                  <a href="/dashboard" style={{ color: "white", backgroundColor: "#3498DB" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                    <div className="d-flex w-100 justify-content-between">
+                      <h5 className="mb-1">Personalized Dashboard</h5>
+                    </div>
+                    <p className="mb-1">Analyzes your statistics to accelerate your preparation.</p>
+                  </a>
+                  <a href="/courses" style={{ color: "white", backgroundColor: "#F39C12" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                    <div className="d-flex w-100 justify-content-between">
+                      <h5 className="mb-1">Coding Interview Readiness</h5>
+                    </div>
+                    <p className="mb-1">Prepares you for Technical and Behavioral Interviews.</p>
+                  </a>
+                  <a href="/events" style={{ color: "white", backgroundColor: "#E74C3C" }} className="list-group-item list-group-item-action flex-column align-items-start active">
+                    <div className="d-flex w-100 justify-content-between">
+                      <h5 className="mb-1">CS-Related Event Tracking</h5>
+                    </div>
+                    <p className="mb-1">Always be in the know to further your career goals.</p>
+                  </a>
+                </div>
+
+                <br></br>
+                <button type="submit" className="btn btn-warning">
+                  Go to Leaderboard
+                </button>
+                </p>
+              </div>
+            </div>
+          </span>
+          <div style={{clear: "both"}}>
+          </div>
+        </div>
+
+        <div className="difficulty_and_placeholder">
+          <span className="difficulty">
+
+          </span>
+          <span className="placeholder">
+
+          </span>
+        </div>
+
+        <div className="strengths_and_weaknesses">
+        <span className="strengths">
+
+        </span>
+        <span className="weaknesses">
+
+        </span>
+        </div>
+        
+        
+        
         <h2>This is your dashboard.</h2>
         <h2>You've attempted {this.state.numberOfProblemsUserHasAttempted} problem{this.state.numberOfProblemsUserHasAttempted === 1 ? "" :"s" }.</h2>
         {
@@ -61,6 +284,25 @@ class DashboardComponentBase extends React.Component {
           ? <h2>You've completed all {this.state.numberOfProblemsUserHasAttempted} problems</h2>
           : <h2>You've completed {this.state.numberOfProblemsUserHasAttemptedSuccessfully} of them</h2>
         }
+
+          <div className="card border-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, 30%)"}}>
+            <div className="card-header" style={{backgroundColor: "#003a63"}}>
+              <h3 style={{ color: "white", textAlign: 'center' }}>Victory Bar</h3>
+            </div>
+            <div className="card-body" style={{backgroundColor: "#ecf0f1"}}>
+            <VictoryChart domainPadding={40}>
+        <VictoryBar
+          style={{ data: { fill: "#003a63" } }}
+          data={[
+            { x: "A", y: 1234 },
+            { x: "B", y: 2048 },
+            { x: "C", y: 2600 },
+            { x: "D", y: 9000 }
+          ]}
+        />
+      </VictoryChart>
+            </div>
+          </div>
 
         <VictoryChart domainPadding={40}>
         <VictoryBar

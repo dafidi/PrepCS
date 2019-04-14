@@ -5703,11 +5703,11 @@
    display: -webkit-box;
    display: -ms-flexbox;
    display: flex;
-   height: 0.625rem;
+   height: 1.3rem;
    overflow: hidden;
    font-size: 0.625rem;
    background-color: #ecf0f1;
-   border-radius: 0.25rem;
+   border-radius: 1rem;
  }
  
  .progress-bar {
