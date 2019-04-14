@@ -74,7 +74,7 @@ class DashboardComponentBase extends React.Component {
     var Page_Width = this.state.width - 190;
     var Card_Width = Page_Width - 47.5 - (Page_Width/2)
     var Triple_Section_Width = (Page_Width - 405)/3;
-    var Triple_Section_Width_Mobile = (Total_Page_Width)/3 - 28;
+    var Triple_Section_Width_Mobile = (Total_Page_Width)/3 - 34;
     var Triple_Section_Width_Mid_Desktop = Triple_Section_Width_Mobile - 69.32;
     Total_Page_Width = "" + Total_Page_Width + "px";
     Page_Width = "" + Page_Width + "px";
