@@ -244,14 +244,24 @@ class ProblemDetailBase extends React.Component {
 			<AuthUserContext.Consumer>
 				{authUser =>
 					<span className="demoProblem">
-						<span className="problem-desc-container">
+
+						<span className="problem-desc-container" style={{float: "left"}}>
+						<div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+            				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
+								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
+            				</div>
+            			<div className="card-body">
 							<h1>{this.state.problemName}</h1>
 							<h3>{this.state.problemSummary}</h3>
 							<InfoBox
 								ref={this.infoBoxRef}
 								text={this.state.defaultOutputText} />
+						</div>
+						</div>
 						</span>
-						<div className="ide-container" style={{height: "50vh"}}>
+
+
+						<div className="ide-container" style={{float: "right", height: "50vh"}}>
 							<AceEditor
 								mode="python"
 								theme="solarized_dark"
