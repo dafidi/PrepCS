@@ -310,6 +310,8 @@
  img {
    vertical-align: middle;
    border-style: none;
+   object-fit: cover;
+   height: calc(100vh - 95px);
  }
  
  svg {
