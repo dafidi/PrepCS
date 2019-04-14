@@ -125,7 +125,7 @@ class HomeBodyBase extends React.Component {
 
     if (Is_Mobile_View == true) {
       return (
-        <div className="homeBody" style={{height: "100vh", width: "100vw"}}>
+        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
           <div style={{margin: "0px auto"}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <ImageGallery items={images} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
@@ -140,8 +140,7 @@ class HomeBodyBase extends React.Component {
     }
     else {
       return (
-        /* NEED TO SOMEHOW CHANGE IMAGE STYLING IN THE GALLERY_ IMPORTANT */
-        <div className="homeBody" style={{height: Page_Height}}>
+        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
           <div style={{margin: "0px 95px", height: Page_Height}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <ImageGallery items={images} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
