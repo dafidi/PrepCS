@@ -64,12 +64,12 @@ class HomeBodyBase extends React.Component {
       showThumbnails: false,
       showFullscreenButton: false,
       showGalleryFullscreenButton: true,
-      showPlayButton: true,
-      showGalleryPlayButton: true,
-      showNav: true,
+      showPlayButton: false,
+      showGalleryPlayButton: false,
+      showNav: false,
       isRTL: false,
       slideDuration: 450,
-      slideInterval: 2000,
+      slideInterval: 4000,
       slideOnThumbnailOver: false,
       thumbnailPosition: 'bottom',
       showVideo: {},
@@ -121,14 +121,27 @@ class HomeBodyBase extends React.Component {
     var Is_Mobile_View = this.state.width < 700;
 
     var Page_Height = this.state.height - 95;
+    var Page_Width = this.state.width - 180;
+
+    var testing_width = Page_Width - 180;
+    var testing_width_mobile = Page_Width + 90;
+    var testing_height = Page_Height - 180;
+    var testing_height_mobile = Page_Height - 90;
+    testing_width = "" + testing_width + "px";
+    testing_width_mobile = "" + testing_width_mobile + "px";
+    testing_height = "" + testing_height + "px";
+    testing_height_mobile = "" + testing_height_mobile + "px";
+
     Page_Height = "" + Page_Height + "px";
+    Page_Width = "" + Page_Width + "px";
 
     if (Is_Mobile_View == true) {
       return (
         <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
-          <div style={{margin: "0px auto"}}>
+          <div style={{margin: "0px auto", height: Page_Height, position: "relative"}}>
+          <div style={{top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width_mobile, height: testing_height_mobile, backgroundColor: "rgb(0, 58, 99, 0.5)"}}></div>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
-            <ImageGallery items={images} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
+            <ImageGallery items={images} slideInterval={this.state.slideInterval} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
           </div>
           {!this.props.authUser &&
             <div style={{ margin: "50px auto", textAlign: "center" }} >
@@ -141,9 +154,10 @@ class HomeBodyBase extends React.Component {
     else {
       return (
         <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
-          <div style={{margin: "0px 95px", height: Page_Height}}>
+          <div style={{margin: "0px 90px", height: Page_Height, position: "relative"}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
-            <ImageGallery items={images} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
+            <div style={{top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width, height: testing_height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}></div>
+            <ImageGallery items={images} /* showNav={this.state.showNav} showGalleryPlayButton={this.state.showGalleryPlayButton} showPlayButton={this.state.showPlayButton} showThumbnails={this.state.showThumbnails}*/ slideInterval={this.state.slideInterval} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
           </div>
           {!this.props.authUser &&
             <div style={{ margin: "50px auto", textAlign: "center" }} >
