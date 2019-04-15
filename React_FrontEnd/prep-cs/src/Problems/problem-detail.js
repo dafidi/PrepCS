@@ -24,27 +24,28 @@ class ProblemDetailBase extends React.Component {
 			problemTestFile: null,
 			problemStarterCodeFilepath: null,
 			problemStarterCode: '',
-			userId: null
+			userId: null,
+			width: "1920",
+			height: "1080"
 		};
 
-		this.state = { width: '1920', height: "1080" };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
 		this.infoBoxRef = React.createRef();
 	}
 
 	componentDidMount() {
-		this.updateWindowDimensions();
-		window.addEventListener('resize', this.updateWindowDimensions);
-	  }
-	
-	  componentWillUnmount() {
-		window.removeEventListener('resize', this.updateWindowDimensions);
-	  }
-	
-	  updateWindowDimensions() {
-		this.setState({ width: window.innerWidth, height: window.innerHeight });
-	  }
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
 
 	/**
 	 * Sends an http request to AWS API Gateway for execution of the users's code.
@@ -256,13 +257,26 @@ class ProblemDetailBase extends React.Component {
 	}
 
 	render() {
+		var Is_Mid_Desktop = this.state.width < 1300;
+		var Is_Mobile_View = this.state.width < 700;
+		var Page_Height = this.state.height - 95;
+		var Page_Width = this.state.width - 180;
+		var Card_Height = Page_Height - 180;
+		var Card_Width = (Page_Width - 90 - 180 - 90)/2;
+		var Card_Height_2 = Card_Height - 90;
+		Page_Height = "" + Page_Height + "px";
+		Page_Width = "" + Page_Width + "px";
+		Card_Height = "" + Card_Height + "px";
+		Card_Height_2 = "" + Card_Height_2 + "px";
+		Card_Width = "" + Card_Width + "px";
+
 		return (
 			<AuthUserContext.Consumer>
 				{authUser =>
 					<span className="">
 
-						<span className="problem-desc-container" style={{float: "left"}}>
-						<div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+						<span className="" style={{float: "left"}}>
+						<div className="card border-danger mb-3" style={{ margin: "90px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", width: Card_Width, height: Card_Height}}>
             				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
 								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
             				</div>
@@ -277,8 +291,9 @@ class ProblemDetailBase extends React.Component {
 						</span>
 
 
-						<div className="" style={{float: "right", height: "50vh"}}>
+						<div className="" style={{marginTop: "90px", marginBottom: "90px", marginRight: "90px", float: "right"}}>
 							<AceEditor
+								style={{width: Card_Width, height: Card_Height}}
 								mode="python"
 								theme="solarized_dark"
 								onChange={this.onTextEditorChange}
@@ -286,7 +301,7 @@ class ProblemDetailBase extends React.Component {
 								editorProps={{ $blockScrolling: true }}
 							/>
 							{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
-							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{margin: "0px auto"}}>
+							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{margin: "0px auto", position: "absolute"}}>
 								Submit Code
 							</button>
 						</div>
