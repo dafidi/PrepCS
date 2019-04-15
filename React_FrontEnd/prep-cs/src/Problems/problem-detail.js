@@ -258,51 +258,65 @@ class ProblemDetailBase extends React.Component {
 	render() {
 		var Is_Mid_Desktop = this.state.width < 1300;
 		var Is_Mobile_View = this.state.width < 700;
-		var Page_Height = this.state.height - 95;
-		var Page_Width = this.state.width - 180;
-		var Card_Height = Page_Height - 180;
-		var Card_Width = (Page_Width - 90)/2;
-		var Card_Width_2 = Card_Width - 3;
-		Page_Height = "" + Page_Height + "px";
-		Page_Width = "" + Page_Width + "px";
-		Card_Height = "" + Card_Height + "px";
-		Card_Width = "" + Card_Width + "px";
-		Card_Width_2 = "" + Card_Width_2 + "px";
-
 		var Total_Page_Width = this.state.width-17;
 		var Total_Page_Height = this.state.height - 95;
 		var Test_Card_Width = Total_Page_Width/2;
 		var Test_Card_Height = Total_Page_Height;
+		var Test_Card_Height_2 = (Total_Page_Height - 50 - 90) / 2;
+
+		var Test_Card_Width_Mobile = this.state.width;
+
+
 		Test_Card_Width = "" + Test_Card_Width + "px";
 		Test_Card_Height = "" + Test_Card_Height + "px";
-
+		Test_Card_Height_2 = "" + Test_Card_Height_2 + "px";
+		Test_Card_Width_Mobile = "" + Test_Card_Width_Mobile + "px";
 
 
 		return (
 			<AuthUserContext.Consumer>
 				{authUser =>
-					<div className="" style={{overflowY: "hidden"}}>
+					<div className="" style={Is_Mobile_View ? {} : {overflowY: "hidden"}}>
 
-						<div className="" style={{float: "left"}}>
-						<div className="card text-white bg-success mb-3" style={{ width: Test_Card_Width, height: Test_Card_Height}}>
+						<div className="" style={Is_Mobile_View ? {} : {float: "left"}}>
+						<div className="card text-white bg-success mb-3" style={Is_Mobile_View ? {width: Test_Card_Width_Mobile, marginBottom: "0px"} : { width: Test_Card_Width, height: Test_Card_Height}}>
             				<div className="card-header">
 								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem: {this.state.problemName}</h4>
             				</div>
             			<div className="card-body">
 							<div>
-							<h1>{this.state.problemName}</h1>
-							<h3>{this.state.problemSummary}</h3>
+								<div className="card text-white bg-info mb-3" style={Is_Mobile_View ? {margin: "0px 20px"} :{ height: Test_Card_Height_2, margin: "0px 45px"}}>
+									<div className="card-header">
+										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem Description:</h4>
+									</div>
+									<div className="card-body" style={{textAlign: "center"}}>
+										<div>
+											<h4>{this.state.problemSummary}</h4>
+										</div>
+									</div>
+								</div>
 							</div>
-							<InfoBox
-								ref={this.infoBoxRef}
-								text={this.state.defaultOutputText} />
+
+							<div className="card text-white bg-danger mb-3" style={Is_Mobile_View ? {margin: "0px 20px"} : { height: Test_Card_Height_2, margin: "0px 45px"}}>
+									<div className="card-header">
+										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Console:</h4>
+									</div>
+									<div className="card-body">
+										<div>
+											<InfoBox
+												ref={this.infoBoxRef}
+												text={this.state.defaultOutputText} />
+										</div>
+									</div>
+							</div>
+
 						</div>
 						</div>
 						</div>
 
 
 						<div className="" style={{float: "right"}}>
-						<div className="card text-white bg-warning mb-3" style={{ width: Test_Card_Width, height: Test_Card_Height}}>
+						<div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? {width: Test_Card_Width_Mobile} : { width: Test_Card_Width, height: Test_Card_Height}}>
             				<div className="card-header">
 							
 								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Coding Playground: </h4>
@@ -310,10 +324,10 @@ class ProblemDetailBase extends React.Component {
             				</div>
             			<div className="card-body" style={{padding: "0px"}}></div>
 							<AceEditor
-								style={{width: Test_Card_Width, height: Test_Card_Height}}
+								style={Is_Mobile_View ? {width: Test_Card_Width_Mobile} : {width: Test_Card_Width, height: Test_Card_Height}}
 								mode="python"
 								theme="solarized_dark"
-								fontSize={30}
+								fontSize={Is_Mobile_View ? 15 : 25}
 								showPrintMargin={false}
 								onChange={this.onTextEditorChange}
 								value={this.state.code}
@@ -321,7 +335,7 @@ class ProblemDetailBase extends React.Component {
 							/>
 							{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
 							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{fontSize: "1.3rem" , height: "50px"}}>
-								Submit Code
+								<strong>Submit Code</strong>
 							</button>
 							</div>
 						</div>
@@ -388,10 +402,10 @@ class InfoBox extends React.Component {
 					</TabList>
 
 					<TabPanel>
-						<h2>{this.state.text}</h2>
+						<h4>{this.state.text}</h4>
 					</TabPanel>
 					<TabPanel>
-						<h2>Further information about this problem.</h2>
+						<h4>Further information about this problem.</h4>
 					</TabPanel>
 				</Tabs>
 			</div>
