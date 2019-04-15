@@ -278,7 +278,7 @@ class ProblemDetailBase extends React.Component {
 						<span className="" style={{float: "left"}}>
 						<div className="card border-danger mb-3" style={{ margin: "90px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", width: Card_Width, height: Card_Height}}>
             				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
-								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
+								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion{Card_Width}</h4>
             				</div>
             			<div className="card-body">
 							<h1>{this.state.problemName}</h1>
@@ -292,8 +292,13 @@ class ProblemDetailBase extends React.Component {
 
 
 						<div className="" style={{marginTop: "90px", marginBottom: "90px", marginRight: "90px", float: "right"}}>
+						<div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", width: Card_Width, height: Card_Height}}>
+            				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
+								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
+            				</div>
+            			<div className="card-body" style={{padding: "0px"}}></div>
 							<AceEditor
-								style={{width: Card_Width, height: Card_Height}}
+								style={{width: Card_Width, height: Card_Height, boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}
 								mode="python"
 								theme="solarized_dark"
 								onChange={this.onTextEditorChange}
@@ -304,6 +309,7 @@ class ProblemDetailBase extends React.Component {
 							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{margin: "0px auto", position: "absolute"}}>
 								Submit Code
 							</button>
+							</div>
 						</div>
 					</span>
 				}
