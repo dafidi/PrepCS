@@ -272,7 +272,10 @@ class ProblemDetailBase extends React.Component {
 								name="ide-container"
 								editorProps={{ $blockScrolling: true }}
 							/>
-							<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>
+							{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
+							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{margin: "0px auto"}}>
+								Submit Code
+							</button>
 						</div>
 					</span>
 				}
