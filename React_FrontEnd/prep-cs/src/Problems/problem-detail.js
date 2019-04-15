@@ -262,24 +262,37 @@ class ProblemDetailBase extends React.Component {
 		var Page_Width = this.state.width - 180;
 		var Card_Height = Page_Height - 180;
 		var Card_Width = (Page_Width - 90)/2;
+		var Card_Width_2 = Card_Width - 3;
 		Page_Height = "" + Page_Height + "px";
 		Page_Width = "" + Page_Width + "px";
 		Card_Height = "" + Card_Height + "px";
 		Card_Width = "" + Card_Width + "px";
+		Card_Width_2 = "" + Card_Width_2 + "px";
+
+		var Total_Page_Width = this.state.width;
+		var Total_Page_Height = this.state.height - 95;
+		var Test_Card_Width = Total_Page_Width/2;
+		var Test_Card_Height = Total_Page_Height;
+		Test_Card_Width = "" + Test_Card_Width + "px";
+		Test_Card_Height = "" + Test_Card_Height + "px";
+
+
 
 		return (
 			<AuthUserContext.Consumer>
 				{authUser =>
-					<span className="">
+					<span className="" style={{overflowY: "hidden"}}>
 
 						<span className="" style={{float: "left"}}>
-						<div className="card border-danger mb-3" style={{ margin: "90px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", width: Card_Width, height: Card_Height}}>
-            				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
-								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
+						<div className="card text-white bg-success mb-3" style={{ width: Test_Card_Width, height: Test_Card_Height}}>
+            				<div className="card-header" style={{}}>
+								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem: {this.state.problemName}</h4>
             				</div>
             			<div className="card-body">
+							<div>
 							<h1>{this.state.problemName}</h1>
 							<h3>{this.state.problemSummary}</h3>
+							</div>
 							<InfoBox
 								ref={this.infoBoxRef}
 								text={this.state.defaultOutputText} />
@@ -288,22 +301,26 @@ class ProblemDetailBase extends React.Component {
 						</span>
 
 
-						<div className="" style={{marginTop: "90px", marginBottom: "90px", marginRight: "90px", float: "right"}}>
-						<div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", width: Card_Width, height: Card_Height}}>
-            				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
-								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
+						<div className="" style={{float: "right"}}>
+						<div className="card text-white bg-warning mb-3" style={{ width: Test_Card_Width, height: Test_Card_Height}}>
+            				<div className="card-header" style={{}}>
+							
+								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Coding Playground: </h4>
+								
             				</div>
             			<div className="card-body" style={{padding: "0px"}}></div>
 							<AceEditor
-								style={{width: Card_Width, height: Card_Height, boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}
+								style={{width: Test_Card_Width, height: Test_Card_Height}}
 								mode="python"
 								theme="solarized_dark"
+								fontSize={30}
+								showPrintMargin={false}
 								onChange={this.onTextEditorChange}
 								value={this.state.code}
 								editorProps={{ $blockScrolling: true }}
 							/>
 							{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
-							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{margin: "0px auto", position: "absolute"}}>
+							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{fontSize: "1.3rem" , height: "50px"}}>
 								Submit Code
 							</button>
 							</div>
