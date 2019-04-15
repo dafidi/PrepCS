@@ -25,19 +25,14 @@ class ProblemDetailBase extends React.Component {
 			problemStarterCodeFilepath: null,
 			problemStarterCode: '',
 			userId: null,
-			width: "1920",
-			height: "1080",
+			width: '1920',
+			height: '1080',
 		};
 
     	this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
 		this.infoBoxRef = React.createRef();
 	}
-
-	componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
@@ -145,6 +140,10 @@ class ProblemDetailBase extends React.Component {
 	}
 
 	componentDidMount = () => {
+
+		this.updateWindowDimensions();
+		window.addEventListener('resize', this.updateWindowDimensions);
+	
 		this.props.firebase.auth.onAuthStateChanged((user) => {
 			if (user) {
 				const { problem_id } = this.props.match.params;
@@ -262,7 +261,7 @@ class ProblemDetailBase extends React.Component {
 		var Page_Height = this.state.height - 95;
 		var Page_Width = this.state.width - 180;
 		var Card_Height = Page_Height - 180;
-		var Card_Width = (Page_Width - 90 - 180 - 90)/2;
+		var Card_Width = (Page_Width - 90)/2;
 		Page_Height = "" + Page_Height + "px";
 		Page_Width = "" + Page_Width + "px";
 		Card_Height = "" + Card_Height + "px";
@@ -276,7 +275,7 @@ class ProblemDetailBase extends React.Component {
 						<span className="" style={{float: "left"}}>
 						<div className="card border-danger mb-3" style={{ margin: "90px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", width: Card_Width, height: Card_Height}}>
             				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
-								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion{Card_Width}{Card_Height}</h4>
+								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
             				</div>
             			<div className="card-body">
 							<h1>{this.state.problemName}</h1>
