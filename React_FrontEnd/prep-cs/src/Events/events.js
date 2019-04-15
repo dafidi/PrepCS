@@ -90,6 +90,11 @@ class EventsPageBase extends React.Component {
     var Card_Event_Width_Mobile = Page_Width / 2;
     var Card_Event_Height = (Card_Carousel_Height * 2) / 3;
 
+    var Pic_Height = Card_Event_Height - 53;
+    var Pic_Width = Card_Event_Width - 1;
+    var Pic_Width_Mobile = Card_Event_Width_Mobile - 1;
+
+
     Card_Carousel_Height = "" + Card_Carousel_Height + "px";
     Card_Height = "" + Card_Height + "px";
     Card_Width = "" + Card_Width + "px";
@@ -98,9 +103,14 @@ class EventsPageBase extends React.Component {
     Card_Event_Height = "" + Card_Event_Height + "px";
     Card_Event_Width_Mobile = "" + Card_Event_Width_Mobile + "px";
 
+    Pic_Height = "" + Pic_Height + "px";
+    Pic_Width = "" + Pic_Width + "px";
+    Pic_Width_Mobile = "" + Pic_Width_Mobile + "px";
+
     const numberOfEvents = this.state.events.length;
 
     const styles = ["card text-white bg-info mb-3", "card text-white bg-warning mb-3", "card text-white bg-success mb-3", "card text-white bg-danger mb-3", "card text-white bg-info mb-3", "card text-white bg-warning mb-3"];
+    const event_images = [require("../resources/images/e1.jpg"), require("../resources/images/e2.jpg"), require("../resources/images/e3.jpg"), require("../resources/images/e4.jpg"), require("../resources/images/e5.jpg"), require("../resources/images/e6.jpg")];
     return (
       <div style={{ overflow: "hidden" }}>
         {/*<h2>Upcoming CS Events @ Howard University</h2>*/}
@@ -117,8 +127,8 @@ class EventsPageBase extends React.Component {
                       <div className="card-header">
                         <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>{event.title}</h4>
                       </div>
-                      <div className="card-body">
-
+                      <div className="card-body" style={{padding: "0px"}}>
+                        <img style={Is_Mobile_View ? {objectFit: "cover", height: Pic_Height, width: Pic_Width_Mobile} : {objectFit: "cover", height: Pic_Height, width: Pic_Width}} src={event_images[i]}></img>
                       </div>
                     </div>
                     ))
