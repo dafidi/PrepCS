@@ -128,7 +128,7 @@ class EventsPageBase extends React.Component {
                         <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>{event.title}</h4>
                       </div>
                       <div className="card-body" style={{padding: "0px"}}>
-                        <img style={Is_Mobile_View ? {objectFit: "cover", height: Pic_Height, width: Pic_Width_Mobile} : {objectFit: "cover", height: Pic_Height, width: Pic_Width}} src={event_images[i]}></img>
+                        <img style={Is_Mobile_View ? {objectFit: "cover", height: Pic_Height, width: Pic_Width_Mobile} : {objectFit: "cover", objectPosition: "0 20%", height: Pic_Height, width: Pic_Width}} src={event_images[i]}></img>
                       </div>
                     </div>
                     ))
