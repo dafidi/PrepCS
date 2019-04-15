@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import { withAuthorization } from '../Session';
 
-import {VictoryBar, VictoryChart, VictoryStack, VictoryPie} from "victory";
+import {VictoryBar, VictoryChart, VictoryStack, VictoryPie} from 'victory';
 
 class DashboardComponentBase extends React.Component {
   constructor(props) {

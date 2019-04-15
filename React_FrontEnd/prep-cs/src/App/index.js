@@ -4,6 +4,7 @@ import ProblemsComponent from '../Problems';
 import DashboardComponent from '../Dashboard';
 import HomeBar from '../Navigation';
 import ProblemDetail from '../Problems/problem-detail';
+import CourseProblemsComponent from '../Problems/course-problems';
 import { SignInPage } from '../SignIn';
 import { SignUpPage } from '../SignUp';
 import { AuthUserContext, withAuthentication } from '../Session';
@@ -41,6 +42,7 @@ class HomePage extends React.Component {
           <Route path="/problem-detail/:problem_id" component={ProblemDetail}></Route>
           <Route path="/events" exact component={EventsPage}></Route>
           <Route path="/dashboard" exact component={DashboardComponent}></Route>
+          <Route path="/course/:course_id" exact component={CourseProblemsComponent}></Route>
           </div>
         </div>
       </Router>

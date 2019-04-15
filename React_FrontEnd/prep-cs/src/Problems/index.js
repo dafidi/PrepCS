@@ -3,10 +3,10 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
+
 import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { ProblemListCard } from './problem-list-card';
-
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 
@@ -22,45 +22,42 @@ class ProblemsComponentBase extends React.Component {
       problemTablePage: 0,
       uid: null,
       problemsUserHasSolved: [],
-      categories: {
-        // "Data Structures": [],
-        // "Algorithms": [],
-        // "Miscellaneous": []
-      }
-    }
+      problemsByCategory: {},
+      categories: []
+    };
   }
 
   componentDidMount = () => {
+    let problemsByCategory = { "Miscellaneous": [] };
     this.props.firebase.fs_problems()
       .get()
-      .then(
-        (snapshot) => {
-          snapshot.forEach(
-            (doc) => {
-              this.state.listOfProblems.push({ "id": doc.id, "data": doc.data() });
-              if (doc.data().category) {
-                if (this.state.categories[doc.data().category]) {
-                  this.state.categories[doc.data().category].push(
-                    { "id": doc.id, "data": doc.data() }
-                  );
-                } else {
-                  this.state.categories[doc.data().category] = [];
-                  this.state.categories[doc.data().category].push(
-                    { "id": doc.id, "data": doc.data() }
-                  );
-                }
-
-              } else {
-                this.state.categories["Miscellaneous"].push(
-                  { "id": doc.id, "data": doc.data() }
-                );
-              }
-            });
-        }
-      )
       .then((snapshot) => {
-        // I'm only putting this here because there is a good chance the 
-        // firebase prop will have been fully populated when this code runs
+        snapshot.forEach((doc) => {
+          if (doc.data().category) {
+            if (problemsByCategory[doc.data().category]) {
+              problemsByCategory[doc.data().category].push(
+                { "id": doc.id, "data": doc.data() }
+              );
+            } else {
+              problemsByCategory[doc.data().category] = [{
+                "id": doc.id,
+                "data": doc.data()
+              }];
+            }
+
+          } else {
+            problemsByCategory["Miscellaneous"].push(
+              { "id": doc.id, "data": doc.data() }
+            );
+          }
+        });
+        this.setState({ problemsByCategory: problemsByCategory });
+        this.setState({ categories: Object.keys(problemsByCategory) });
+      })
+      .catch((error) => { console.warn(error); });
+
+    this.props.firebase.auth.onAuthStateChanged((user) => {
+      if (user) {
         this.setState({ uid: this.props.firebase.getUid() });
 
         this.props.firebase.fs_user(this.state.uid)
@@ -74,11 +71,10 @@ class ProblemsComponentBase extends React.Component {
           .catch((error) => {
             // Uncaught errors can be problematic.
           });
+      } else {
 
-      })
-      .catch((error) => {
-        // Uncaught errors can be problematic.
-      });
+      }
+    });
 
   }
 
@@ -96,86 +92,14 @@ class ProblemsComponentBase extends React.Component {
         {
           authUser => authUser ?
             <div>
-              <div style={{ marginLeft: "25px", width: "80vw" }}>
-                {Object.keys(this.state.categories).slice().map(category => (
-                  <Collapsible key={category} trigger={
-                    <Card style={{ height: "100px", textAlign:'center', verticalAlign:'middle' }}>
-                      <Typography variant="h5" component="h2">
-                        {category}
-                      </Typography>
-                    </Card>}>
-                    {
-                      this.state.categories[category].slice().map(
-                        problem => (
-                          <div key={problem.id}>
-                            <NavLink to={ROUTES.PROBLEM_DETAIL+'/'+problem.id}
-                                     style={{ color:'black',textDecoration:'none', textAlign:'left'}}>
-                              <ProblemListCard
-                                problemName={problem.data.shortName}
-                                problemSummary={problem["data"].summary}
-                                problemCategory={problem["data"].category}
-                                userHasDone={this.state.problemsUserHasSolved
-                                  .includes(problem["id"])}>
-                              </ProblemListCard>
-                            </NavLink>
-                          </div>))
-                    }
-                  </Collapsible>))
-                }
-              </div>
-              {/* <div>
-                <h2>Pick a problem and hack away!</h2>
-                <Paper >
-                  <Table >
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Problem</TableCell>
-                        <TableCell align="right">Description</TableCell>
-                        <TableCell align="right">{}</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {
-                        this.state.listOfProblems.slice(this.state.problemTablePage * rowsPerPage, this.state.problemTablePage * rowsPerPage + rowsPerPage).map(problem => (
-                          <TableRow key={problem["id"]}>
-                            <TableCell component="th" scope="row">
-                              <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + problem["id"]}
-                                style={{ color: 'black', textDecoration: 'none' }}>
-                                <ProblemListCard problemName={problem["data"].shortName}
-                                  problemSummary={problem["data"].summary}
-                                  problemCategory={problem["data"].category}>
-                                </ProblemListCard>
-                              </NavLink>
-                            </TableCell>
-                            <TableCell align="right">
-                              {problem["data"].summary}
-                            </TableCell>
-                            <TableCell>
-                              {this.state.problemsUserHasSolved.includes(problem["id"]) && <img src={green_check} alt="done!" width="42" height="42" />}
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                    </TableBody>
-                    <TableFooter>
-                      <TableRow>
-                        <TablePagination
-                          rowsPerPageOptions={[5, 10, 25]}
-                          colSpan={3}
-                          count={this.state.listOfProblems.length}
-                          rowsPerPage={rowsPerPage}
-                          page={this.state.problemTablePage}
-                          SelectProps={{
-                            native: true,
-                          }}
-                          onChangePage={this.handleChangePage}
-                        // onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                        // ActionsComponent={TablePaginationActionsWrapped}
-                        />
-                      </TableRow>
-                    </TableFooter>
-                  </Table>
-                </Paper>
-              </div>*/}
+              {
+                this.state.categories.slice().map((category) => (
+                  <NavLink key={category} to={ROUTES.COURSE + "/" + category}>
+                    <p key={category}>{category}</p>
+                  </NavLink>
+                )
+                )
+              }
             </div> : <div></div>
         }
       </AuthUserContext.Consumer>
