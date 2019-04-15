@@ -243,7 +243,7 @@ class ProblemDetailBase extends React.Component {
 		return (
 			<AuthUserContext.Consumer>
 				{authUser =>
-					<span className="demoProblem">
+					<span className="">
 
 						<span className="problem-desc-container" style={{float: "left"}}>
 						<div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
@@ -261,15 +261,12 @@ class ProblemDetailBase extends React.Component {
 						</span>
 
 
-						<div className="ide-container" style={{float: "right", height: "50vh"}}>
+						<div className="" style={{float: "right", height: "50vh"}}>
 							<AceEditor
 								mode="python"
 								theme="solarized_dark"
-								height="100%"
-								width="100%"
 								onChange={this.onTextEditorChange}
 								value={this.state.code}
-								name="ide-container"
 								editorProps={{ $blockScrolling: true }}
 							/>
 							{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
@@ -332,7 +329,7 @@ class InfoBox extends React.Component {
 
 	render() {
 		return (
-			<div className="info-box">
+			<div className="">
 				<Tabs>
 					<TabList>
 						<Tab>Output</Tab>
