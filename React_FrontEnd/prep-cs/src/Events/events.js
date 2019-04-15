@@ -77,8 +77,11 @@ class EventsPageBase extends React.Component {
 
   render() {
     return (
-      <div style={{width:"75vw", marginLeft:20}}>
-        <h2>Upcoming CS events @ Howard University</h2>
+      <div>
+        <h2>Upcoming CS Events @ Howard University</h2>
+        <div>
+          
+        </div>
         <div style={{margin:10}}>
           <Paper>
             <Table>

@@ -285,11 +285,11 @@ class ProblemDetailBase extends React.Component {
             				</div>
             			<div className="card-body">
 							<div>
-								<div className="card text-white bg-info mb-3" style={Is_Mobile_View ? {margin: "0px 20px"} :{ height: Test_Card_Height_2, margin: "0px 45px"}}>
-									<div className="card-header">
+								<div className="card border-info mb-3" style={Is_Mobile_View ? {margin: "0px 20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} :{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Test_Card_Height_2, margin: "0px 45px"}}>
+									<div className="card-header"  style={{backgroundColor: "#003a63"}}>
 										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem Description:</h4>
 									</div>
-									<div className="card-body" style={{textAlign: "center"}}>
+									<div className="card-body" style={{textAlign: "center", color: "black"}}>
 										<div>
 											<h4>{this.state.problemSummary}</h4>
 										</div>
@@ -297,11 +297,11 @@ class ProblemDetailBase extends React.Component {
 								</div>
 							</div>
 
-							<div className="card text-white bg-danger mb-3" style={Is_Mobile_View ? {margin: "0px 20px"} : { height: Test_Card_Height_2, margin: "0px 45px"}}>
-									<div className="card-header">
+							<div className="card border-danger mb-3" style={Is_Mobile_View ? {margin: "0px 20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Test_Card_Height_2, margin: "0px 45px"}}>
+									<div className="card-header" style={{backgroundColor: "#e51937"}}>
 										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Console:</h4>
 									</div>
-									<div className="card-body">
+									<div className="card-body" style={{color: "black"}}>
 										<div>
 											<InfoBox
 												ref={this.infoBoxRef}
