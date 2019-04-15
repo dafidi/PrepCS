@@ -77,6 +77,10 @@ class EventsPageBase extends React.Component {
 
 
   render() {
+
+    var Is_Mid_Desktop = this.state.width < 1300;
+    var Is_Mobile_View = this.state.width < 700;
+
     var Page_Height = this.state.height - 96;
     var Page_Width = this.state.width;
     var Card_Carousel_Height = (Page_Height * 2) / 5;
@@ -92,21 +96,22 @@ class EventsPageBase extends React.Component {
     Card_Event_Width = "" + Card_Event_Width + "px";
     Card_Event_Height = "" + Card_Event_Height + "px";
 
-    const styles = ["card text-white bg-info mb-3"];
+    const numberOfEvents = this.state.events.length;
+
+    const styles = ["card text-white bg-info mb-3", "card text-white bg-warning mb-3", "card text-white bg-success mb-3", "card text-white bg-danger mb-3", "card text-white bg-info mb-3", "card text-white bg-warning mb-3"];
     return (
       <div style={{ overflow: "hidden" }}>
         {/*<h2>Upcoming CS Events @ Howard University</h2>*/}
         <div className="Card_Carousel">
-          <div className="card border-secondary mb-3" style={{ height: Card_Carousel_Height, marginBottom: "0px" }}>
+          <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "45px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
             <div className="card-header" style={{ backgroundColor: "#e51937" }}>
-              <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Current Events @ Howard University:</h4>
+              <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Upcoming Events @ Howard University:</h4>
             </div>
             <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll" }}>
 
               {
                 this.state.events.map((event, i) => (
-                  // <div >
-                    <div key={event.id} className={styles[i]} style={{ display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
+                    <div key={event.id} className={styles[i % numberOfEvents]} style={{ display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
                       <div className="card-header">
                         <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>{event.title}</h4>
                       </div>
@@ -114,7 +119,6 @@ class EventsPageBase extends React.Component {
 
                       </div>
                     </div>
-                    // </div>
                     ))
               }
 
@@ -122,14 +126,14 @@ class EventsPageBase extends React.Component {
           </div>
         </div>
         <div className="Bottom" style={{ margin: "3px auto" }}>
-          <div className="Event_List" style={{ float: "left", width: Card_Width }}>
+          <div className="Event_List" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} : { float: "left", width: Card_Width }}>
             <div className="card border-success mb-3" style={{ height: Card_Height, marginBottom: "0px" }}>
               <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                 <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Add List to Calender:</h4>
               </div>
               <div className="card-body">
 
-                <div style={{ margin: 10 }}>
+                <div>
                   <Paper>
                     <Table>
                       <TableHead>
@@ -170,8 +174,8 @@ class EventsPageBase extends React.Component {
               </div>
             </div>
           </div>
-          <div className="Event_Calender" style={{ float: "right", width: Card_Width }}>
-            <div className="card border-warning mb-3" style={{ height: Card_Height, marginBottom: "0px" }}>
+          <div className="Event_Calender" style={Is_Mobile_View ? {} : { float: "right", width: Card_Width }}>
+            <div className="card border-warning mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Height, marginBottom: "45px"} : { height: Card_Height, marginBottom: "0px" }}>
               <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                 <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Calender:</h4>
               </div>
