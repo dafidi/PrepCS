@@ -332,6 +332,7 @@ class ProblemDetailBase extends React.Component {
 								onChange={this.onTextEditorChange}
 								value={this.state.code}
 								editorProps={{ $blockScrolling: true }}
+								wrapEnabled={true}
 							/>
 							{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
 							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{fontSize: "1.3rem" , height: "50px"}}>
@@ -339,6 +340,8 @@ class ProblemDetailBase extends React.Component {
 							</button>
 							</div>
 						</div>
+						<div style={{clear: "both"}}>
+            			</div>
 					</div>
 				}
 			</AuthUserContext.Consumer>
