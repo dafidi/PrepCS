@@ -269,7 +269,7 @@ class ProblemDetailBase extends React.Component {
 		Card_Width = "" + Card_Width + "px";
 		Card_Width_2 = "" + Card_Width_2 + "px";
 
-		var Total_Page_Width = this.state.width;
+		var Total_Page_Width = this.state.width-17;
 		var Total_Page_Height = this.state.height - 95;
 		var Test_Card_Width = Total_Page_Width/2;
 		var Test_Card_Height = Total_Page_Height;
@@ -281,11 +281,11 @@ class ProblemDetailBase extends React.Component {
 		return (
 			<AuthUserContext.Consumer>
 				{authUser =>
-					<span className="" style={{overflowY: "hidden"}}>
+					<div className="" style={{overflowY: "hidden"}}>
 
-						<span className="" style={{float: "left"}}>
+						<div className="" style={{float: "left"}}>
 						<div className="card text-white bg-success mb-3" style={{ width: Test_Card_Width, height: Test_Card_Height}}>
-            				<div className="card-header" style={{}}>
+            				<div className="card-header">
 								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem: {this.state.problemName}</h4>
             				</div>
             			<div className="card-body">
@@ -298,12 +298,12 @@ class ProblemDetailBase extends React.Component {
 								text={this.state.defaultOutputText} />
 						</div>
 						</div>
-						</span>
+						</div>
 
 
 						<div className="" style={{float: "right"}}>
 						<div className="card text-white bg-warning mb-3" style={{ width: Test_Card_Width, height: Test_Card_Height}}>
-            				<div className="card-header" style={{}}>
+            				<div className="card-header">
 							
 								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Coding Playground: </h4>
 								
@@ -325,7 +325,7 @@ class ProblemDetailBase extends React.Component {
 							</button>
 							</div>
 						</div>
-					</span>
+					</div>
 				}
 			</AuthUserContext.Consumer>
 		);
