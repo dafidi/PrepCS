@@ -289,7 +289,7 @@ class ProblemDetailBase extends React.Component {
 									<div className="card-header"  style={{backgroundColor: "#003a63"}}>
 										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem Description:</h4>
 									</div>
-									<div className="card-body" style={{textAlign: "center", color: "black"}}>
+									<div className="card-body" style={{textAlign: "center", color: "#212529"}}>
 										<div>
 											<h4>{this.state.problemSummary}</h4>
 										</div>
@@ -301,7 +301,7 @@ class ProblemDetailBase extends React.Component {
 									<div className="card-header" style={{backgroundColor: "#e51937"}}>
 										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Console:</h4>
 									</div>
-									<div className="card-body" style={{color: "black"}}>
+									<div className="card-body" style={{color: "#212529"}}>
 										<div>
 											<InfoBox
 												ref={this.infoBoxRef}
