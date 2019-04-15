@@ -1,9 +1,9 @@
 import React from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
-import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 
 class CourseProblemsComponentBase extends React.Component {
@@ -46,7 +46,7 @@ class CourseProblemsComponentBase extends React.Component {
             });
             this.setState({
               easyProblems: easy,
-              mediumProbelms: medium,
+              mediumProblems: medium,
               hardProblems: hard,
             });
           })

@@ -21,7 +21,10 @@ class DashboardComponentBase extends React.Component {
       problemsUserHasAttempted: [],
       problemsUserHasAttemptedSuccessfully: [],
       numberOfProblemsUserHasAttempted: null,
-      numberOfProblemsUserHasAttemptedSuccessfully: null
+      numberOfProblemsUserHasAttemptedSuccessfully: null,
+      data:{
+        totalNumberOfProblemsInArraysAndStrings: 1
+      }
     };
   }
 
