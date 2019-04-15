@@ -26,10 +26,10 @@ class ProblemDetailBase extends React.Component {
 			problemStarterCode: '',
 			userId: null,
 			width: "1920",
-			height: "1080"
+			height: "1080",
 		};
 
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    	this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
 		this.infoBoxRef = React.createRef();
 	}
@@ -263,11 +263,9 @@ class ProblemDetailBase extends React.Component {
 		var Page_Width = this.state.width - 180;
 		var Card_Height = Page_Height - 180;
 		var Card_Width = (Page_Width - 90 - 180 - 90)/2;
-		var Card_Height_2 = Card_Height - 90;
 		Page_Height = "" + Page_Height + "px";
 		Page_Width = "" + Page_Width + "px";
 		Card_Height = "" + Card_Height + "px";
-		Card_Height_2 = "" + Card_Height_2 + "px";
 		Card_Width = "" + Card_Width + "px";
 
 		return (
@@ -278,7 +276,7 @@ class ProblemDetailBase extends React.Component {
 						<span className="" style={{float: "left"}}>
 						<div className="card border-danger mb-3" style={{ margin: "90px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", width: Card_Width, height: Card_Height}}>
             				<div className="card-header" style={{backgroundColor: "#E74C3C"}}>
-								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion{Card_Width}</h4>
+								<h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion{Card_Width}{Card_Height}</h4>
             				</div>
             			<div className="card-body">
 							<h1>{this.state.problemName}</h1>
