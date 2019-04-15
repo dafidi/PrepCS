@@ -46,7 +46,7 @@ class CourseProblemsComponentBase extends React.Component {
             });
             this.setState({
               easyProblems: easy,
-              mediumProbelms: medium,
+              mediumProblems: medium,
               hardProblems: hard,
             });
           })

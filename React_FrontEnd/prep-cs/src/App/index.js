@@ -125,10 +125,12 @@ class HomeBodyBase extends React.Component {
     var Page_Height = this.state.height - 95;
     var Page_Width = this.state.width - 180;
 
+    var Div_Box_Width = Page_Width - 17;
+
     var testing_width = Page_Width - 180;
-    var testing_width_mobile = Page_Width + 90;
+    var testing_width_mobile = Page_Width + 90 + 90;
     var testing_height = Page_Height - 180;
-    var testing_height_mobile = Page_Height - 90;
+    var testing_height_mobile = Page_Height;
     testing_width = "" + testing_width + "px";
     testing_width_mobile = "" + testing_width_mobile + "px";
     testing_height = "" + testing_height + "px";
@@ -136,12 +138,13 @@ class HomeBodyBase extends React.Component {
 
     Page_Height = "" + Page_Height + "px";
     Page_Width = "" + Page_Width + "px";
+    Div_Box_Width = "" + Div_Box_Width + "px";
 
     if (Is_Mobile_View == true) {
       return (
         <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
           <div style={{margin: "0px auto", height: Page_Height, position: "relative"}}>
-          <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width_mobile, height: testing_height_mobile, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
+          <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width_mobile, height: testing_height_mobile, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
           <p>
             <h3 style={{ color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS</h3>
             <h5 style={{ margin: "0px 45px", color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform.</h5>
@@ -153,7 +156,7 @@ class HomeBodyBase extends React.Component {
             </div>}
           </div>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
-            <ImageGallery items={images} slideInterval={this.state.slideInterval} showThumbnails={this.state.showThumbnails} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
+            <ImageGallery items={images} showNav={this.state.showNav} showGalleryPlayButton={this.state.showGalleryPlayButton} showPlayButton={this.state.showPlayButton} showThumbnails={this.state.showThumbnails} slideInterval={this.state.slideInterval} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
           </div>
         </div>
       );
@@ -163,7 +166,7 @@ class HomeBodyBase extends React.Component {
         <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
           <div style={{margin: "0px 90px", height: Page_Height, position: "relative"}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
-            <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width, height: testing_height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
+            <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: Div_Box_Width, height: Page_Height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
             <p>
             <h1 style={{ color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS</h1>
             <h4 style={{ margin: "0px 90px", color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform.</h4>
@@ -174,7 +177,7 @@ class HomeBodyBase extends React.Component {
               <button type="button" onClick={this.goToSignUpPage} className="btn btn-warning" style={{ marginLeft: "60px", paddingLeft: "30px", paddingRight: "30px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>Sign Up</button>
           </div>}
             </div>
-            <ImageGallery items={images} /* showNav={this.state.showNav} showGalleryPlayButton={this.state.showGalleryPlayButton} showPlayButton={this.state.showPlayButton} showThumbnails={this.state.showThumbnails}*/ slideInterval={this.state.slideInterval} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
+            <ImageGallery items={images} showNav={this.state.showNav} showGalleryPlayButton={this.state.showGalleryPlayButton} showPlayButton={this.state.showPlayButton} showThumbnails={this.state.showThumbnails} slideInterval={this.state.slideInterval} showBullets={this.state.showBullets} showFullscreenButton={this.state.showFullscreenButton} autoPlay={this.state.autoPlay}/>
           </div>
         </div>
       );
