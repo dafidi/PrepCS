@@ -27,8 +27,24 @@ class ProblemDetailBase extends React.Component {
 			userId: null
 		};
 
+		this.state = { width: '1920', height: "1080" };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+
 		this.infoBoxRef = React.createRef();
 	}
+
+	componentDidMount() {
+		this.updateWindowDimensions();
+		window.addEventListener('resize', this.updateWindowDimensions);
+	  }
+	
+	  componentWillUnmount() {
+		window.removeEventListener('resize', this.updateWindowDimensions);
+	  }
+	
+	  updateWindowDimensions() {
+		this.setState({ width: window.innerWidth, height: window.innerHeight });
+	  }
 
 	/**
 	 * Sends an http request to AWS API Gateway for execution of the users's code.
