@@ -24,13 +24,19 @@ class EventsPageBase extends React.Component {
 
     this.state = {
       events: [],
-      sortedEvents: []
+      sortedEvents: [],
+      width: '1920',
+      height: '1080'
     };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
     this._isMounted = false;
   }
 
   componentDidMount() {
+
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
     this._isMounted = true;
     let listOfEvents = [];
 
@@ -54,6 +60,11 @@ class EventsPageBase extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   handleEventStatusChange = (checkbox) => {
@@ -67,7 +78,7 @@ class EventsPageBase extends React.Component {
   render() {
     return (
       <div style={{width:"75vw", marginLeft:20}}>
-        <h2>Upcoming CS events @ HU</h2>
+        <h2>Upcoming CS events @ Howard University</h2>
         <div style={{margin:10}}>
           <Paper>
             <Table>
