@@ -215,7 +215,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="last_problem_opened" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="last_problem_opened" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card text-white bg-primary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header">
                 <h4 style={{ textAlign: 'center' }}>Last Problem Attempted</h4>
@@ -235,7 +235,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="progress_bars" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="progress_bars" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-secondary mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#e51937" }}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>Progress</h4>
@@ -321,7 +321,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="events" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="events" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>Your Events</h4>
@@ -363,7 +363,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="leaderboard" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="leaderboard" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>PrepCS Leaderboard</h4>
@@ -406,7 +406,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="difficulty" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="difficulty" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
@@ -439,7 +439,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="placeholder" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="placeholder" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-info mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#3498DB" }}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>Placeholder</h4>
@@ -469,7 +469,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="strengths" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="strengths" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>Your Strengths</h4>
@@ -497,7 +497,7 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="weaknesses" style={Is_Mobile_View ? { marginTop: "45px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          <div className="weaknesses" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                 <h4 style={{ color: "white", textAlign: 'center' }}>Your Weaknesses</h4>

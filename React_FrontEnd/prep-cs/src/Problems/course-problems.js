@@ -125,11 +125,11 @@ class CourseProblemsComponentBase extends React.Component {
               <div>
               <div>
                     <div className="Card_Carousel">
-                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "45px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
+                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "0px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
                         <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Easy Problems:</h4>
                         </div>
-                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll" }}>
+                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" } : { whiteSpace: "nowrap", overflowX: "scroll" }}>
                 {
                   this.state.easyProblems.slice().map((problem, i) => (
                     
@@ -143,9 +143,9 @@ class CourseProblemsComponentBase extends React.Component {
                             <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                               <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                               {problem.data.summary}
-                              </h5><br></br>
-                              <div>
-                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={{height: "50px", width: "50px"}}src={Green_Check}></img>}
+                              </h5>
+                              <div style={Is_Mobile_View ? {} : {marginTop: "30px"}}>
+                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={Is_Mobile_View ? {height: "25px", width: "25px"} :{height: "50px", width: "50px"}}src={Green_Check}></img>}
                               </div> 
 
                             </div>
@@ -165,11 +165,11 @@ class CourseProblemsComponentBase extends React.Component {
               <div>
               <div>
                    <div className="Card_Carousel">
-                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "45px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
+                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "0px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
                         <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Medium Problems:</h4>
                         </div>
-                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll" }}>
+                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" }}>
                 {
                   this.state.mediumProblems.slice().map((problem, i) => (
                     
@@ -183,9 +183,9 @@ class CourseProblemsComponentBase extends React.Component {
                       <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         {problem.data.summary}
-                        </h5><br></br>
-                        <div>
-                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={{height: "50px", width: "50px"}}src={Green_Check}></img>}
+                        </h5>
+                        <div style={Is_Mobile_View ? {} : {marginTop: "30px"}}>
+                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={Is_Mobile_View ? {height: "25px", width: "25px"} :{height: "50px", width: "50px"}}src={Green_Check}></img>}
                          </div> 
                       </div>
                     </div>
@@ -202,11 +202,11 @@ class CourseProblemsComponentBase extends React.Component {
               <div>
               <div>
                     <div className="Card_Carousel">
-                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "45px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
+                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "0px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
                         <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Hard Problems:</h4>
                         </div>
-                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll" }}>
+                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" }}>
                 {
                   this.state.hardProblems.slice().map((problem, i) => (
                     
@@ -219,9 +219,9 @@ class CourseProblemsComponentBase extends React.Component {
                       <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         {problem.data.summary}
-                        </h5><br></br>
-                            <div>
-                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={{height: "50px", width: "50px"}}src={Green_Check}></img>}
+                        </h5>
+                            <div style={Is_Mobile_View ? {} : {marginTop: "30px"}}>
+                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={Is_Mobile_View ? {height: "25px", width: "25px"} : {height: "50px", width: "50px"}}src={Green_Check}></img>}
                             </div> 
                       </div>
                     </div>
