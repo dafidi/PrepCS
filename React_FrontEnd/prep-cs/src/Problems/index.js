@@ -120,11 +120,13 @@ class ProblemsComponentBase extends React.Component {
               <div>
                 {
                   this.state.categories.slice().map((category, i) => (
-                    <button className={Button_Styling[i % 4]} style={{height: Menu_Height, marginTop: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}} type="button">
+                    
                       <NavLink style={{color: "white", textDecoration: "none"}} key={category} to={ROUTES.COURSE + "/" + category}>
-                        <h3 key={category}>{category}</h3>
+                      <button className={Button_Styling[i % 4]} style={{height: Menu_Height, marginTop: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}} type="button">
+                        <h3 key={category}>{i + 1 + ". "}{category}</h3>
+                      </button>
                       </NavLink>
-                    </button>
+                    
                   )
                   )
                 }
