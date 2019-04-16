@@ -23,11 +23,19 @@ class ProblemsComponentBase extends React.Component {
       uid: null,
       problemsUserHasSolved: [],
       problemsByCategory: {},
-      categories: []
+      categories: [],
+      width: "1920",
+      height: "1080"
     };
+
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   componentDidMount = () => {
+
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+
     let problemsByCategory = { "Miscellaneous": [] };
     this.props.firebase.fs_problems()
       .get()
@@ -78,6 +86,14 @@ class ProblemsComponentBase extends React.Component {
 
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
   handleChangePage = (event, page) => {
     this.setState({ problemTablePage: page });
   }
@@ -87,22 +103,37 @@ class ProblemsComponentBase extends React.Component {
   };
 
   render() {
+
+    var Page_Height = this.state.height - 95;
+    var Menu_Height = Page_Height / 9;
+
+    Page_Height = "" + Page_Height + "px";
+    Menu_Height = "" + Menu_Height + "px";
+
+    const Button_Styling = ["btn btn-success btn-lg btn-block", "btn btn-info btn-lg btn-block", "btn btn-warning btn-lg btn-block", "btn btn-danger btn-lg btn-block"];
+
     return (
-      <AuthUserContext.Consumer>
-        {
-          authUser => authUser ?
-            <div>
-              {
-                this.state.categories.slice().map((category) => (
-                  <NavLink key={category} to={ROUTES.COURSE + "/" + category}>
-                    <p key={category}>{category}</p>
-                  </NavLink>
-                )
-                )
-              }
-            </div> : <div></div>
-        }
-      </AuthUserContext.Consumer>
+      <div style={{overflowY: "hidden"}}>
+        <AuthUserContext.Consumer>
+          {
+            authUser => authUser ?
+              <div>
+                {
+                  this.state.categories.slice().map((category, i) => (
+                    
+                      <NavLink style={{color: "white", textDecoration: "none"}} key={category} to={ROUTES.COURSE + "/" + category}>
+                      <button className={Button_Styling[i % 4]} style={{height: Menu_Height, marginTop: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}} type="button">
+                        <h3 key={category}>{i + 1 + ". "}{category}</h3>
+                      </button>
+                      </NavLink>
+                    
+                  )
+                  )
+                }
+              </div> : <div></div>
+          }
+        </AuthUserContext.Consumer>
+      </div>
     )
   }
 }

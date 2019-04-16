@@ -87,7 +87,13 @@ class EventsPageBase extends React.Component {
     var Card_Height = (Page_Height * 3) / 5;
     var Card_Width = Page_Width / 2 - 10;
     var Card_Event_Width = Page_Width / 4;
+    var Card_Event_Width_Mobile = Page_Width / 2;
     var Card_Event_Height = (Card_Carousel_Height * 2) / 3;
+
+    var Pic_Height = Card_Event_Height - 53;
+    var Pic_Width = Card_Event_Width - 1;
+    var Pic_Width_Mobile = Card_Event_Width_Mobile - 1;
+
 
     Card_Carousel_Height = "" + Card_Carousel_Height + "px";
     Card_Height = "" + Card_Height + "px";
@@ -95,10 +101,16 @@ class EventsPageBase extends React.Component {
 
     Card_Event_Width = "" + Card_Event_Width + "px";
     Card_Event_Height = "" + Card_Event_Height + "px";
+    Card_Event_Width_Mobile = "" + Card_Event_Width_Mobile + "px";
+
+    Pic_Height = "" + Pic_Height + "px";
+    Pic_Width = "" + Pic_Width + "px";
+    Pic_Width_Mobile = "" + Pic_Width_Mobile + "px";
 
     const numberOfEvents = this.state.events.length;
 
     const styles = ["card text-white bg-info mb-3", "card text-white bg-warning mb-3", "card text-white bg-success mb-3", "card text-white bg-danger mb-3", "card text-white bg-info mb-3", "card text-white bg-warning mb-3"];
+    const event_images = [require("../resources/images/e1.jpg"), require("../resources/images/e2.jpg"), require("../resources/images/e3.jpg"), require("../resources/images/e4.jpg"), require("../resources/images/e5.jpg"), require("../resources/images/e6.jpg")];
     return (
       <div style={{ overflow: "hidden" }}>
         {/*<h2>Upcoming CS Events @ Howard University</h2>*/}
@@ -111,12 +123,12 @@ class EventsPageBase extends React.Component {
 
               {
                 this.state.events.map((event, i) => (
-                    <div key={event.id} className={styles[i % numberOfEvents]} style={{ display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
-                      <div className="card-header">
-                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>{event.title}</h4>
+                    <div key={event.id} className={styles[i % numberOfEvents]} style={Is_Mobile_View ? { display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
+                      <div className="card-header" style={{ whiteSpace: "nowrap" , textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden" }}>{event.title}</h4>
                       </div>
-                      <div className="card-body">
-
+                      <div className="card-body" style={{padding: "0px"}}>
+                        <img style={Is_Mobile_View ? {objectFit: "cover", height: Pic_Height, width: Pic_Width_Mobile} : {objectFit: "cover", objectPosition: "0 20%", height: Pic_Height, width: Pic_Width}} src={event_images[i]}></img>
                       </div>
                     </div>
                     ))
@@ -127,7 +139,7 @@ class EventsPageBase extends React.Component {
         </div>
         <div className="Bottom" style={{ margin: "3px auto" }}>
           <div className="Event_List" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} : { float: "left", width: Card_Width }}>
-            <div className="card border-success mb-3" style={{ height: Card_Height, marginBottom: "0px" }}>
+            <div className="card border-success mb-3" style={Is_Mobile_View ? {overflowY: "scroll", height: Card_Height, marginBottom: "45px" } :  {overflowY: "scroll", height: Card_Height, marginBottom: "0px" }}>
               <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                 <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Add List to Calender:</h4>
               </div>
@@ -149,14 +161,14 @@ class EventsPageBase extends React.Component {
                           this.state.events.map(
                             event => (
                               <TableRow key={event.id}>
-                                <TableCell><span>{event.title}</span></TableCell>
-                                <TableCell><span>{(new Date(event.start)).toString()}
+                                <TableCell style={{padding: "5px"}}><span>{event.title}</span></TableCell>
+                                <TableCell style={{padding: "5px"}}><span >{(new Date(event.start)).toString()}
                                 </span>
                                 </TableCell>
-                                <TableCell><span>{(new Date(event.end)).toString()}
+                                <TableCell style={{padding: "5px"}}><span>{(new Date(event.end)).toString()}
                                 </span>
                                 </TableCell>
-                                <TableCell><span><input type="checkbox" onClick={this.handleEventStatusChange}></input></span></TableCell>
+                                <TableCell style={{padding: "5px"}}><span><input type="checkbox" onClick={this.handleEventStatusChange}></input></span></TableCell>
                               </TableRow>
                             )
                           )
