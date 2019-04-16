@@ -165,12 +165,6 @@ class EventsPageBase extends React.Component {
                     </Table>
                   </Paper>
                 </div>
-
-
-
-
-
-
               </div>
             </div>
           </div>
