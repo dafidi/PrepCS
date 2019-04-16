@@ -147,9 +147,15 @@ class DashboardComponentBase extends React.Component {
     const data = this.state.data;
     let totalNumberofProblemsDoneByUser = 0;
     let totalNumberOfProblems = 0;
+    const strengthsPieChartData = [];
     Object.keys(data).forEach((category) => {
       totalNumberofProblemsDoneByUser += data[category].totalDoneByUser;
       totalNumberOfProblems += data[category].total;
+      strengthsPieChartData.push(
+        {
+          x: category,
+          y: data[category].totalDoneByUser}
+        );
     });
 
     const totalProblemsWidth = ((totalNumberofProblemsDoneByUser
@@ -182,7 +188,6 @@ class DashboardComponentBase extends React.Component {
     const recursionAndDynamicProgrammingWidth = ((data["Recursion and Dynamic Programming"].totalDoneByUser
       / data["Recursion and Dynamic Programming"].total) * 100) + "%";
 
-
     var Is_Mid_Desktop = this.state.width < 1300;
     var Is_Mobile_View = this.state.width < 700;
     var Page_Height = this.state.height - 95;
@@ -200,6 +205,7 @@ class DashboardComponentBase extends React.Component {
     Triple_Section_Width_Mobile = "" + Triple_Section_Width_Mobile + "px";
     Triple_Section_Width_Mid_Desktop = "" + Triple_Section_Width_Mid_Desktop + "px";
 
+    console.log(data["Arrays and Strings"].hardDoneByUser);
     if (Is_Mobile_View == true || Is_Mid_Desktop == true) {
 
       return (
@@ -413,13 +419,13 @@ class DashboardComponentBase extends React.Component {
                     colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
                   >
                     <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: 5 }, { x: "Search & Sort", y: 3 }, { x: "Stacks & Queues", y: 2 }, { x: "Linked Lists", y: 5 }, { x: "Trees & Graphs", y: 3 }, { x: "Recursion and Dynamic Programming", y: 2 }, { x: "Mathematics & Probability", y: 5 }, { x: "Bit Manipulation", y: 3 }, { x: "Miscellaneous", y: 2 }]}
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].easyDoneByUser }, { x: "Search & Sort", y: 3 }, { x: "Stacks & Queues", y: 2 }, { x: "Linked Lists", y: 5 }, { x: "Trees & Graphs", y: 3 }, { x: "Recursion and Dynamic Programming", y: 2 }, { x: "Mathematics & Probability", y: 5 }, { x: "Bit Manipulation", y: 3 }, { x: "Miscellaneous", y: 2 }]}
                     />
                     <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: 5 }, { x: "Search & Sort", y: 4 }, { x: "Stacks & Queues", y: 1 }, { x: "Linked Lists", y: 5 }, { x: "Trees & Graphs", y: 4 }, { x: "Recursion and Dynamic Programming", y: 1 }, { x: "Mathematics & Probability", y: 5 }, { x: "Bit Manipulation", y: 4 }, { x: "Miscellaneous", y: 1 }]}
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].mediumDoneByUser }, { x: "Search & Sort", y: 4 }, { x: "Stacks & Queues", y: 1 }, { x: "Linked Lists", y: 5 }, { x: "Trees & Graphs", y: 4 }, { x: "Recursion and Dynamic Programming", y: 1 }, { x: "Mathematics & Probability", y: 5 }, { x: "Bit Manipulation", y: 4 }, { x: "Miscellaneous", y: 1 }]}
                     />
                     <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: 6 }, { x: "Search & Sort", y: 2 }, { x: "Stacks & Queues", y: 3 }, { x: "Linked Lists", y: 6 }, { x: "Trees & Graphs", y: 2 }, { x: "Recursion and Dynamic Programming", y: 3 }, { x: "Mathematics & Probability", y: 6 }, { x: "Bit Manipulation", y: 2 }, { x: "Miscellaneous", y: 3 }]}
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].hardDoneByUser }, { x: "Search & Sort", y: 2 }, { x: "Stacks & Queues", y: 3 }, { x: "Linked Lists", y: 6 }, { x: "Trees & Graphs", y: 2 }, { x: "Recursion and Dynamic Programming", y: 3 }, { x: "Mathematics & Probability", y: 6 }, { x: "Bit Manipulation", y: 2 }, { x: "Miscellaneous", y: 3 }]}
                     />
                   </VictoryStack>
 
@@ -750,16 +756,39 @@ class DashboardComponentBase extends React.Component {
                     colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
                   >
                     <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: 5 }, { x: "Search & Sort", y: 3 }, { x: "Stacks & Queues", y: 2 }, { x: "Linked Lists", y: 5 }, { x: "Trees & Graphs", y: 3 }, { x: "Recursion and Dynamic Programming", y: 2 }, { x: "Mathematics & Probability", y: 5 }, { x: "Bit Manipulation", y: 3 }, { x: "Miscellaneous", y: 2 }]}
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].easyDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].easyDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].easyDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].easyDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].easyDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].easyDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].easyDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].easyDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].easyDoneByUser }]}
                     />
                     <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: 5 }, { x: "Search & Sort", y: 4 }, { x: "Stacks & Queues", y: 1 }, { x: "Linked Lists", y: 5 }, { x: "Trees & Graphs", y: 4 }, { x: "Recursion and Dynamic Programming", y: 1 }, { x: "Mathematics & Probability", y: 5 }, { x: "Bit Manipulation", y: 4 }, { x: "Miscellaneous", y: 1 }]}
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].mediumDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].mediumDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].mediumDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].mediumDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].mediumDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].mediumDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].mediumDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].mediumDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].mediumDoneByUser }]}
                     />
                     <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: 6 }, { x: "Search & Sort", y: 2 }, { x: "Stacks & Queues", y: 3 }, { x: "Linked Lists", y: 6 }, { x: "Trees & Graphs", y: 2 }, { x: "Recursion and Dynamic Programming", y: 3 }, { x: "Mathematics & Probability", y: 6 }, { x: "Bit Manipulation", y: 2 }, { x: "Miscellaneous", y: 3 }]}
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].hardDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].hardDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].hardDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].hardDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].hardDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].hardDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].hardDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].hardDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].hardDoneByUser }]}
                     />
                   </VictoryStack>
-
                 </span>
               </div>
             </div>
@@ -829,15 +858,13 @@ class DashboardComponentBase extends React.Component {
                 <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Analyzing your Weaknesses:</strong></h5>
 
                   <VictoryPie
-                    colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12"]}
+                    colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB"]}
                     padAngle={3}
                     innerRadius={100}
-                    data={[
-                      { x: "A", y: 4000 },
-                      { x: "B", y: 2048 },
-                      { x: "C", y: 2600 },
-                      { x: "D", y: 1800 }
-                    ]}
+                    data={
+                      strengthsPieChartData
+                    }
+                    datar={[Object.keys(data)]}
                   />
                 </span>
               </div>
