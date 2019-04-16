@@ -6,7 +6,7 @@ import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 import * as ROUTES from '../constants/routes';
 
-import Green_Check from "../resources/images/white-check-icon-on-green.png";
+import Green_Check from '../resources/images/white-check-icon-on-green.png';
 
 class CourseProblemsComponentBase extends React.Component {
   constructor(props) {
