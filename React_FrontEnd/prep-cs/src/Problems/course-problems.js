@@ -6,6 +6,8 @@ import { withFirebase } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 import * as ROUTES from '../constants/routes';
 
+import Green_Check from "../resources/images/white-check-icon-on-green.png";
+
 class CourseProblemsComponentBase extends React.Component {
   constructor(props) {
     super(props);
@@ -13,11 +15,17 @@ class CourseProblemsComponentBase extends React.Component {
     this.state = {
       easyProblems: [],
       mediumProblems: [],
-      hardProblems: []
+      hardProblems: [],
+      width: "1920",
+      height: "1080",
+      problemsUserHasDone: []
     };
   }
 
   componentDidMount = () => {
+
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
 
     this.props.firebase.auth.onAuthStateChanged((user) => {
       if (user) {
@@ -52,42 +60,181 @@ class CourseProblemsComponentBase extends React.Component {
           })
           .catch((error) => { console.warn(error); });
 
+        this.props.firebase.fs_user(this.props.firebase.getUid()).get()
+        .then((doc) => {
+          this.setState({
+            problemsUserHasDone: doc.data().problems_attempted_successfully
+          });
+        })
+        .catch((error) => {console.warn(error)});
+
       } else {
 
       }
     });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+
   render() {
+
+    var Is_Mid_Desktop = this.state.width < 1300;
+    var Is_Mobile_View = this.state.width < 700;
+
+    var Page_Height = this.state.height - 96;
+    var Page_Width = this.state.width;
+    var Card_Carousel_Height = (Page_Height / 3);
+    var Card_Height = (Page_Height * 3) / 5;
+    var Card_Width = Page_Width / 2 - 10;
+    var Card_Event_Width = Page_Width / 4;
+    var Card_Event_Width_Mobile = Page_Width / 2;
+    var Card_Event_Height = (Card_Carousel_Height * 2) / 3;
+
+    var Pic_Height = Card_Event_Height - 53;
+    var Pic_Width = Card_Event_Width - 1;
+    var Pic_Width_Mobile = Card_Event_Width_Mobile - 1;
+
+
+    Card_Carousel_Height = "" + Card_Carousel_Height + "px";
+    Card_Height = "" + Card_Height + "px";
+    Card_Width = "" + Card_Width + "px";
+
+    Card_Event_Width = "" + Card_Event_Width + "px";
+    Card_Event_Height = "" + Card_Event_Height + "px";
+    Card_Event_Width_Mobile = "" + Card_Event_Width_Mobile + "px";
+
+    Pic_Height = "" + Pic_Height + "px";
+    Pic_Width = "" + Pic_Width + "px";
+    Pic_Width_Mobile = "" + Pic_Width_Mobile + "px";
+
+    const styles = ["card text-white bg-info mb-3", "card text-white bg-warning mb-3", "card text-white bg-success mb-3", "card text-white bg-danger mb-3", "card text-white bg-info mb-3", "card text-white bg-warning mb-3"];
+
     console.log(this.state.hardProblems);
     return (
       <AuthUserContext.Consumer>
         {
           authUser => authUser ?
-            <div>
+            <div style={{overflowY: "hidden"}}>
               <div>
-                <h2>Easy</h2>
+              <div>
+                    <div className="Card_Carousel">
+                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "45px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
+                        <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
+                          <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Easy Problems:</h4>
+                        </div>
+                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll" }}>
                 {
-                  this.state.easyProblems.slice().map((problem) => (
-                    <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}><p>{problem.data.shortName}</p></NavLink>
+                  this.state.easyProblems.slice().map((problem, i) => (
+                    
+                    
+
+                        <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
+                          <div className="card text-white bg-success mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
+                            <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                              <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                            </div>
+                            <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                              <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                              {problem.data.summary}
+                              </h5><br></br>
+                              <div>
+                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={{height: "50px", width: "50px"}}src={Green_Check}></img>}
+                              </div> 
+
+                            </div>
+                          </div>
+                        </NavLink>
+                    
+                        
+
+
                   ))
                 }
+                </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
               <div>
-                <h2>Medium</h2>
+              <div>
+                   <div className="Card_Carousel">
+                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "45px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
+                        <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
+                          <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Medium Problems:</h4>
+                        </div>
+                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll" }}>
                 {
-                  this.state.mediumProblems.slice().map((problem) => (
-                    <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}><p>{problem.data.shortName}</p></NavLink>
+                  this.state.mediumProblems.slice().map((problem, i) => (
+                    
+
+
+                    <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
+                    <div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
+                      <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                      </div>
+                      <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        {problem.data.summary}
+                        </h5><br></br>
+                        <div>
+                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={{height: "50px", width: "50px"}}src={Green_Check}></img>}
+                         </div> 
+                      </div>
+                    </div>
+                  </NavLink>
+
+
                   ))
                 }
+                </div>
+                      </div>
+                    </div>            
+                  </div>
               </div>
               <div>
-                <h2>Hard</h2>
+              <div>
+                    <div className="Card_Carousel">
+                      <div className="card border-secondary mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Card_Carousel_Height, marginBottom: "45px"} : { height: Card_Carousel_Height, marginBottom: "0px" }}>
+                        <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
+                          <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Hard Problems:</h4>
+                        </div>
+                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll" }}>
                 {
-                  this.state.hardProblems.slice().map((problem) => (
-                    <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}><p>{problem.data.shortName}</p></NavLink>))
+                  this.state.hardProblems.slice().map((problem, i) => (
+                    
+
+                    <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
+                    <div className="card text-white bg-danger mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
+                      <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                      </div>
+                      <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        {problem.data.summary}
+                        </h5><br></br>
+                            <div>
+                                {this.state.problemsUserHasDone.includes(problem.id) && <img style={{height: "50px", width: "50px"}}src={Green_Check}></img>}
+                            </div> 
+                      </div>
+                    </div>
+                  </NavLink>
+
+                        
+                    ))
                 }
               </div>
+              </div>
+                      </div>
+                    </div>
+                    </div>
             </div> : <div></div>
         }
       </AuthUserContext.Consumer>

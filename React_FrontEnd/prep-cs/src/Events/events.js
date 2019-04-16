@@ -124,8 +124,8 @@ class EventsPageBase extends React.Component {
               {
                 this.state.events.map((event, i) => (
                     <div key={event.id} className={styles[i % numberOfEvents]} style={Is_Mobile_View ? { display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
-                      <div className="card-header">
-                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>{event.title}</h4>
+                      <div className="card-header" style={{ whiteSpace: "nowrap" , textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
+                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden" }}>{event.title}</h4>
                       </div>
                       <div className="card-body" style={{padding: "0px"}}>
                         <img style={Is_Mobile_View ? {objectFit: "cover", height: Pic_Height, width: Pic_Width_Mobile} : {objectFit: "cover", objectPosition: "0 20%", height: Pic_Height, width: Pic_Width}} src={event_images[i]}></img>
