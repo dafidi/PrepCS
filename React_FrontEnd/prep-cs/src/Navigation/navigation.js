@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../constants/routes';
 
+import Logo from '../resources/images/Logo.png';
+
 class Navigation extends React.Component {
 
   constructor(props) {
@@ -81,7 +83,10 @@ class Navigation extends React.Component {
             <div className="navbar navbar-expand-lg navbar-dark bg-primary" style={{ minWidth: "350px", height: "90px" }}>
               <div className="collapse navbar-collapse">
                 <NavLink to={ROUTES.HOME} className="nav-item active">
-                  <span className="navbar-brand">PrepCS</span>
+                  <span className="navbar-brand">
+                  <img style={{height: "90px"}} src={Logo}></img>
+                  <span style={{marginLeft: "20px"}}>PrepCS</span>
+                  </span>
                 </NavLink>
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0" style={{ position: "absolute", margin: "0px auto", left: "50%", transform: "translate(-50%)", fontSize: "1.171875rem" }}>
                   <li className="nav-item">
