@@ -363,10 +363,14 @@ class InfoBox extends React.Component {
 	 */
 	updateOutput = (resultJson) => {
 		if (resultJson["error-status"]) {
+			const marker = "\"/tmp/submission.py\",";
+			let startOfMarker = resultJson["error"].indexOf(marker);
+			const endOfMarker = startOfMarker + marker.length;
+			const errorMessage = resultJson["error"].slice(endOfMarker);
 			this.setState({
 				// resultJson["result"] will itself needed to be parsed as JSON
 				// so we have more information about the result of the submission.
-				text: resultJson["result"] + "\nError:\n" + resultJson["error"]
+				text: resultJson["result"] + "\nError:\n" + errorMessage
 			});
 		} else {
 			let parsedResult = JSON.parse(resultJson["result"]);
