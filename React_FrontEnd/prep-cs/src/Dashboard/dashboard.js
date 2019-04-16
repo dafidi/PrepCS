@@ -660,6 +660,86 @@ class DashboardComponentBase extends React.Component {
         {/*======================================================================== */}
         {/*======================================================================== */}
 
+        <div className="difficulty_and_placeholder" style={{ margin: "90px auto", width: Page_Width }}>
+          <span className="difficulty" style={{ width: Card_Width, float: "left" }}>
+            <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+              <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
+              </div>
+              <div className="card-body">
+                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-danger"><strong>Your Proficiency vs Difficulty:</strong></h5><br></br>
+
+                  <VictoryStack
+                    labels={["A & S", "S & S", "S & Q", "LL", "T & G", "R & DP", "M & P", "BM", "Misc"]}
+                    colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
+                  >
+                    <VictoryBar
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].easyDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].easyDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].easyDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].easyDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].easyDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].easyDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].easyDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].easyDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].easyDoneByUser }]}
+                    />
+                    <VictoryBar
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].mediumDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].mediumDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].mediumDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].mediumDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].mediumDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].mediumDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].mediumDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].mediumDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].mediumDoneByUser }]}
+                    />
+                    <VictoryBar
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].hardDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].hardDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].hardDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].hardDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].hardDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].hardDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].hardDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].hardDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].hardDoneByUser }]}
+                    />
+                  </VictoryStack>
+                </span>
+              </div>
+            </div>
+          </span>
+          <span className="weaknesses" style={{ width: Card_Width, float: "right" }}>
+            <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+              <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>Your Weaknesses</h4>
+              </div>
+              <div className="card-body">
+                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Analyzing your Weaknesses:</strong></h5>
+
+                  <VictoryPie
+                    colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB"]}
+                    padAngle={3}
+                    innerRadius={100}
+                    data={
+                      strengthsPieChartData
+                    }
+                  />
+                </span>
+              </div>
+            </div>
+          </span>
+          <div style={{ clear: "both" }}>
+          </div>
+        </div>
+
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+
         <div className="events_and_leaderboard" style={{ margin: "90px auto", width: Page_Width }}>
           <span className="events" style={{ width: Card_Width, float: "left" }}>
             <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
@@ -729,143 +809,6 @@ class DashboardComponentBase extends React.Component {
                   <button type="submit" className="btn btn-warning">
                     Go to Leaderboard
                 </button>
-                </span>
-              </div>
-            </div>
-          </span>
-          <div style={{ clear: "both" }}>
-          </div>
-        </div>
-
-        {/*======================================================================== */}
-        {/*======================================================================== */}
-        {/*======================================================================== */}
-        {/*======================================================================== */}
-
-        <div className="difficulty_and_placeholder" style={{ margin: "90px auto", width: Page_Width }}>
-          <span className="difficulty" style={{ width: Card_Width, float: "left" }}>
-            <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-              <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
-                <h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
-              </div>
-              <div className="card-body">
-                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-danger"><strong>Your Proficiency vs Difficulty:</strong></h5><br></br>
-
-                  <VictoryStack
-                    labels={["A & S", "S & S", "S & Q", "LL", "T & G", "R & DP", "M & P", "BM", "Misc"]}
-                    colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
-                  >
-                    <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].easyDoneByUser },
-                      { x: "Search & Sort", y: data["Search and Sort"].easyDoneByUser },
-                      { x: "Stacks & Queues", y: data["Stacks and Queues"].easyDoneByUser },
-                      { x: "Linked Lists", y: data["Linked Lists"].easyDoneByUser },
-                      { x: "Trees & Graphs", y: data["Trees and Graphs"].easyDoneByUser },
-                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].easyDoneByUser },
-                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].easyDoneByUser },
-                      { x: "Bit Manipulation", y: data["Bit Manipulation"].easyDoneByUser },
-                      { x: "Miscellaneous", y: data["Miscellaneous"].easyDoneByUser }]}
-                    />
-                    <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].mediumDoneByUser },
-                      { x: "Search & Sort", y: data["Search and Sort"].mediumDoneByUser },
-                      { x: "Stacks & Queues", y: data["Stacks and Queues"].mediumDoneByUser },
-                      { x: "Linked Lists", y: data["Linked Lists"].mediumDoneByUser },
-                      { x: "Trees & Graphs", y: data["Trees and Graphs"].mediumDoneByUser },
-                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].mediumDoneByUser },
-                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].mediumDoneByUser },
-                      { x: "Bit Manipulation", y: data["Bit Manipulation"].mediumDoneByUser },
-                      { x: "Miscellaneous", y: data["Miscellaneous"].mediumDoneByUser }]}
-                    />
-                    <VictoryBar
-                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].hardDoneByUser },
-                      { x: "Search & Sort", y: data["Search and Sort"].hardDoneByUser },
-                      { x: "Stacks & Queues", y: data["Stacks and Queues"].hardDoneByUser },
-                      { x: "Linked Lists", y: data["Linked Lists"].hardDoneByUser },
-                      { x: "Trees & Graphs", y: data["Trees and Graphs"].hardDoneByUser },
-                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].hardDoneByUser },
-                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].hardDoneByUser },
-                      { x: "Bit Manipulation", y: data["Bit Manipulation"].hardDoneByUser },
-                      { x: "Miscellaneous", y: data["Miscellaneous"].hardDoneByUser }]}
-                    />
-                  </VictoryStack>
-                </span>
-              </div>
-            </div>
-          </span>
-          <span className="placeholder" style={{ width: Card_Width, float: "right" }}>
-            <div className="card border-info mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-              <div className="card-header" style={{ backgroundColor: "#3498DB" }}>
-                <h4 style={{ color: "white", textAlign: 'center' }}>Placeholder</h4>
-              </div>
-              <div className="card-body">
-                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-info"><strong>Graph Placeholder:</strong></h5><br></br>
-
-                  <VictoryChart domainPadding={40}>
-                    <VictoryBar
-                      style={{ data: { fill: (datum) => datum.fill } }}
-                      data={[
-                        { x: "A", y: 2000, fill: "#3498DB" },
-                        { x: "B", y: 3000, fill: "#E74C3C" },
-                        { x: "C", y: 2500, fill: "#18BC9C" },
-                        { x: "D", y: 4000, fill: "#F39C12" }
-                      ]}
-                    />
-                  </VictoryChart>
-
-                </span>
-              </div>
-            </div>
-          </span>
-          <div style={{ clear: "both" }}>
-          </div>
-        </div>
-
-        {/*======================================================================== */}
-        {/*======================================================================== */}
-        {/*======================================================================== */}
-        {/*======================================================================== */}
-
-        <div className="strengths_and_weaknesses" style={{ margin: "90px auto", width: Page_Width }}>
-          <span className="strengths" style={{ width: Card_Width, float: "left" }}>
-            <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-              <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
-                <h4 style={{ color: "white", textAlign: 'center' }}>Your Strengths</h4>
-              </div>
-              <div className="card-body">
-                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-success"><strong>Analyzing your Strengths:</strong></h5>
-
-                  <VictoryPie
-                    colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12"]}
-                    data={[
-                      { x: "A", y: 4000 },
-                      { x: "B", y: 2048 },
-                      { x: "C", y: 2600 },
-                      { x: "D", y: 1800 }
-                    ]}
-                  />
-
-                </span>
-              </div>
-            </div>
-          </span>
-          <span className="weaknesses" style={{ width: Card_Width, float: "right" }}>
-            <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-              <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
-                <h4 style={{ color: "white", textAlign: 'center' }}>Your Weaknesses</h4>
-              </div>
-              <div className="card-body">
-                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Analyzing your Weaknesses:</strong></h5>
-
-                  <VictoryPie
-                    colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB"]}
-                    padAngle={3}
-                    innerRadius={100}
-                    data={
-                      strengthsPieChartData
-                    }
-                    datar={[Object.keys(data)]}
-                  />
                 </span>
               </div>
             </div>
