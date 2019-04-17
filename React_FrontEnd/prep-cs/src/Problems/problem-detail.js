@@ -7,6 +7,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { AuthUserContext, withAuthorization } from '../Session';
 
 import "react-tabs/style/react-tabs.css";
+import 'brace/mode/python';
+import 'brace/theme/solarized_dark';
+import "brace/theme/solarized_light";
 
 class ProblemDetailBase extends React.Component {
 
@@ -24,23 +27,27 @@ class ProblemDetailBase extends React.Component {
 			problemTestFile: null,
 			problemStarterCodeFilepath: null,
 			problemStarterCode: '',
+			problemSolutionCode: "",
+			problemSolutionCodeFilePath: null,
+			showSolution: false,
 			userId: null,
 			width: '1920',
 			height: '1080',
+
 		};
 
-    	this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
 		this.infoBoxRef = React.createRef();
 	}
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.updateWindowDimensions);
+	}
 
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
-  }
+	updateWindowDimensions() {
+		this.setState({ width: window.innerWidth, height: window.innerHeight });
+	}
 
 	/**
 	 * Sends an http request to AWS API Gateway for execution of the users's code.
@@ -133,7 +140,7 @@ class ProblemDetailBase extends React.Component {
 		 * DO NOT CHANGE THIS LINE!
 		 * Otherwise, the editor won't work. I know we shouldn't
 		 * set state like this but using setState breaks the site, you can try it
-		 * out locally and see. I know the warning in developer console is;t pretty 
+		 * out locally and see. I know the warning in developer console isn't pretty 
 		 * but it's what we got. :)
 		 */
 		this.state.code = newValue;
@@ -143,7 +150,7 @@ class ProblemDetailBase extends React.Component {
 
 		this.updateWindowDimensions();
 		window.addEventListener('resize', this.updateWindowDimensions);
-	
+
 		this.props.firebase.auth.onAuthStateChanged((user) => {
 			if (user) {
 				const { problem_id } = this.props.match.params;
@@ -160,12 +167,14 @@ class ProblemDetailBase extends React.Component {
 							problemId: problem_id,
 							problemTestFilepath: docData.testFilePath,
 							problemStarterCodeFilepath: docData.starterCodeFilePath,
+							problemSolutionCodeFilePath: docData.solutionCodeFilePath,
 							userId: this.props.firebase.getUid()
 						});
 
 						this.recordLastProblemOpened(problem_id);
 
 						this.getStarterCode();
+						this.getSolutionCode();
 						this.getTestFile();
 					})
 					.catch();
@@ -256,12 +265,38 @@ class ProblemDetailBase extends React.Component {
 			.catch();
 	}
 
+	getSolutionCode = () => {
+		// Fetch starter code file.
+		let problemSolutionCode = null;
+		this.props.firebase.storage_file(this.state.problemSolutionCodeFilePath)
+			.getDownloadURL()
+			.then((resourceUrl) => {
+				let xhr = new XMLHttpRequest();
+				xhr.responseType = 'blob';
+				xhr.onload = (event) => {
+					let blob = xhr.response;
+					let reader = new FileReader();
+
+					reader.onload = () => {
+						problemSolutionCode = reader.result;
+						this.setState({
+							problemSolutionCode: problemSolutionCode,
+						});
+					}
+					reader.readAsText(blob);
+				}
+				xhr.open('GET', resourceUrl);
+				xhr.send();
+			})
+			.catch();
+	}
+
 	render() {
 		var Is_Mid_Desktop = this.state.width < 1300;
 		var Is_Mobile_View = this.state.width < 700;
-		var Total_Page_Width = this.state.width-17;
+		var Total_Page_Width = this.state.width - 17;
 		var Total_Page_Height = this.state.height - 95;
-		var Test_Card_Width = Total_Page_Width/2;
+		var Test_Card_Width = Total_Page_Width / 2;
 		var Test_Card_Height = Total_Page_Height;
 		var Test_Card_Height_2 = (Total_Page_Height - 50 - 90) / 2;
 
@@ -277,72 +312,84 @@ class ProblemDetailBase extends React.Component {
 		return (
 			<AuthUserContext.Consumer>
 				{authUser =>
-					<div className="" style={Is_Mobile_View ? {} : {overflowY: "hidden"}}>
+					<div className="" style={Is_Mobile_View ? {} : { overflowY: "hidden" }}>
 
-						<div className="" style={Is_Mobile_View ? {} : {float: "left"}}>
-						<div className="card text-white bg-success mb-3" style={Is_Mobile_View ? {width: Test_Card_Width_Mobile, marginBottom: "0px"} : { width: Test_Card_Width, height: Test_Card_Height}}>
-            				<div className="card-header">
-								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem: {this.state.problemName}</h4>
-            				</div>
-            			<div className="card-body">
-							<div>
-								<div className="card border-info mb-3" style={Is_Mobile_View ? {margin: "0px 20px", marginBottom: "20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} :{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Test_Card_Height_2, margin: "0px 45px", marginBottom: "20px"}}>
-									<div className="card-header"  style={{backgroundColor: "#003a63"}}>
-										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem Description:</h4>
-									</div>
-									<div className="card-body" style={{textAlign: "center", color: "#212529"}}>
-										<div>
-											<h4>{this.state.problemSummary}</h4>
+						<div className="" style={Is_Mobile_View ? {} : { float: "left" }}>
+							<div className="card text-white bg-success mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile, marginBottom: "0px" } : { width: Test_Card_Width, height: Test_Card_Height }}>
+								<div className="card-header">
+									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem: {this.state.problemName}</h4>
+								</div>
+								<div className="card-body">
+									<div>
+										<div className="card border-info mb-3" style={Is_Mobile_View ? { margin: "0px 20px", marginBottom: "20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Test_Card_Height_2, margin: "0px 45px", marginBottom: "20px" }}>
+											<div className="card-header" style={{ backgroundColor: "#003a63" }}>
+												<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem Description:</h4>
+											</div>
+											<div className="card-body" style={{ textAlign: "center", color: "#212529" }}>
+												<div>
+													<h4>{this.state.problemSummary}</h4>
+												</div>
+											</div>
 										</div>
 									</div>
+
+									<div className="card border-danger mb-3" style={Is_Mobile_View ? { margin: "0px 20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Test_Card_Height_2, margin: "0px 45px" }}>
+										<div className="card-header" style={{ backgroundColor: "#e51937" }}>
+											<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Console:</h4>
+										</div>
+										<div className="card-body" style={{ color: "#212529" }}>
+											<div>
+												<InfoBox
+													ref={this.infoBoxRef}
+													text={this.state.defaultOutputText} />
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
-
-							<div className="card border-danger mb-3" style={Is_Mobile_View ? {margin: "0px 20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", height: Test_Card_Height_2, margin: "0px 45px"}}>
-									<div className="card-header" style={{backgroundColor: "#e51937"}}>
-										<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Console:</h4>
-									</div>
-									<div className="card-body" style={{color: "#212529"}}>
-										<div>
-											<InfoBox
-												ref={this.infoBoxRef}
-												text={this.state.defaultOutputText} />
-										</div>
-									</div>
-							</div>
-
-						</div>
-						</div>
 						</div>
 
 
-						<div className="" style={{float: "right"}}>
-						<div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? {width: Test_Card_Width_Mobile} : { width: Test_Card_Width, height: Test_Card_Height}}>
-            				<div className="card-header">
-							
-								<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Coding Playground: </h4>
-								
-            				</div>
-            			<div className="card-body" style={{padding: "0px"}}></div>
-							<AceEditor
-								style={Is_Mobile_View ? {width: Test_Card_Width_Mobile} : {width: Test_Card_Width, height: Test_Card_Height}}
-								mode="python"
-								theme="solarized_dark"
-								fontSize={Is_Mobile_View ? 15 : 25}
-								showPrintMargin={false}
-								onChange={this.onTextEditorChange}
-								value={this.state.code}
-								editorProps={{ $blockScrolling: true }}
-								wrapEnabled={true}
-							/>
-							{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
-							<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{fontSize: "1.3rem" , height: "50px"}}>
-								<strong>Submit Code</strong>
-							</button>
+						<div className="" style={{ float: "right" }}>
+							<div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile } : { width: Test_Card_Width, height: Test_Card_Height }}>
+								<div className="card-header">
+
+									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Coding Playground: <button onClick={() => { this.setState({showSolution : !this.state.showSolution}) }}>{this.state.showSolution ? "Continue Coding" : "Show Solutions"}</button> </h4>
+
+								</div>
+								<div className="card-body" style={{ padding: "0px" }}></div>
+								{
+									!this.state.showSolution ? <AceEditor
+										style={Is_Mobile_View ? { width: Test_Card_Width_Mobile } : { width: Test_Card_Width, height: Test_Card_Height }}
+										mode="python"
+										theme="solarized_dark"
+										fontSize={Is_Mobile_View ? 15 : 25}
+										showPrintMargin={false}
+										onChange={this.onTextEditorChange}
+										value={this.state.code}
+										editorProps={{ $blockScrolling: true }}
+										wrapEnabled={true}/>
+									: <AceEditor
+											style={Is_Mobile_View ? { width: Test_Card_Width_Mobile } : { width: Test_Card_Width, height: Test_Card_Height }}
+											mode="python"
+											theme="solarized_light"
+											fontSize={Is_Mobile_View ? 15 : 25}
+											showPrintMargin={false}
+											onChange={this.onTextEditorChange}
+											value={this.state.problemSolutionCode}
+											editorProps={{ $blockScrolling: true }}
+											wrapEnabled={true}
+											readOnly={true}/>
+								}
+								{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
+								<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{ fontSize: "1.3rem", height: "50px" }}>
+									<strong>Submit Code</strong>
+								</button>
 							</div>
 						</div>
-						<div style={{clear: "both"}}>
-            			</div>
+						<div style={{ clear: "both" }}>
+						</div>
 					</div>
 				}
 			</AuthUserContext.Consumer>
