@@ -138,7 +138,7 @@ class EventsPageBase extends React.Component {
           </div>
         </div>
         <div className="Bottom" style={{ margin: "3px auto" }}>
-          <div className="Event_List" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} : { float: "left", width: Card_Width }}>
+          <div className="Event_List" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"} : { float: "left", width: "50%" }}>
             <div className="card border-success mb-3" style={Is_Mobile_View ? {height: Card_Height, marginBottom: "0px" } :  {height: Card_Height, marginBottom: "0px" }}>
               <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                 <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Add List to Calender:</h4>
@@ -180,7 +180,7 @@ class EventsPageBase extends React.Component {
               </div>
             </div>
           </div>
-          <div className="Event_Calender" style={Is_Mobile_View ? {} : { float: "right", width: Card_Width }}>
+          <div className="Event_Calender" style={Is_Mobile_View ? {} : { float: "right", width: "50%" }}>
             <div className="card border-warning mb-3" style={Is_Mobile_View ? {boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", marginBottom: "0px"} : { height: Card_Height, marginBottom: "0px" }}>
               <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                 <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Calender:</h4>
