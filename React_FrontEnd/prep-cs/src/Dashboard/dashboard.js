@@ -563,11 +563,13 @@ class DashboardComponentBase extends React.Component {
             </div>
             <div className="card-body">
               <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5> Looks like you last attempted the problem <span style={{ color: "#F39C12", fontSize: "1.3rem" }}>{this.state.lastProblemUserAttempted.shortName}</span>. Would you like to go back to the problem?</h5><br></br>
+                <div style={{textAlign: "center", margin: "0 auto"}}>
                 <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + this.state.lastProblemUserAttemptedId}>
                   <button type="submit" className="btn btn-warning">
                     Go to Problem
-              </button>
+                  </button>
                 </NavLink>
+                </div>
               </span>
             </div>
           </div>
@@ -803,9 +805,13 @@ class DashboardComponentBase extends React.Component {
               </div>
 
               <br></br>
+              <div style={{textAlign: "center", margin: "0 auto"}}>
+              <NavLink to={ROUTES.EVENTS}>
               <button type="submit" className="btn btn-success">
                 Go to Calender
                 </button>
+              </NavLink>
+              </div>
             </span>
           </div>
         </div>

@@ -169,7 +169,7 @@ class HomeBodyBase extends React.Component {
         <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
           <div style={{margin: "0px 90px", height: Page_Height, position: "relative"}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
-            <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: Div_Box_Width, height: Page_Height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
+            <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: "100%", height: Page_Height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
             <div style={{textAlign: "center", top: "50%", left: "50%", transform: "translate(0%, 30%)"}}> 
             <img style={{height: "300px", top: "90px"}} src={Logo}></img>
             <h1 style={{ color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS</h1>
