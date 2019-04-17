@@ -7,6 +7,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { AuthUserContext, withAuthorization } from '../Session';
 
 import "react-tabs/style/react-tabs.css";
+import 'brace/mode/python';
+import 'brace/theme/solarized_dark';
 import "brace/theme/solarized_light";
 
 class ProblemDetailBase extends React.Component {
@@ -25,7 +27,6 @@ class ProblemDetailBase extends React.Component {
 			problemTestFile: null,
 			problemStarterCodeFilepath: null,
 			problemStarterCode: '',
-			// problemSolutionCode: "def reverse_string(string):\n\tstring = string[::-1]\n\treturn string",
 			problemSolutionCode: "",
 			problemSolutionCodeFilePath: null,
 			showSolution: false,

@@ -21,9 +21,6 @@ import {
 
 import './index.css';
 
-import 'brace/mode/python';
-import 'brace/theme/solarized_dark';
-
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
