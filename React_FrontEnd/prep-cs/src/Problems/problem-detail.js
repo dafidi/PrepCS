@@ -55,7 +55,7 @@ class ProblemDetailBase extends React.Component {
 	submitCode = () => {
 		if (!this.state.code) {
 			// TODO(awogbemila): maybe develop and use a custom alert system.
-			alert("can't submit. no value");
+			alert("Please enter some code and then submit!");
 		} else {
 			let xhr = new XMLHttpRequest();
 			xhr.open("POST", this.state.codeSubmissionEndpoint, true);
@@ -314,8 +314,8 @@ class ProblemDetailBase extends React.Component {
 				{authUser =>
 					<div className="" style={Is_Mobile_View ? {} : { overflowY: "hidden" }}>
 
-						<div className="" style={Is_Mobile_View ? {} : { float: "left" }}>
-							<div className="card text-white bg-success mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile, marginBottom: "0px" } : { width: Test_Card_Width, height: Test_Card_Height }}>
+						<div className="" style={Is_Mobile_View ? {} : { float: "left", width: "50%" }}>
+							<div className="card text-white bg-success mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile, marginBottom: "0px" } : { height: Test_Card_Height }}>
 								<div className="card-header">
 									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem: {this.state.problemName}</h4>
 								</div>
@@ -351,8 +351,8 @@ class ProblemDetailBase extends React.Component {
 						</div>
 
 
-						<div className="" style={{ float: "right" }}>
-							<div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile } : { width: Test_Card_Width, height: Test_Card_Height }}>
+						<div className="" style={{ float: "right", width: "50%" }}>
+							<div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile } : { height: Test_Card_Height }}>
 								<div className="card-header">
 
 									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Coding Playground: <button onClick={() => { this.setState({showSolution : !this.state.showSolution}) }}>{this.state.showSolution ? "Continue Coding" : "Show Solutions"}</button> </h4>
