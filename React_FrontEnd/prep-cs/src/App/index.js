@@ -70,7 +70,7 @@ class HomeBodyBase extends React.Component {
       showNav: false,
       isRTL: false,
       slideDuration: 450,
-      slideInterval: 4000,
+      slideInterval: 2500,
       slideOnThumbnailOver: false,
       thumbnailPosition: 'bottom',
       showVideo: {},
