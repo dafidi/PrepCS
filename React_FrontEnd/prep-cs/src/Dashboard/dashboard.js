@@ -218,7 +218,6 @@ class DashboardComponentBase extends React.Component {
     Triple_Section_Width_Mobile = "" + Triple_Section_Width_Mobile + "px";
     Triple_Section_Width_Mid_Desktop = "" + Triple_Section_Width_Mid_Desktop + "px";
 
-    console.log(data["Arrays and Strings"].hardDoneByUser);
     if (Is_Mobile_View == true || Is_Mid_Desktop == true) {
 
       return (
@@ -619,7 +618,7 @@ class DashboardComponentBase extends React.Component {
                   </NavLink>
                   <br></br>
 
-                  <NavLink to={ROUTES.COURSE + '/' + "Stacks & Queues"}>
+                  <NavLink to={ROUTES.COURSE + '/' + "Stacks and Queues"}>
                     <h5 className="text-warning"><strong>Stacks & Queues:</strong></h5>
                     <div className="progress">
                       <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: stacksAndQueuesWidth }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>

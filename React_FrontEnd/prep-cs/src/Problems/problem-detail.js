@@ -152,6 +152,7 @@ class ProblemDetailBase extends React.Component {
 				this.props.firebase.fs_problems().doc(problem_id).get()
 					.then((doc) => {
 						const docData = doc.data();
+						console.log(docData)
 
 						this.setState({
 							problemName: docData.shortName,

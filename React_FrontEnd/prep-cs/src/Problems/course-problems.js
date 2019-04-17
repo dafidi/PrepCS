@@ -48,7 +48,6 @@ class CourseProblemsComponentBase extends React.Component {
                   hard.push({ id: problem.id, data: problem.data });
                 }
               } else {
-                console.log(problem.data.category, course_id);
                 // console.log(problem.category === course_id);
               }
             });
@@ -116,7 +115,6 @@ class CourseProblemsComponentBase extends React.Component {
 
     const styles = ["card text-white bg-info mb-3", "card text-white bg-warning mb-3", "card text-white bg-success mb-3", "card text-white bg-danger mb-3", "card text-white bg-info mb-3", "card text-white bg-warning mb-3"];
 
-    console.log(this.state.hardProblems);
     return (
       <AuthUserContext.Consumer>
         {
