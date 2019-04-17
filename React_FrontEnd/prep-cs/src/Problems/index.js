@@ -111,6 +111,7 @@ class ProblemsComponentBase extends React.Component {
     Menu_Height = "" + Menu_Height + "px";
 
     const Button_Styling = ["btn btn-success btn-lg btn-block", "btn btn-info btn-lg btn-block", "btn btn-warning btn-lg btn-block", "btn btn-danger btn-lg btn-block"];
+    const Color = ["#3498DB", "#20c997", "#18BC9C", "#F39C12", "#fd7e14", "#E74C3C", "#e83e8c", "#6f42c1", "#6610f2"];
 
     return (
       <div style={{overflowY: "hidden"}}>
@@ -122,7 +123,7 @@ class ProblemsComponentBase extends React.Component {
                   this.state.categories.slice().map((category, i) => (
                     
                       <NavLink style={{color: "white", textDecoration: "none"}} key={category} to={ROUTES.COURSE + "/" + category}>
-                      <button className={Button_Styling[i % 4]} style={{height: Menu_Height, marginTop: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}} type="button">
+                      <button className={Button_Styling[i % 4]} style={{ height: Menu_Height, marginTop: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}} type="button">
                         <h3 key={category}>{i + 1 + ". "}{category}</h3>
                       </button>
                       </NavLink>

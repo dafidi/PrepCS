@@ -142,7 +142,7 @@ class CourseProblemsComponentBase extends React.Component {
                               <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                               {problem.data.summary}
                               </h5>
-                              <div style={Is_Mobile_View ? {} : {marginTop: "30px"}}>
+                              <div>
                                 {this.state.problemsUserHasDone.includes(problem.id) && <img style={Is_Mobile_View ? {height: "25px", width: "25px"} :{height: "50px", width: "50px"}}src={Green_Check}></img>}
                               </div> 
 
@@ -167,7 +167,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Medium Problems:</h4>
                         </div>
-                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" }}>
+                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" } : { whiteSpace: "nowrap", overflowX: "scroll" }}>
                 {
                   this.state.mediumProblems.slice().map((problem, i) => (
                     
@@ -182,7 +182,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         {problem.data.summary}
                         </h5>
-                        <div style={Is_Mobile_View ? {} : {marginTop: "30px"}}>
+                        <div>
                                 {this.state.problemsUserHasDone.includes(problem.id) && <img style={Is_Mobile_View ? {height: "25px", width: "25px"} :{height: "50px", width: "50px"}}src={Green_Check}></img>}
                          </div> 
                       </div>
@@ -204,7 +204,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Hard Problems:</h4>
                         </div>
-                        <div className="card-body" style={{ whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" }}>
+                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" } : { whiteSpace: "nowrap", overflowX: "scroll" }}>
                 {
                   this.state.hardProblems.slice().map((problem, i) => (
                     
@@ -218,7 +218,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         {problem.data.summary}
                         </h5>
-                            <div style={Is_Mobile_View ? {} : {marginTop: "30px"}}>
+                            <div>
                                 {this.state.problemsUserHasDone.includes(problem.id) && <img style={Is_Mobile_View ? {height: "25px", width: "25px"} : {height: "50px", width: "50px"}}src={Green_Check}></img>}
                             </div> 
                       </div>
