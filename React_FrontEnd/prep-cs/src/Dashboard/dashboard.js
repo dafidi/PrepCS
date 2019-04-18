@@ -123,13 +123,16 @@ class DashboardComponentBase extends React.Component {
             userData.problems_attempted_successfully.forEach((problemId) => {
               problemId !== "" && this.props.firebase.fs_problems().doc(problemId).get()
                 .then((problem) => {
+                  console.log(problemId + " - " + problem.data());
                   problem = problem.data();
-                  if (problem.difficulty === "easy") {
-                    data[problem.category].easyDoneByUser += 1;
-                  } else if (problem.difficulty === "medium") {
-                    data[problem.category].mediumDoneByUser += 1;
-                  } else if (problem.difficulty === "hard") {
-                    data[problem.category].hardDoneByUser += 1;
+                  if (problem) {
+                    if (problem.difficulty === "easy") {
+                      data[problem.category].easyDoneByUser += 1;
+                    } else if (problem.difficulty === "medium") {
+                      data[problem.category].mediumDoneByUser += 1;
+                    } else if (problem.difficulty === "hard") {
+                      data[problem.category].hardDoneByUser += 1;
+                    }
                   }
                   data[problem.category].totalDoneByUser += 1;
                   this.setState({ data: data });
@@ -563,12 +566,12 @@ class DashboardComponentBase extends React.Component {
             </div>
             <div className="card-body">
               <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5> Looks like you last attempted the problem <span style={{ color: "#F39C12", fontSize: "1.3rem" }}>{this.state.lastProblemUserAttempted.shortName}</span>. Would you like to go back to the problem?</h5><br></br>
-                <div style={{textAlign: "center", margin: "0 auto"}}>
-                <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + this.state.lastProblemUserAttemptedId}>
-                  <button type="submit" className="btn btn-warning">
-                    Go to Problem
+                <div style={{ textAlign: "center", margin: "0 auto" }}>
+                  <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + this.state.lastProblemUserAttemptedId}>
+                    <button type="submit" className="btn btn-warning">
+                      Go to Problem
                   </button>
-                </NavLink>
+                  </NavLink>
                 </div>
               </span>
             </div>
@@ -639,225 +642,225 @@ class DashboardComponentBase extends React.Component {
                   <br></br>
 
                   <NavLink to={ROUTES.COURSE + '/' + "Trees and Graphs"}>
-                  <h5 className="text-success"><strong>Trees & Graphs:</strong></h5>
-                  <div className="progress">
-                    <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: treesAndGraphsWidth }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                    <h5 className="text-success"><strong>Trees & Graphs:</strong></h5>
+                    <div className="progress">
+                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: treesAndGraphsWidth }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                   </NavLink>
-                <br></br>
+                  <br></br>
 
-                <NavLink to={ROUTES.COURSE + '/' + "Recursion and Dynamic Programming"}>
-                <h5 className="text-info"><strong>Recursion & Dynamic Programming:</strong></h5>
-                <div className="progress">
-                  <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: recursionAndDynamicProgrammingWidth }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <NavLink to={ROUTES.COURSE + '/' + "Recursion and Dynamic Programming"}>
+                    <h5 className="text-info"><strong>Recursion & Dynamic Programming:</strong></h5>
+                    <div className="progress">
+                      <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: recursionAndDynamicProgrammingWidth }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </NavLink>
+                  <br></br>
                 </div>
+
+                <div style={{ float: "left", width: Triple_Section_Width }}>
+                  <NavLink to={ROUTES.COURSE + '/' + "Mathematics and Probability"}>
+
+                    <h5 className="text-warning"><strong>Mathematics & Probability:</strong></h5>
+                    <div className="progress">
+                      <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: mathematicsAndProbabilityWidth }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                   </NavLink>
-              <br></br>
-            </div>
+                  <br></br>
 
-            <div style={{ float: "left", width: Triple_Section_Width }}>
-            <NavLink to={ROUTES.COURSE + '/' + "Mathematics and Probability"}>
-
-              <h5 className="text-warning"><strong>Mathematics & Probability:</strong></h5>
-              <div className="progress">
-                <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: mathematicsAndProbabilityWidth }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+                  <NavLink to={ROUTES.COURSE + '/' + "Bit Manipulation"}>
+                    <h5 className="text-danger"><strong>Bit Manipulation:</strong></h5>
+                    <div className="progress">
+                      <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: bitManipulationWidth }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                   </NavLink>
-            <br></br>
+                  <br></br>
 
-            <NavLink to={ROUTES.COURSE + '/' + "Bit Manipulation"}>
-            <h5 className="text-danger"><strong>Bit Manipulation:</strong></h5>
-            <div className="progress">
-              <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: bitManipulationWidth }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+                  <NavLink to={ROUTES.COURSE + '/' + "Miscellaneous"}>
+                    <h5 className="text-success"><strong>Miscellaneous:</strong></h5>
+                    <div className="progress">
+                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: miscellaneousWidth }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                   </NavLink>
-          <br></br>
+                  <br></br>
+                </div>
 
-          <NavLink to={ROUTES.COURSE + '/' + "Miscellaneous"}>
-          <h5 className="text-success"><strong>Miscellaneous:</strong></h5>
-          <div className="progress">
-            <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: miscellaneousWidth }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-                  </NavLink>
-        <br></br>
-      </div>
-
-      <div style={{ clear: "both" }}>
-      </div>
+                <div style={{ clear: "both" }}>
+                </div>
 
               </span >
             </div >
           </div >
         </div >
 
-      {/*======================================================================== */ }
-    {/*======================================================================== */ }
-    {/*======================================================================== */ }
-    {/*======================================================================== */ }
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
 
-    <div className="difficulty_and_placeholder" style={{ margin: "90px auto", width: Page_Width }}>
-      <span className="difficulty" style={{ width: Card_Width, float: "left" }}>
-        <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-          <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
-            <h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
-          </div>
-          <div className="card-body">
-            <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-danger"><strong>Your Proficiency vs Difficulty:</strong></h5><br></br>
-
-              <VictoryStack
-                labels={["A & S", "S & S", "S & Q", "LL", "T & G", "R & DP", "M & P", "BM", "Misc"]}
-                colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
-              >
-                <VictoryBar
-                  data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].easyDoneByUser },
-                  { x: "Search & Sort", y: data["Search and Sort"].easyDoneByUser },
-                  { x: "Stacks & Queues", y: data["Stacks and Queues"].easyDoneByUser },
-                  { x: "Linked Lists", y: data["Linked Lists"].easyDoneByUser },
-                  { x: "Trees & Graphs", y: data["Trees and Graphs"].easyDoneByUser },
-                  { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].easyDoneByUser },
-                  { x: "Mathematics & Probability", y: data["Mathematics and Probability"].easyDoneByUser },
-                  { x: "Bit Manipulation", y: data["Bit Manipulation"].easyDoneByUser },
-                  { x: "Miscellaneous", y: data["Miscellaneous"].easyDoneByUser }]}
-                />
-                <VictoryBar
-                  data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].mediumDoneByUser },
-                  { x: "Search & Sort", y: data["Search and Sort"].mediumDoneByUser },
-                  { x: "Stacks & Queues", y: data["Stacks and Queues"].mediumDoneByUser },
-                  { x: "Linked Lists", y: data["Linked Lists"].mediumDoneByUser },
-                  { x: "Trees & Graphs", y: data["Trees and Graphs"].mediumDoneByUser },
-                  { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].mediumDoneByUser },
-                  { x: "Mathematics & Probability", y: data["Mathematics and Probability"].mediumDoneByUser },
-                  { x: "Bit Manipulation", y: data["Bit Manipulation"].mediumDoneByUser },
-                  { x: "Miscellaneous", y: data["Miscellaneous"].mediumDoneByUser }]}
-                />
-                <VictoryBar
-                  data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].hardDoneByUser },
-                  { x: "Search & Sort", y: data["Search and Sort"].hardDoneByUser },
-                  { x: "Stacks & Queues", y: data["Stacks and Queues"].hardDoneByUser },
-                  { x: "Linked Lists", y: data["Linked Lists"].hardDoneByUser },
-                  { x: "Trees & Graphs", y: data["Trees and Graphs"].hardDoneByUser },
-                  { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].hardDoneByUser },
-                  { x: "Mathematics & Probability", y: data["Mathematics and Probability"].hardDoneByUser },
-                  { x: "Bit Manipulation", y: data["Bit Manipulation"].hardDoneByUser },
-                  { x: "Miscellaneous", y: data["Miscellaneous"].hardDoneByUser }]}
-                />
-              </VictoryStack>
-            </span>
-          </div>
-        </div>
-      </span>
-      <span className="weaknesses" style={{ width: Card_Width, float: "right" }}>
-        <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-          <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
-            <h4 style={{ color: "white", textAlign: 'center' }}>Your Weaknesses</h4>
-          </div>
-          <div className="card-body">
-            <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Analyzing your Weaknesses:</strong></h5>
-
-              <VictoryPie
-                colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB"]}
-                padAngle={3}
-                innerRadius={100}
-                data={
-                  strengthsPieChartData
-                }
-              />
-            </span>
-          </div>
-        </div>
-      </span>
-      <div style={{ clear: "both" }}>
-      </div>
-    </div>
-
-    {/*======================================================================== */ }
-    {/*======================================================================== */ }
-    {/*======================================================================== */ }
-    {/*======================================================================== */ }
-
-    <div className="events_and_leaderboard" style={{ margin: "90px auto", width: Page_Width }}>
-      <span className="events" style={{ width: Card_Width, float: "left" }}>
-        <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-          <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
-            <h4 style={{ color: "white", textAlign: 'center' }}>Your Events</h4>
-          </div>
-          <div className="card-body">
-            <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-success"><strong>Here's a list of your events:</strong></h5><br></br>
-              <div className="list-group">
-                <a href="/dashboard" style={{ color: "white", backgroundColor: "#3498DB" }} className="list-group-item list-group-item-action flex-column align-items-start">
-                  <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">Personalized Dashboard</h5>
-                  </div>
-                  <span className="mb-1">Analyzes your statistics to accelerate your preparation.</span>
-                </a>
-                <a href="/courses" style={{ color: "white", backgroundColor: "#F39C12" }} className="list-group-item list-group-item-action flex-column align-items-start">
-                  <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">Coding Interview Readiness</h5>
-                  </div>
-                  <span className="mb-1">Prepares you for Technical and Behavioral Interviews.</span>
-                </a>
-                <a href="/events" style={{ color: "white", backgroundColor: "#E74C3C" }} className="list-group-item list-group-item-action flex-column align-items-start active">
-                  <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">CS-Related Event Tracking</h5>
-                  </div>
-                  <span className="mb-1">Always be in the know to further your career goals.</span>
-                </a>
+        <div className="difficulty_and_placeholder" style={{ margin: "90px auto", width: Page_Width }}>
+          <span className="difficulty" style={{ width: Card_Width, float: "left" }}>
+            <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+              <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>Difficulty Completion</h4>
               </div>
+              <div className="card-body">
+                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-danger"><strong>Your Proficiency vs Difficulty:</strong></h5><br></br>
 
-              <br></br>
-              <div style={{textAlign: "center", margin: "0 auto"}}>
-              <NavLink to={ROUTES.EVENTS}>
-              <button type="submit" className="btn btn-success">
-                Go to Calender
+                  <VictoryStack
+                    labels={["A & S", "S & S", "S & Q", "LL", "T & G", "R & DP", "M & P", "BM", "Misc"]}
+                    colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
+                  >
+                    <VictoryBar
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].easyDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].easyDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].easyDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].easyDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].easyDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].easyDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].easyDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].easyDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].easyDoneByUser }]}
+                    />
+                    <VictoryBar
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].mediumDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].mediumDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].mediumDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].mediumDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].mediumDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].mediumDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].mediumDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].mediumDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].mediumDoneByUser }]}
+                    />
+                    <VictoryBar
+                      data={[{ x: "Arrays & Strings", y: data["Arrays and Strings"].hardDoneByUser },
+                      { x: "Search & Sort", y: data["Search and Sort"].hardDoneByUser },
+                      { x: "Stacks & Queues", y: data["Stacks and Queues"].hardDoneByUser },
+                      { x: "Linked Lists", y: data["Linked Lists"].hardDoneByUser },
+                      { x: "Trees & Graphs", y: data["Trees and Graphs"].hardDoneByUser },
+                      { x: "Recursion and Dynamic Programming", y: data["Recursion and Dynamic Programming"].hardDoneByUser },
+                      { x: "Mathematics & Probability", y: data["Mathematics and Probability"].hardDoneByUser },
+                      { x: "Bit Manipulation", y: data["Bit Manipulation"].hardDoneByUser },
+                      { x: "Miscellaneous", y: data["Miscellaneous"].hardDoneByUser }]}
+                    />
+                  </VictoryStack>
+                </span>
+              </div>
+            </div>
+          </span>
+          <span className="weaknesses" style={{ width: Card_Width, float: "right" }}>
+            <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+              <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>Your Weaknesses</h4>
+              </div>
+              <div className="card-body">
+                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Analyzing your Weaknesses:</strong></h5>
+
+                  <VictoryPie
+                    colorScale={["#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB", "#E74C3C", "#18BC9C", "#F39C12", "#3498DB"]}
+                    padAngle={3}
+                    innerRadius={100}
+                    data={
+                      strengthsPieChartData
+                    }
+                  />
+                </span>
+              </div>
+            </div>
+          </span>
+          <div style={{ clear: "both" }}>
+          </div>
+        </div>
+
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+        {/*======================================================================== */}
+
+        <div className="events_and_leaderboard" style={{ margin: "90px auto", width: Page_Width }}>
+          <span className="events" style={{ width: Card_Width, float: "left" }}>
+            <div className="card border-success mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+              <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>Your Events</h4>
+              </div>
+              <div className="card-body">
+                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-success"><strong>Here's a list of your events:</strong></h5><br></br>
+                  <div className="list-group">
+                    <a href="/dashboard" style={{ color: "white", backgroundColor: "#3498DB" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                      <div className="d-flex w-100 justify-content-between">
+                        <h5 className="mb-1">Personalized Dashboard</h5>
+                      </div>
+                      <span className="mb-1">Analyzes your statistics to accelerate your preparation.</span>
+                    </a>
+                    <a href="/courses" style={{ color: "white", backgroundColor: "#F39C12" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                      <div className="d-flex w-100 justify-content-between">
+                        <h5 className="mb-1">Coding Interview Readiness</h5>
+                      </div>
+                      <span className="mb-1">Prepares you for Technical and Behavioral Interviews.</span>
+                    </a>
+                    <a href="/events" style={{ color: "white", backgroundColor: "#E74C3C" }} className="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div className="d-flex w-100 justify-content-between">
+                        <h5 className="mb-1">CS-Related Event Tracking</h5>
+                      </div>
+                      <span className="mb-1">Always be in the know to further your career goals.</span>
+                    </a>
+                  </div>
+
+                  <br></br>
+                  <div style={{ textAlign: "center", margin: "0 auto" }}>
+                    <NavLink to={ROUTES.EVENTS}>
+                      <button type="submit" className="btn btn-success">
+                        Go to Calender
                 </button>
-              </NavLink>
+                    </NavLink>
+                  </div>
+                </span>
               </div>
-            </span>
-          </div>
-        </div>
-      </span>
-      <span className="leaderboard" style={{ width: Card_Width, float: "right" }}>
-        <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
-          <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
-            <h4 style={{ color: "white", textAlign: 'center' }}>PrepCS Leaderboard</h4>
-          </div>
-          <div className="card-body">
-            <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Here's the current standings of the Leaderboard:</strong></h5><br></br>
-              <div className="list-group">
-                <a href="/dashboard" style={{ color: "white", backgroundColor: "#3498DB" }} className="list-group-item list-group-item-action flex-column align-items-start">
-                  <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">Personalized Dashboard</h5>
-                  </div>
-                  <span className="mb-1">Analyzes your statistics to accelerate your preparation.</span>
-                </a>
-                <a href="/courses" style={{ color: "white", backgroundColor: "#F39C12" }} className="list-group-item list-group-item-action flex-column align-items-start">
-                  <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">Coding Interview Readiness</h5>
-                  </div>
-                  <span className="mb-1">Prepares you for Technical and Behavioral Interviews.</span>
-                </a>
-                <a href="/events" style={{ color: "white", backgroundColor: "#E74C3C" }} className="list-group-item list-group-item-action flex-column align-items-start active">
-                  <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">CS-Related Event Tracking</h5>
-                  </div>
-                  <span className="mb-1">Always be in the know to further your career goals.</span>
-                </a>
+            </div>
+          </span>
+          <span className="leaderboard" style={{ width: Card_Width, float: "right" }}>
+            <div className="card border-warning mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
+              <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
+                <h4 style={{ color: "white", textAlign: 'center' }}>PrepCS Leaderboard</h4>
               </div>
+              <div className="card-body">
+                <span style={{ margin: "0px 90px", textAlign: 'center' }}><h5 className="text-warning"><strong>Here's the current standings of the Leaderboard:</strong></h5><br></br>
+                  <div className="list-group">
+                    <a href="/dashboard" style={{ color: "white", backgroundColor: "#3498DB" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                      <div className="d-flex w-100 justify-content-between">
+                        <h5 className="mb-1">Personalized Dashboard</h5>
+                      </div>
+                      <span className="mb-1">Analyzes your statistics to accelerate your preparation.</span>
+                    </a>
+                    <a href="/courses" style={{ color: "white", backgroundColor: "#F39C12" }} className="list-group-item list-group-item-action flex-column align-items-start">
+                      <div className="d-flex w-100 justify-content-between">
+                        <h5 className="mb-1">Coding Interview Readiness</h5>
+                      </div>
+                      <span className="mb-1">Prepares you for Technical and Behavioral Interviews.</span>
+                    </a>
+                    <a href="/events" style={{ color: "white", backgroundColor: "#E74C3C" }} className="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div className="d-flex w-100 justify-content-between">
+                        <h5 className="mb-1">CS-Related Event Tracking</h5>
+                      </div>
+                      <span className="mb-1">Always be in the know to further your career goals.</span>
+                    </a>
+                  </div>
 
-              <br></br>
-              <button type="submit" className="btn btn-warning">
-                Go to Leaderboard
+                  <br></br>
+                  <button type="submit" className="btn btn-warning">
+                    Go to Leaderboard
                 </button>
-            </span>
+                </span>
+              </div>
+            </div>
+          </span>
+          <div style={{ clear: "both" }}>
           </div>
         </div>
-      </span>
-      <div style={{ clear: "both" }}>
-      </div>
-    </div>
 
 
-    {/*
+        {/*
         <h2>This is your dashboard.</h2>
         <h2>You've attempted {this.state.numberOfProblemsUserHasAttempted} problem{this.state.numberOfProblemsUserHasAttempted === 1 ? "" :"s" }.</h2>
         {

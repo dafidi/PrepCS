@@ -66,11 +66,13 @@ class ProblemDetailBase extends React.Component {
 
 			xhr.onload = (res) => {
 				const response = JSON.parse(xhr.response);
+				console.log(response);
 				const responseJson = JSON.parse(response["body"]);
 				this.infoBoxRef.current.updateOutput(responseJson);
 				this.evaluateSubmission(responseJson);
 			}
 
+			// console.log(this.state.problemTestFile);
 			const json_submission = {
 				code: this.state.code,
 				test: this.state.problemTestFile
@@ -174,8 +176,8 @@ class ProblemDetailBase extends React.Component {
 						this.recordLastProblemOpened(problem_id);
 
 						this.getStarterCode();
-						this.getSolutionCode();
 						this.getTestFile();
+						this.getSolutionCode();
 					})
 					.catch();
 			} else {
@@ -235,7 +237,7 @@ class ProblemDetailBase extends React.Component {
 				xhr.open('GET', resourceUrl);
 				xhr.send();
 			})
-			.catch();
+			.catch((error) => { console.warn(error); });
 	}
 
 	getStarterCode = () => {

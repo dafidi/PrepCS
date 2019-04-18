@@ -6,11 +6,6 @@ import { AuthUserContext, withAuthorization } from '../Session';
 
 import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-import { ProblemListCard } from './problem-list-card';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-
-import Collapsible from 'react-collapsible';
 
 class ProblemsComponentBase extends React.Component {
   constructor(props) {
@@ -36,7 +31,7 @@ class ProblemsComponentBase extends React.Component {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
 
-    let problemsByCategory = { "Miscellaneous": [] };
+    let problemsByCategory = {};
     this.props.firebase.fs_problems()
       .get()
       .then((snapshot) => {
@@ -54,6 +49,7 @@ class ProblemsComponentBase extends React.Component {
             }
 
           } else {
+            console.log(doc.data());
             problemsByCategory["Miscellaneous"].push(
               { "id": doc.id, "data": doc.data() }
             );
