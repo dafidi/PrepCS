@@ -308,13 +308,13 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="last_problem_opened" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          {this.state.lastProblemUserAttempted && <div className="last_problem_opened" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card text-white bg-primary mb-3" style={Is_Mid_Desktop ? { marginBottom: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header">
                 <h4 style={{ textAlign: 'center' }}>Last Problem Attempted</h4>
               </div>
               <div className="card-body">
-                <span style={{ textAlign: 'center' }}><h5> Looks like you last attempted the problem <span style={{ color: "#F39C12", fontSize: "1.3rem" }}>"TwoSum"</span>. Would you like to go back to the problem?</h5><br></br>
+                <span style={{ textAlign: 'center' }}><h5> Looks like you last attempted the problem <span style={{ color: "#F39C12", fontSize: "1.3rem" }}>{this.state.lastProblemUserAttempted.shortName}</span>. Would you like to go back to the problem?</h5><br></br>
                 <div style={{textAlign: "center", margin: "0 auto"}}>
                 <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + this.state.lastProblemUserAttemptedId}>
                   <button type="submit" className="btn btn-warning">
@@ -325,7 +325,7 @@ class DashboardComponentBase extends React.Component {
                 </span>
               </div>
             </div>
-          </div>
+          </div>}
 
           {/*======================================================================== */}
           {/*======================================================================== */}
@@ -678,13 +678,13 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
-          <div className="last_problem_opened" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
+          {this.state.lastProblemUserAttempted && <div className="last_problem_opened" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card text-white bg-primary mb-3" style={Is_Mid_Desktop ? { marginBottom: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header">
                 <h4 style={{ textAlign: 'center' }}>Last Problem Attempted</h4>
               </div>
               <div className="card-body">
-                <span style={{ textAlign: 'center' }}><h5> Looks like you last attempted the problem <span style={{ color: "#F39C12", fontSize: "1.3rem" }}>"TwoSum"</span>. Would you like to go back to the problem?</h5><br></br>
+                <span style={{ textAlign: 'center' }}><h5> Looks like you last attempted the problem <span style={{ color: "#F39C12", fontSize: "1.3rem" }}>{this.state.lastProblemUserAttempted.shortName}</span>. Would you like to go back to the problem?</h5><br></br>
                 <div style={{textAlign: "center", margin: "0 auto"}}>
                 <NavLink to={ROUTES.PROBLEM_DETAIL + '/' + this.state.lastProblemUserAttemptedId}>
                   <button type="submit" className="btn btn-warning">
@@ -695,7 +695,7 @@ class DashboardComponentBase extends React.Component {
                 </span>
               </div>
             </div>
-          </div>
+          </div>}
 
           {/*======================================================================== */}
           {/*======================================================================== */}
