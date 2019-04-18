@@ -317,7 +317,7 @@ class ProblemDetailBase extends React.Component {
 						<div className="" style={Is_Mobile_View ? {} : { float: "left", width: "50%" }}>
 							<div className="card text-white bg-success mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile, marginBottom: "0px" } : { height: Test_Card_Height }}>
 								<div className="card-header">
-									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem: {this.state.problemName}</h4>
+									<h4 style={{ color: "white", textAlign: 'center'}}>Problem: {this.state.problemName}</h4>
 								</div>
 								<div className="card-body">
 									<div>
@@ -337,7 +337,7 @@ class ProblemDetailBase extends React.Component {
 										<div className="card-header" style={{ backgroundColor: "#e51937" }}>
 											<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Console:</h4>
 										</div>
-										<div className="card-body" style={{ color: "#212529" }}>
+										<div className="card-body" style={{ color: "#212529", overflowY: "scroll" }}>
 											<div>
 												<InfoBox
 													ref={this.infoBoxRef}
@@ -354,16 +354,24 @@ class ProblemDetailBase extends React.Component {
 						<div className="" style={Is_Mobile_View ? {} : {float: "right", width: "50%"}}>
 							<div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile } : { height: Test_Card_Height }}>
 								<div className="card-header">
-									
+									{Is_Mobile_View ? 
 									<span>
-									
-									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>
-									<button onClick={() => this.submitCode()} type="submit">Submit Code</button>
-									Coding Playground:
-									<button onClick={() => { this.setState({showSolution : !this.state.showSolution}) }}>{this.state.showSolution ? "Continue Coding" : "Show Solutions"}</button>
-									</h4>
+									<h4 style={{ color: "white", textAlign: 'center'}}>
+									Coding Playground:</h4>
+									<button className="btn btn-primary" onClick={() => this.submitCode()} type="submit" style={{display: "inline-block", float: "left"}}>Submit Code</button>
+									<button className="btn btn-secondary" style={{display: "inline-block", float: "right"}} onClick={() => { this.setState({showSolution : !this.state.showSolution}) }}>{this.state.showSolution ? "Continue Coding" : "Show Solutions"}</button>
 									</span>
 
+									:
+
+									<span>
+									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>
+									<button className="btn btn-primary" onClick={() => this.submitCode()} type="submit" style={{display: "inline-block", float: "left"}}>Submit Code</button>
+									Coding Playground:
+									<button className="btn btn-secondary" style={{display: "inline-block", float: "right"}} onClick={() => { this.setState({showSolution : !this.state.showSolution}) }}>{this.state.showSolution ? "Continue Coding" : "Show Solutions"}</button>
+									</h4>
+									</span>
+									}
 								</div>
 								<div className="card-body" style={{ padding: "0px" }}></div>
 								{
@@ -453,8 +461,9 @@ class InfoBox extends React.Component {
 
 	render() {
 		return (
-			<div className="">
-				<Tabs>
+			<div className="" style={{textAlign: "center"}}>
+				<h4>{this.state.text}</h4>
+				{/*<Tabs>
 					<TabList>
 						<Tab>Output</Tab>
 						<Tab>Information</Tab>
@@ -466,7 +475,7 @@ class InfoBox extends React.Component {
 					<TabPanel>
 						<h4>Further information about this problem.</h4>
 					</TabPanel>
-				</Tabs>
+				</Tabs>*/}
 			</div>
 		);
 	}
