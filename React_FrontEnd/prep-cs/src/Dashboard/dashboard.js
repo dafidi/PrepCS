@@ -341,26 +341,26 @@ class DashboardComponentBase extends React.Component {
                 <span>
                   <h5 className="text-primary"><strong>Total Problems Solved:</strong></h5>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: totalProblemsWidth }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{ width: totalProblemsWidth }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <br></br>
 
                   <div style={Is_Mobile_View ? { float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px" } : { float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px" }}>
                     <h5 className="text-success" style={{color: "#3498DB"}}><strong>A & S:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: arraysAndStringsWidth, backgroundColor: "#3498DB" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: arraysAndStringsWidth, backgroundColor: "#3498DB" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-info" style={{color: "#20c997"}}><strong>S & S:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: searchAndSortWidth, backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: searchAndSortWidth, backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-warning" style={{color: "#18BC9C"}}><strong>S & Q:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: stacksAndQueuesWidth, backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: stacksAndQueuesWidth, backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
                   </div>
@@ -368,19 +368,19 @@ class DashboardComponentBase extends React.Component {
                   <div style={Is_Mobile_View ? { float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px" } : { float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px" }}>
                     <h5 className="text-danger" style={{color: "#F39C12"}}><strong>LL:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: linkedListWidth, backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: linkedListWidth, backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-success" style={{color: "#fd7e14"}}><strong>T & G:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: treesAndGraphsWidth, backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: treesAndGraphsWidth, backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-info" style={{color: "#E74C3C"}}><strong>R & DP:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: recursionAndDynamicProgrammingWidth, backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: recursionAndDynamicProgrammingWidth, backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
                   </div>
@@ -388,19 +388,19 @@ class DashboardComponentBase extends React.Component {
                   <div style={Is_Mobile_View ? { float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px" } : { float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px" }}>
                     <h5 className="text-warning" style={{color: "#e83e8c"}}><strong>M & P:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: mathematicsAndProbabilityWidth, backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: mathematicsAndProbabilityWidth, backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-danger" style={{color: "#6f42c1"}}><strong>BM:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: bitManipulationWidth, backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: bitManipulationWidth, backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-success" style={{color: "#6610f2"}}><strong>Misc:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: miscellaneousWidth, backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: miscellaneousWidth, backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
                   </div>
@@ -711,26 +711,26 @@ class DashboardComponentBase extends React.Component {
                 <span>
                   <h5 className="text-primary"><strong>Total Problems Solved:</strong></h5>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: "10%" }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{ width: "70%" }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <br></br>
 
                   <div style={Is_Mobile_View ? { float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px" } : { float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px" }}>
                     <h5 className="text-success" style={{color: "#3498DB"}}><strong>A & S:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%", backgroundColor: "#3498DB" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "90%", backgroundColor: "#3498DB" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-info" style={{color: "#20c997"}}><strong>S & S:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: "50%", backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: "50%", backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-warning" style={{color: "#18BC9C"}}><strong>S & Q:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
                   </div>
@@ -738,19 +738,19 @@ class DashboardComponentBase extends React.Component {
                   <div style={Is_Mobile_View ? { float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px" } : { float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px" }}>
                     <h5 className="text-danger" style={{color: "#F39C12"}}><strong>LL:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: "100%", backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: "45%", backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-success" style={{color: "#fd7e14"}}><strong>T & G:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%", backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "65%", backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-info" style={{color: "#E74C3C"}}><strong>R & DP:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: "50%", backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: "60%", backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
                   </div>
@@ -758,19 +758,19 @@ class DashboardComponentBase extends React.Component {
                   <div style={Is_Mobile_View ? { float: "left", width: Triple_Section_Width_Mobile, marginRight: "20px" } : { float: "left", width: Triple_Section_Width_Mid_Desktop, marginRight: "20px" }}>
                     <h5 className="text-warning" style={{color: "#e83e8c"}}><strong>M & P:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-danger" style={{color: "#6f42c1"}}><strong>BM:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: "100%", backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: "25%", backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
 
                     <h5 className="text-success" style={{color: "#6610f2"}}><strong>Misc:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%", backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "85%", backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br></br>
                   </div>
@@ -801,13 +801,13 @@ class DashboardComponentBase extends React.Component {
           colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
         >
           <VictoryBar
-            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 3}, {x: "Stacks & Queues", y: 2}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 3}, {x: "Recursion and Dynamic Programming", y: 2}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 3}, {x: "Miscellaneous", y: 2}]}
+            data={[{x: "Arrays & Strings", y: 6}, {x: "Search & Sort", y: 3}, {x: "Stacks & Queues", y: 4}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 5}, {x: "Recursion and Dynamic Programming", y: 5}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 3}, {x: "Miscellaneous", y: 2}]}
           />
           <VictoryBar
-            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 4}, {x: "Stacks & Queues", y: 1}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 4}, {x: "Recursion and Dynamic Programming", y: 1}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 4}, {x: "Miscellaneous", y: 1}]}
+            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 4}, {x: "Stacks & Queues", y: 2}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 4}, {x: "Recursion and Dynamic Programming", y: 2}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 4}, {x: "Miscellaneous", y: 1}]}
           />
           <VictoryBar
-            data={[{x: "Arrays & Strings", y: 6}, {x: "Search & Sort", y: 2}, {x: "Stacks & Queues", y: 3}, {x: "Linked Lists", y: 6}, {x: "Trees & Graphs", y: 2}, {x: "Recursion and Dynamic Programming", y: 3}, {x: "Mathematics & Probability", y: 6}, {x: "Bit Manipulation", y: 2}, {x: "Miscellaneous", y: 3}]}
+            data={[{x: "Arrays & Strings", y: 4}, {x: "Search & Sort", y: 2}, {x: "Stacks & Queues", y: 1}, {x: "Linked Lists", y: 3}, {x: "Trees & Graphs", y: 2}, {x: "Recursion and Dynamic Programming", y: 1}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 2}, {x: "Miscellaneous", y: 3}]}
           />
         </VictoryStack>
 
@@ -892,15 +892,15 @@ class DashboardComponentBase extends React.Component {
                 padAngle={3}
                 innerRadius={100}
                 data={[
-                  { x: "A & S", y: 4000 },
-                  { x: "S & S", y: 2048 },
-                  { x: "S & Q", y: 2600 },
-                  { x: "LL", y: 1800 },
-                  { x: "T & G", y: 4000 },
-                  { x: "R & DP", y: 2048 },
-                  { x: "M & P", y: 2600 },
-                  { x: "BM", y: 1800 },
-                  { x: "Misc", y: 2048 },
+                  { x: "A & S", y: 90 },
+                  { x: "S & S", y: 50 },
+                  { x: "S & Q", y: 75 },
+                  { x: "LL", y: 45 },
+                  { x: "T & G", y: 65 },
+                  { x: "R & DP", y: 60 },
+                  { x: "M & P", y: 75 },
+                  { x: "BM", y: 25 },
+                  { x: "Misc", y: 85 },
                 ]}
               />
                 </span>
@@ -1067,9 +1067,9 @@ class DashboardComponentBase extends React.Component {
                 <span style={{ margin: "0px 90px" }}>
                   <h5 className="text-primary"><strong>Total Problems Solved:</strong></h5>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-striped"
+                    <div className="progress-bar progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "10%"}}
+                      style={{width: "70%"}}
                       aria-valuenow="10"
                       aria-valuemin="0"
                       aria-valuemax="100"></div>
@@ -1080,9 +1080,9 @@ class DashboardComponentBase extends React.Component {
                     <NavLink to={ROUTES.COURSE + '/' + "Arrays and Strings"}>
                       <h5 className="text-success" style={{color: "#3498DB"}}><strong>Arrays & Strings:</strong></h5>
                       <div className="progress">
-                        <div className="progress-bar progress-bar-striped bg-success"
+                        <div className="progress-bar progress-bar-striped progress-bar-animated bg-success"
                           role="progressbar"
-                          style={{ width: "25%", backgroundColor: "#3498DB" }}
+                          style={{ width: "90%", backgroundColor: "#3498DB" }}
                           aria-valuenow="25"
                           aria-valuemin="0"
                           aria-valuemax="100"></div>
@@ -1093,7 +1093,7 @@ class DashboardComponentBase extends React.Component {
                     <NavLink to={ROUTES.COURSE + '/' + "Search and Sort"}>
                       <h5 className="text-info" style={{color: "#20c997"}}><strong>Search & Sort:</strong></h5>
                       <div className="progress">
-                        <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: "50%", backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: "50%", backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </NavLink>
                     <br></br>
@@ -1101,7 +1101,7 @@ class DashboardComponentBase extends React.Component {
                     <NavLink to={ROUTES.COURSE + '/' + "Stacks and Queues"}>
                       <h5 className="text-warning" style={{color: "#18BC9C"}}><strong>Stacks & Queues:</strong></h5>
                       <div className="progress">
-                        <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </NavLink>
                     <br></br>
@@ -1111,7 +1111,7 @@ class DashboardComponentBase extends React.Component {
                     <NavLink to={ROUTES.COURSE + '/' + "Linked Lists"}>
                       <h5 className="text-danger" style={{color: "#F39C12"}}><strong>Linked Lists:</strong></h5>
                       <div className="progress">
-                        <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: "100%", backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: "45%", backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </NavLink>
                     <br></br>
@@ -1119,7 +1119,7 @@ class DashboardComponentBase extends React.Component {
                     <NavLink to={ROUTES.COURSE + '/' + "Trees and Graphs"}>
                     <h5 className="text-success" style={{color: "#fd7e14"}}><strong>Trees & Graphs:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%", backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "65%", backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     </NavLink>
                   <br></br>
@@ -1127,7 +1127,7 @@ class DashboardComponentBase extends React.Component {
                   <NavLink to={ROUTES.COURSE + '/' + "Recursion and Dynamic Programming"}>
                   <h5 className="text-info" style={{color: "#E74C3C"}}><strong>Recursion & Dynamic Programming:</strong></h5>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: "50%", backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: "60%", backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                     </NavLink>
                 <br></br>
@@ -1138,7 +1138,7 @@ class DashboardComponentBase extends React.Component {
   
                 <h5 className="text-warning" style={{color: "#e83e8c"}}><strong>Mathematics & Probability:</strong></h5>
                 <div className="progress">
-                  <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: "75%", backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                     </NavLink>
               <br></br>
@@ -1146,7 +1146,7 @@ class DashboardComponentBase extends React.Component {
               <NavLink to={ROUTES.COURSE + '/' + "Bit Manipulation"}>
               <h5 className="text-danger" style={{color: "#6f42c1"}}><strong>Bit Manipulation:</strong></h5>
               <div className="progress">
-                <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: "100%", backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: "25%", backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
                     </NavLink>
             <br></br>
@@ -1154,7 +1154,7 @@ class DashboardComponentBase extends React.Component {
             <NavLink to={ROUTES.COURSE + '/' + "Miscellaneous"}>
             <h5 className="text-success" style={{color: "#6610f2"}}><strong>Miscellaneous:</strong></h5>
             <div className="progress">
-              <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%", backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "85%", backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
                     </NavLink>
           <br></br>
@@ -1187,13 +1187,13 @@ class DashboardComponentBase extends React.Component {
           colorScale={["#18BC9C", "#F39C12", "#E74C3C"]}
         >
           <VictoryBar
-            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 3}, {x: "Stacks & Queues", y: 2}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 3}, {x: "Recursion and Dynamic Programming", y: 2}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 3}, {x: "Miscellaneous", y: 2}]}
+            data={[{x: "Arrays & Strings", y: 6}, {x: "Search & Sort", y: 3}, {x: "Stacks & Queues", y: 4}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 5}, {x: "Recursion and Dynamic Programming", y: 5}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 3}, {x: "Miscellaneous", y: 2}]}
           />
           <VictoryBar
-            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 4}, {x: "Stacks & Queues", y: 1}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 4}, {x: "Recursion and Dynamic Programming", y: 1}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 4}, {x: "Miscellaneous", y: 1}]}
+            data={[{x: "Arrays & Strings", y: 5}, {x: "Search & Sort", y: 4}, {x: "Stacks & Queues", y: 2}, {x: "Linked Lists", y: 5}, {x: "Trees & Graphs", y: 4}, {x: "Recursion and Dynamic Programming", y: 2}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 4}, {x: "Miscellaneous", y: 1}]}
           />
           <VictoryBar
-            data={[{x: "Arrays & Strings", y: 6}, {x: "Search & Sort", y: 2}, {x: "Stacks & Queues", y: 3}, {x: "Linked Lists", y: 6}, {x: "Trees & Graphs", y: 2}, {x: "Recursion and Dynamic Programming", y: 3}, {x: "Mathematics & Probability", y: 6}, {x: "Bit Manipulation", y: 2}, {x: "Miscellaneous", y: 3}]}
+            data={[{x: "Arrays & Strings", y: 4}, {x: "Search & Sort", y: 2}, {x: "Stacks & Queues", y: 1}, {x: "Linked Lists", y: 3}, {x: "Trees & Graphs", y: 2}, {x: "Recursion and Dynamic Programming", y: 1}, {x: "Mathematics & Probability", y: 5}, {x: "Bit Manipulation", y: 2}, {x: "Miscellaneous", y: 3}]}
           />
         </VictoryStack>
               </span>
@@ -1213,15 +1213,15 @@ class DashboardComponentBase extends React.Component {
                   padAngle={3}
                   innerRadius={100}
                   data={[
-                    { x: "A & S", y: 4000 },
-                    { x: "S & S", y: 2048 },
-                    { x: "S & Q", y: 2600 },
-                    { x: "LL", y: 1800 },
-                    { x: "T & G", y: 4000 },
-                    { x: "R & DP", y: 2048 },
-                    { x: "M & P", y: 2600 },
-                    { x: "BM", y: 1800 },
-                    { x: "Misc", y: 2048 },
+                    { x: "A & S", y: 90 },
+                    { x: "S & S", y: 50 },
+                    { x: "S & Q", y: 75 },
+                    { x: "LL", y: 45 },
+                    { x: "T & G", y: 65 },
+                    { x: "R & DP", y: 60 },
+                    { x: "M & P", y: 75 },
+                    { x: "BM", y: 25 },
+                    { x: "Misc", y: 85 },
                   ]}
                 />
               </span>
@@ -1387,7 +1387,7 @@ class DashboardComponentBase extends React.Component {
               <span style={{ margin: "0px 90px" }}>
                 <h5 className="text-primary"><strong>Total Problems Solved:</strong></h5>
                 <div className="progress">
-                  <div className="progress-bar progress-bar-striped"
+                  <div className="progress-bar progress-bar-striped progress-bar-animated"
                     role="progressbar"
                     style={{ width: totalProblemsWidth }}
                     aria-valuenow="10"
@@ -1400,7 +1400,7 @@ class DashboardComponentBase extends React.Component {
                   <NavLink to={ROUTES.COURSE + '/' + "Arrays and Strings"}>
                     <h5 className="text-success" style={{color: "#3498DB"}}><strong>Arrays & Strings:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-success"
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-success"
                         role="progressbar"
                         style={{ width: arraysAndStringsWidth, backgroundColor: "#3498DB" }}
                         aria-valuenow="25"
@@ -1413,7 +1413,7 @@ class DashboardComponentBase extends React.Component {
                   <NavLink to={ROUTES.COURSE + '/' + "Search and Sort"}>
                     <h5 className="text-info" style={{color: "#20c997"}}><strong>Search & Sort:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: searchAndSortWidth, backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: searchAndSortWidth, backgroundColor: "#20c997" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </NavLink>
                   <br></br>
@@ -1421,7 +1421,7 @@ class DashboardComponentBase extends React.Component {
                   <NavLink to={ROUTES.COURSE + '/' + "Stacks and Queues"}>
                     <h5 className="text-warning" style={{color: "#18BC9C"}}><strong>Stacks & Queues:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: stacksAndQueuesWidth, backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: stacksAndQueuesWidth, backgroundColor: "#18BC9C" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </NavLink>
                   <br></br>
@@ -1431,7 +1431,7 @@ class DashboardComponentBase extends React.Component {
                   <NavLink to={ROUTES.COURSE + '/' + "Linked Lists"}>
                     <h5 className="text-danger" style={{color: "#F39C12"}}><strong>Linked Lists:</strong></h5>
                     <div className="progress">
-                      <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: linkedListWidth, backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: linkedListWidth, backgroundColor: "#F39C12" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </NavLink>
                   <br></br>
@@ -1439,7 +1439,7 @@ class DashboardComponentBase extends React.Component {
                   <NavLink to={ROUTES.COURSE + '/' + "Trees and Graphs"}>
                   <h5 className="text-success" style={{color: "#fd7e14"}}><strong>Trees & Graphs:</strong></h5>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: treesAndGraphsWidth, backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: treesAndGraphsWidth, backgroundColor: "#fd7e14" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   </NavLink>
                 <br></br>
@@ -1447,7 +1447,7 @@ class DashboardComponentBase extends React.Component {
                 <NavLink to={ROUTES.COURSE + '/' + "Recursion and Dynamic Programming"}>
                 <h5 className="text-info" style={{color: "#E74C3C"}}><strong>Recursion & Dynamic Programming:</strong></h5>
                 <div className="progress">
-                  <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: recursionAndDynamicProgrammingWidth, backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: recursionAndDynamicProgrammingWidth, backgroundColor: "#E74C3C" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                   </NavLink>
               <br></br>
@@ -1458,7 +1458,7 @@ class DashboardComponentBase extends React.Component {
 
               <h5 className="text-warning" style={{color: "#e83e8c"}}><strong>Mathematics & Probability:</strong></h5>
               <div className="progress">
-                <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: mathematicsAndProbabilityWidth, backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: mathematicsAndProbabilityWidth, backgroundColor: "#e83e8c" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
                   </NavLink>
             <br></br>
@@ -1466,7 +1466,7 @@ class DashboardComponentBase extends React.Component {
             <NavLink to={ROUTES.COURSE + '/' + "Bit Manipulation"}>
             <h5 className="text-danger" style={{color: "#6f42c1"}}><strong>Bit Manipulation:</strong></h5>
             <div className="progress">
-              <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: bitManipulationWidth, backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: bitManipulationWidth, backgroundColor: "#6f42c1" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
                   </NavLink>
           <br></br>
@@ -1474,7 +1474,7 @@ class DashboardComponentBase extends React.Component {
           <NavLink to={ROUTES.COURSE + '/' + "Miscellaneous"}>
           <h5 className="text-success" style={{color: "#6610f2"}}><strong>Miscellaneous:</strong></h5>
           <div className="progress">
-            <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: miscellaneousWidth, backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: miscellaneousWidth, backgroundColor: "#6610f2" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
                   </NavLink>
         <br></br>
@@ -1719,26 +1719,26 @@ export default withAuthorization(condition)(DashboardComponent);
 //       <span style={{ margin: "0px 90px" }}>
 //         <h5 className="text-primary"><strong>Total Problems Solved:</strong></h5>
 //         <div className="progress">
-//           <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: "10%" }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+//           <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{ width: "10%" }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
 //         </div>
 //         <br></br>
 
 //         <div style={{ float: "left", width: Triple_Section_Width, marginRight: "90px" }}>
 //           <h5 className="text-success"><strong>Arrays & Strings:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 
 //           <h5 className="text-info"><strong>Search & Sort:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: "50%" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: "50%" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 
 //           <h5 className="text-warning"><strong>Stacks & Queues:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: "75%" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: "75%" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 //         </div>
@@ -1746,19 +1746,19 @@ export default withAuthorization(condition)(DashboardComponent);
 //         <div style={{ float: "left", width: Triple_Section_Width, marginRight: "90px" }}>
 //           <h5 className="text-danger"><strong>Linked Lists:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: "100%" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: "100%" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 
 //           <h5 className="text-success"><strong>Trees & Graphs:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 
 //           <h5 className="text-info"><strong>Recursion & Dynamic Programming:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-info" role="progressbar" style={{ width: "50%" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{ width: "50%" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 //         </div>
@@ -1766,19 +1766,19 @@ export default withAuthorization(condition)(DashboardComponent);
 //         <div style={{ float: "left", width: Triple_Section_Width }}>
 //           <h5 className="text-warning"><strong>Mathematics & Probability:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{ width: "75%" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style={{ width: "75%" }} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 
 //           <h5 className="text-danger"><strong>Bit Manipulation:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={{ width: "100%" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{ width: "100%" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 
 //           <h5 className="text-success"><strong>Miscellaneous:</strong></h5>
 //           <div className="progress">
-//             <div className="progress-bar progress-bar-striped bg-success" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+//             <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 //           </div>
 //           <br></br>
 //         </div>
