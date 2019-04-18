@@ -141,7 +141,7 @@ class HomeBodyBase extends React.Component {
 
     if (Is_Mobile_View == true) {
       return (
-        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
+        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden", width: "100%"}}>
           <div style={{margin: "0px auto", height: Page_Height, position: "relative"}}>
           <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width_mobile, height: testing_height_mobile, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
           <div style={{textAlign: "center", top: "50%", left: "50%", transform: "translate(0%, 30%)"}}> 
@@ -163,7 +163,7 @@ class HomeBodyBase extends React.Component {
     }
     else {
       return (
-        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
+        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden", width: "100%"}}>
           <div style={{margin: "0px 90px", height: Page_Height, position: "relative"}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: "100%", height: Page_Height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
