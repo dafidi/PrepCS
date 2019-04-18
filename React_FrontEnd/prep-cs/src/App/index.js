@@ -120,6 +120,7 @@ class HomeBodyBase extends React.Component {
     ]
 
     var Is_Mobile_View = this.state.width < 700;
+    var Is_Small_Mobile = this.state.width < 374;
 
     var Page_Height = this.state.height - 95;
     var Page_Width = this.state.width - 180;
@@ -141,16 +142,16 @@ class HomeBodyBase extends React.Component {
 
     if (Is_Mobile_View == true) {
       return (
-        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
+        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden", width: "100%"}}>
           <div style={{margin: "0px auto", height: Page_Height, position: "relative"}}>
           <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: testing_width_mobile, height: testing_height_mobile, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>
-          <div style={{textAlign: "center", top: "50%", left: "50%", transform: "translate(0%, 30%)"}}> 
+          <div style={Is_Small_Mobile ? {textAlign: "center", top: "50%", left: "50%"} : {textAlign: "center", top: "50%", left: "50%", transform: "translate(0%, 10%)"}}> 
             <img style={{height: "200px", top: "90px"}} src={Logo}></img>
             <h3 style={{ color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS</h3>
             <h5 style={{ margin: "0px 45px", color: "white", textAlign: 'center', textShadow: "1px 1px 10px #000000"}}>PrepCS is web service aimed at providing Computer Science students at Howard University a personalized career development platform.</h5>
           </div>
           {!this.props.authUser &&
-            <div style={{ margin: "150px auto", textAlign: "center" }} >
+            <div style={Is_Small_Mobile ? { margin: "20px auto", textAlign: "center" } : { textAlign: "center", transform: "translate(0%, 200%)" }} >
               <button type="button" onClick={this.goToSignInPage} className="btn btn-warning" style={{ paddingLeft: "30px", paddingRight: "30px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>Sign In</button>
               <button type="button" onClick={this.goToSignUpPage} className="btn btn-warning" style={{ marginLeft: "30px", paddingLeft: "30px", paddingRight: "30px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>Sign Up</button>
             </div>}
@@ -163,7 +164,7 @@ class HomeBodyBase extends React.Component {
     }
     else {
       return (
-        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden"}}>
+        <div className="homeBody" style={{height: Page_Height, overflowY: "hidden", width: "100%"}}>
           <div style={{margin: "0px 90px", height: Page_Height, position: "relative"}}>
             {/* run: npm rebuild node-sass; run: yarn start; that should apply styling */}
             <div style={{boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", zIndex: "9001", position: "absolute", margin: "auto", width: "100%", height: Page_Height, backgroundColor: "rgb(0, 58, 99, 0.5)"}}>

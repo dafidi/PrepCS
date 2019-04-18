@@ -127,7 +127,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Easy Problems:</h4>
                         </div>
-                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" } : { whiteSpace: "nowrap", overflowX: "scroll" }}>
+                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px", backgroundColor: "#003a63" } : { whiteSpace: "nowrap", overflowX: "scroll", backgroundColor: "#003a63" }}>
                 {
                   this.state.easyProblems.slice().map((problem, i) => (
                     
@@ -167,7 +167,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Medium Problems:</h4>
                         </div>
-                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" } : { whiteSpace: "nowrap", overflowX: "scroll" }}>
+                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px", backgroundColor: "#003a63" } : { whiteSpace: "nowrap", overflowX: "scroll", backgroundColor: "#003a63" }}>
                 {
                   this.state.mediumProblems.slice().map((problem, i) => (
                     
@@ -204,7 +204,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
                           <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Hard Problems:</h4>
                         </div>
-                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" } : { whiteSpace: "nowrap", overflowX: "scroll" }}>
+                        <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px", backgroundColor: "#003a63" } : { whiteSpace: "nowrap", overflowX: "scroll", backgroundColor: "#003a63" }}>
                 {
                   this.state.hardProblems.slice().map((problem, i) => (
                     
