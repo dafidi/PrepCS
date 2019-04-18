@@ -351,11 +351,18 @@ class ProblemDetailBase extends React.Component {
 						</div>
 
 
-						<div className="" style={{ float: "right", width: "50%" }}>
+						<div className="" style={Is_Mobile_View ? {} : {float: "right", width: "50%"}}>
 							<div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { width: Test_Card_Width_Mobile } : { height: Test_Card_Height }}>
 								<div className="card-header">
-
-									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Coding Playground: <button onClick={() => { this.setState({showSolution : !this.state.showSolution}) }}>{this.state.showSolution ? "Continue Coding" : "Show Solutions"}</button> </h4>
+									
+									<span>
+									
+									<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>
+									<button onClick={() => this.submitCode()} type="submit">Submit Code</button>
+									Coding Playground:
+									<button onClick={() => { this.setState({showSolution : !this.state.showSolution}) }}>{this.state.showSolution ? "Continue Coding" : "Show Solutions"}</button>
+									</h4>
+									</span>
 
 								</div>
 								<div className="card-body" style={{ padding: "0px" }}></div>
@@ -383,9 +390,6 @@ class ProblemDetailBase extends React.Component {
 											readOnly={true}/>
 								}
 								{/*<div className="submit-button" onClick={() => this.submitCode()}>Submit</div>*/}
-								<button onClick={() => this.submitCode()} type="submit" className="btn btn-warning" style={{ fontSize: "1.3rem", height: "50px" }}>
-									<strong>Submit Code</strong>
-								</button>
 							</div>
 						</div>
 						<div style={{ clear: "both" }}>
