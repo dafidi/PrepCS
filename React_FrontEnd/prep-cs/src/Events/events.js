@@ -119,11 +119,11 @@ class EventsPageBase extends React.Component {
             <div className="card-header" style={{ backgroundColor: "#e51937" }}>
               <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Upcoming Events @ Howard University:</h4>
             </div>
-            <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px" } : { whiteSpace: "nowrap", overflowX: "scroll" }}>
+            <div className="card-body" style={Is_Mobile_View ? { whiteSpace: "nowrap", overflowX: "scroll", padding: "0px", background: "#003a63" } : { whiteSpace: "nowrap", overflowX: "scroll", background: "#003a63" }}>
 
               {
                 this.state.events.map((event, i) => (
-                    <div key={event.id} className={styles[i % numberOfEvents]} style={Is_Mobile_View ? { display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
+                    <div key={event.id} className={styles[i % numberOfEvents]} style={Is_Mobile_View ? { display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
                       <div className="card-header" style={{ whiteSpace: "nowrap" , textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden" }}>{event.title}</h4>
                       </div>
@@ -143,32 +143,32 @@ class EventsPageBase extends React.Component {
               <div className="card-header" style={{ backgroundColor: "#18BC9C" }}>
                 <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Add List to Calender:</h4>
               </div>
-              <div className="card-body" style={{overflowY: "scroll"}}>
+              <div className="card-body" style={{overflowY: "scroll", background: "#18BC9C"}}>
 
                 <div>
                   <Paper>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>Event Title</TableCell>
-                          <TableCell>Event Start</TableCell>
-                          <TableCell>Event End</TableCell>
-                          <TableCell>Going?</TableCell>
+                    <Table className="table-success" style={{height: "45vh", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}>
+                      <TableHead style={{color: "white"}}>
+                        <TableRow style={{color: "white"}}>
+                          <TableCell style={{color: "white"}}>Event Title</TableCell>
+                          <TableCell style={{color: "white"}}>Event Start</TableCell>
+                          <TableCell style={{color: "white"}}>Event End</TableCell>
+                          <TableCell style={{color: "white"}}>Going?</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {
                           this.state.events.map(
                             event => (
-                              <TableRow key={event.id}>
-                                <TableCell style={{padding: "5px"}}><span>{event.title}</span></TableCell>
-                                <TableCell style={{padding: "5px"}}><span >{(new Date(event.start)).toString()}
+                              <TableRow style={{color: "white"}}  key={event.id}>
+                                <TableCell style={{padding: "5px", color: "white"}}><span>{event.title}</span></TableCell>
+                                <TableCell style={{padding: "5px", color: "white"}}><span >{(new Date(event.start)).toString()}
                                 </span>
                                 </TableCell>
-                                <TableCell style={{padding: "5px"}}><span>{(new Date(event.end)).toString()}
+                                <TableCell style={{padding: "5px", color: "white"}}><span>{(new Date(event.end)).toString()}
                                 </span>
                                 </TableCell>
-                                <TableCell style={{padding: "5px"}}><span><input type="checkbox" onClick={this.handleEventStatusChange}></input></span></TableCell>
+                                <TableCell style={{padding: "5px", color: "white"}}><span><input type="checkbox" onClick={this.handleEventStatusChange}></input></span></TableCell>
                               </TableRow>
                             )
                           )
@@ -185,7 +185,7 @@ class EventsPageBase extends React.Component {
               <div className="card-header" style={{ backgroundColor: "#F39C12" }}>
                 <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Calender:</h4>
               </div>
-              <div className="card-body">
+              <div className="card-body" style={{background: "#F39C12"}}>
 
                 <div style={{ height: 400 }}>
                   <BigCalendar
@@ -198,6 +198,7 @@ class EventsPageBase extends React.Component {
                     startAccessor="start"
                     endAccessor="end"
                     onSelectEvent={(event) => { console.log(event.id + " has been clicked") }}
+                    style={{color: "white", background: "#F39C12", height: "45vh", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}}
                   />
                 </div>
 
