@@ -103,6 +103,8 @@ class ProblemsComponentBase extends React.Component {
     var Page_Height = this.state.height - 95;
     var Menu_Height = Page_Height / 9;
 
+    var Is_Mobile_View = this.state.width < 700;
+
     Page_Height = "" + Page_Height + "px";
     Menu_Height = "" + Menu_Height + "px";
 
@@ -121,6 +123,7 @@ class ProblemsComponentBase extends React.Component {
     const Button_Styling = ["btn btn-success btn-lg btn-block", "btn btn-info btn-lg btn-block", "btn btn-warning btn-lg btn-block", "btn btn-danger btn-lg btn-block"];
     const Color = ["#3498DB", "#20c997", "#18BC9C", "#F39C12", "#fd7e14", "#E74C3C", "#e83e8c", "#6f42c1", "#6610f2"];
     const categories = ["Arrays and Strings", "Search and Sort", "Stacks and Queues", "Linked Lists", "Trees and Graphs", "Recursion and Dynamic Programming", "Mathematics & Probability", "Bit Manipulation", "Miscellaneous"];
+    const categories_Mobile = ["Arrays and Strings", "Search and Sort", "Stacks and Queues", "Linked Lists", "Trees and Graphs", "Recursion and DP", "Math & Prob", "Bit Manipulation", "Miscellaneous"];
 
     if (Presentation_Mode == true){
       return (
@@ -134,7 +137,7 @@ class ProblemsComponentBase extends React.Component {
                       
                         <NavLink style={{color: "white", textDecoration: "none"}} key={category} to={ROUTES.COURSE + "/" + category}>
                         <button className={Button_Styling[i % 4]} style={{ height: Menu_Height, marginTop: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}} type="button">
-                          <h3 key={category}>{i + 1 + ". "}{categories[i]}</h3>
+                          <h3 key={category}>{i + 1 + ". "}{Is_Mobile_View ? categories_Mobile[i] : categories[i]}</h3>
                         </button>
                         </NavLink>
                       

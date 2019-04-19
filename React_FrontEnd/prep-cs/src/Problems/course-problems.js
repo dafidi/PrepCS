@@ -154,7 +154,7 @@ class CourseProblemsComponentBase extends React.Component {
                           <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
                             <div className="card text-white bg-success mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
                               <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
-                                <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                                <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
                               </div>
                               <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                                 <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
@@ -194,7 +194,7 @@ class CourseProblemsComponentBase extends React.Component {
                       <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
                       <div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
                         <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
-                          <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                          <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
                         </div>
                         <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                           <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
@@ -230,7 +230,7 @@ class CourseProblemsComponentBase extends React.Component {
                       <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
                       <div className="card text-white bg-danger mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
                         <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
-                          <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                          <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
                         </div>
                         <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                           <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
@@ -278,7 +278,7 @@ class CourseProblemsComponentBase extends React.Component {
                         <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
                           <div className="card text-white bg-success mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
                             <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
-                              <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                              <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
                             </div>
                             <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                               <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
@@ -318,7 +318,7 @@ class CourseProblemsComponentBase extends React.Component {
                     <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
                     <div className="card text-white bg-warning mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
                       <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
-                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
                       </div>
                       <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
@@ -354,7 +354,7 @@ class CourseProblemsComponentBase extends React.Component {
                     <NavLink key={problem.id} to={ROUTES.PROBLEM_DETAIL + "/" + problem.id}>
                     <div className="card text-white bg-danger mb-3" style={Is_Mobile_View ? { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width_Mobile, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)", display: "inline-block", width: Card_Event_Width, height: Card_Event_Height, marginBottom: "0px", marginRight: "20px" }}>
                       <div className="card-header" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
-                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
+                        <h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{i + 1 + ". "}{problem.data.shortName}</h4>
                       </div>
                       <div className="card-body" style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>
                         <h5 style={{ whiteSpace: "nowrap" ,textOverflow: "ellipsis", textAlign: "center", overflow: "hidden"}}>

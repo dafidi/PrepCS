@@ -328,7 +328,7 @@ class ProblemDetailBase extends React.Component {
 											<div className="card-header" style={{ backgroundColor: "#003a63" }}>
 												<h4 style={{ color: "white", textAlign: 'center', marginBottom: "0px" }}>Problem Description:</h4>
 											</div>
-											<div className="card-body" style={{ textAlign: "center", color: "#212529" }}>
+											<div className="card-body" style={{ textAlign: "center", color: "#212529", overflowY: "scroll" }}>
 												<div>
 													<h4>{this.state.problemSummary}</h4>
 												</div>
