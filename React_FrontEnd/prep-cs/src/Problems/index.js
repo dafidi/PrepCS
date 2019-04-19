@@ -137,7 +137,13 @@ class ProblemsComponentBase extends React.Component {
                       
                         <NavLink style={{color: "white", textDecoration: "none"}} key={category} to={ROUTES.COURSE + "/" + category}>
                         <button className={Button_Styling[i % 4]} style={{ height: Menu_Height, marginTop: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)"}} type="button">
-                          <h3 key={category}>{i + 1 + ". "}{Is_Mobile_View ? categories_Mobile[i] : categories[i]}</h3>
+                          {Is_Mobile_View ? 
+
+                            <h4 key={category}>{i + 1 + ". "}{Is_Mobile_View ? categories_Mobile[i] : categories[i]}</h4>          
+                            : 
+                            <h3 key={category}>{i + 1 + ". "}{Is_Mobile_View ? categories_Mobile[i] : categories[i]}</h3>
+                            }
+                          
                         </button>
                         </NavLink>
                       
