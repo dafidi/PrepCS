@@ -76,7 +76,7 @@ class SignUpPageBase extends React.Component {
         </div>
         <br></br><br></br>
         <div className="auth-box" style={Is_Mobile_View ? { margin: "0px auto", width: Page_Width } : { margin: "0px auto", width: "800px" }}>
-          <SignUpForm />
+          <SignUpForm firebase={this.props.firebase} history={this.props.history} />
         </div>
         <br></br><br></br>
       </div>);
@@ -93,10 +93,10 @@ const SignUpLink = () => (
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: this.props }
-    this.state = { width: '1920' };
-    this.state = { width: '1080' };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    // this.state = { data: this.props }
+    // this.state = { width: '1920' };
+    // this.state = { width: '1080' };
+    
 
     // this.state = { ...INITIAL_STATE };
     this.state = {
@@ -108,8 +108,13 @@ class SignUpForm extends Component {
       passwordOne: '',
       passwordTwo: '',
       error: null,
+      width: '1920',
+      width: '1080'
     };
+
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
+
 
   componentDidMount() {
     this.updateWindowDimensions();
@@ -126,12 +131,13 @@ class SignUpForm extends Component {
 
   onSubmit = event => {
     const { firstName, lastName, username, email, passwordOne } = this.state;
+   
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in Firebase realtime database
-        return this.props.firebase.fs_users()
+        this.props.firebase.fs_users()
           .doc(authUser.user.uid)
           .set({
             firstName: firstName,
@@ -144,6 +150,7 @@ class SignUpForm extends Component {
       })
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
+        // alert(2);
         this.props.history.push(ROUTES.DASHBOARD);
       })
       .catch(error => {
@@ -275,7 +282,7 @@ class SignUpForm extends Component {
               <h3 style={{ textAlign: 'center' }}>Sign Up<small className="text-muted"> to PrepCS</small></h3>
             </div>
             <div className="card-body">
-              <form onSubmit={this.onSubmit}>
+              {/* <form onSubmit={this.onSubmit}> */}
   
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
@@ -355,7 +362,7 @@ class SignUpForm extends Component {
                   /><br></br>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <button disabled={isInvalid} type="submit" className="btn btn-secondary">
+                  <button disabled={isInvalid} onClick={this.onSubmit} className="btn btn-secondary">
                     Sign Up
             </button>
             <br></br><br></br>
@@ -368,7 +375,7 @@ class SignUpForm extends Component {
                 <br></br>
                 {error && <p className="text-danger">{error.message}</p>}
                 </div>
-              </form>
+              {/* </form> */}
             </div>
           </div>
         </div>
