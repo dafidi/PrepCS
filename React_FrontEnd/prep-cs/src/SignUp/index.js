@@ -210,7 +210,7 @@ class SignUpForm extends Component {
   
                 <div className="input-group mb-3">
                   <input className="form-control"
-                    name="userName"
+                    name="username"
                     value={username}
                     onChange={this.onChange}
                     type="text"
@@ -308,7 +308,7 @@ class SignUpForm extends Component {
                     <span className="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   </div>
                   <input className="form-control"
-                    name="userName"
+                    name="username"
                     value={username}
                     onChange={this.onChange}
                     type="text"
