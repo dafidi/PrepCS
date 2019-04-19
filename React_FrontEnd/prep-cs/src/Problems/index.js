@@ -122,7 +122,7 @@ class ProblemsComponentBase extends React.Component {
 
     const Button_Styling = ["btn btn-success btn-lg btn-block", "btn btn-info btn-lg btn-block", "btn btn-warning btn-lg btn-block", "btn btn-danger btn-lg btn-block"];
     const Color = ["#3498DB", "#20c997", "#18BC9C", "#F39C12", "#fd7e14", "#E74C3C", "#e83e8c", "#6f42c1", "#6610f2"];
-    const categories = ["Arrays and Strings", "Search and Sort", "Stacks and Queues", "Linked Lists", "Trees and Graphs", "Recursion and Dynamic Programming", "Mathematics & Probability", "Bit Manipulation", "Miscellaneous"];
+    const categories = ["Arrays and Strings", "Search and Sort", "Stacks and Queues", "Linked Lists", "Trees and Graphs", "Recursion and Dynamic Programming", "Mathematics and Probability", "Bit Manipulation", "Miscellaneous"];
     const categories_Mobile = ["Arrays and Strings", "Search and Sort", "Stacks and Queues", "Linked Lists", "Trees and Graphs", "Recursion and DP", "Math & Prob", "Bit Manipulation", "Miscellaneous"];
 
     if (Presentation_Mode == true){

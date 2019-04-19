@@ -48,7 +48,7 @@ class CourseProblemsComponentBase extends React.Component {
                   hard.push({ id: problem.id, data: problem.data });
                 }
               } else {
-                // console.log(problem.data.shortName, course_id);
+                console.log(problem.data.shortName, "[" + problem.data.category + "]", course_id);
               }
             });
             this.setState({
