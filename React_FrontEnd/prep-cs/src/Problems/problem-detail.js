@@ -175,9 +175,10 @@ class ProblemDetailBase extends React.Component {
 
 						this.recordLastProblemOpened(problem_id);
 
+						this.getSolutionCode();
+
 						this.getStarterCode();
 						this.getTestFile();
-						this.getSolutionCode();
 					})
 					.catch();
 			} else {

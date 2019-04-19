@@ -123,6 +123,7 @@ class DashboardComponentBase extends React.Component {
             userData.problems_attempted_successfully.forEach((problemId) => {
               problemId !== "" && this.props.firebase.fs_problems().doc(problemId).get()
                 .then((problem) => {
+                  console.log(problemId, problem.data());
                   problem = problem.data();
                   if (problem.difficulty === "easy") {
                     data[problem.category].easyDoneByUser += 1;

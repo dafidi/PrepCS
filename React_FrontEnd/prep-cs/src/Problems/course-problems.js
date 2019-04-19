@@ -48,7 +48,7 @@ class CourseProblemsComponentBase extends React.Component {
                   hard.push({ id: problem.id, data: problem.data });
                 }
               } else {
-                // console.log(problem.category === course_id);
+                // console.log(problem.data.shortName, course_id);
               }
             });
             this.setState({
@@ -56,6 +56,8 @@ class CourseProblemsComponentBase extends React.Component {
               mediumProblems: medium,
               hardProblems: hard,
             });
+
+            console.log(this.state.easyProblems);
           })
           .catch((error) => { console.warn(error); });
 
@@ -118,7 +120,7 @@ class CourseProblemsComponentBase extends React.Component {
     /*======================================================================== */
     /*======================================================================== */
 
-    var Presentation_Mode = true;
+    var Presentation_Mode = false;
 
     /*======================================================================== */
     /*======================================================================== */
