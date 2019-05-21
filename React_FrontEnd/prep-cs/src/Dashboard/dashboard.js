@@ -560,6 +560,8 @@ class DashboardComponentBase extends React.Component {
           {/*======================================================================== */}
           {/*======================================================================== */}
 
+          {/*
+
           <div className="events" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-danger mb-3" style={Is_Mid_Desktop ? { marginBottom: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
               <div className="card-header" style={{ backgroundColor: "#E74C3C" }}>
@@ -607,10 +609,14 @@ class DashboardComponentBase extends React.Component {
             </div>
           </div>
 
+          */}
+
           {/*======================================================================== */}
           {/*======================================================================== */}
           {/*======================================================================== */}
           {/*======================================================================== */}
+
+          {/*
 
           <div className="leaderboard" style={Is_Mobile_View ? { marginTop: "0px", width: Total_Page_Width } : { margin: "90px auto", width: Page_Width }}>
             <div className="card border-info mb-3" style={ Is_Mid_Desktop ? { marginBottom: "0px", boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" } : { boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
@@ -646,6 +652,7 @@ class DashboardComponentBase extends React.Component {
             </div>
           </div>
 
+          */}
 
           
 
@@ -1574,6 +1581,8 @@ class DashboardComponentBase extends React.Component {
     {/*======================================================================== */ }
     {/*======================================================================== */ }
 
+    {/*
+
     <div className="events_and_leaderboard" style={{ margin: "90px auto", width: Page_Width }}>
       <span className="events" style={{ width: Card_Width, float: "left" }}>
         <div className="card border-danger mb-3" style={{ boxShadow: "0px 0px 10px 5px rgba(0,0,0,.3)" }}>
@@ -1658,6 +1667,7 @@ class DashboardComponentBase extends React.Component {
       </div>
     </div>
 
+    */}
 
     {/*
         <h2>This is your dashboard.</h2>
