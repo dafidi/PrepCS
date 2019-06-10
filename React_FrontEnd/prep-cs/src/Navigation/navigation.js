@@ -65,7 +65,7 @@ class Navigation extends React.Component {
                   <li className="nav-item">
                     <NavLink to={ROUTES.EVENTS}
                       className="nav-link">
-                      Events
+                      About
                   </NavLink>
                   </li>
                 </ul>
@@ -104,7 +104,7 @@ class Navigation extends React.Component {
                   <li className="nav-item">
                     <NavLink to={ROUTES.EVENTS}
                       className="nav-link">
-                      Events
+                      About
                   </NavLink>
                   </li>
                 </ul>
